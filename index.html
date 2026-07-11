@@ -568,6 +568,38 @@ h2 {
   transform: scale(1.1);
 }
 
+.color-picker-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 32px !important;
+  height: 32px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 8px !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.color-picker-input::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.color-picker-input::-webkit-color-swatch {
+  border: 2px dashed rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+}
+
+.color-picker-input::-moz-color-swatch {
+  border: 2px dashed rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+}
+
+.color-picker-input:hover {
+  transform: scale(1.1);
+}
+
 .calc-results {
   margin-top: 20px;
   padding: 20px;
@@ -761,14 +793,14 @@ input[type="range"]::-webkit-slider-thumb {
         <label>Timer Color</label>
                 <div>
                   <div class="color-palette" id="timerColorPalette">
-                    <div class="color-swatch" style="background: #ff0000" data-color="#ff0000"></div>
-                    <div class="color-swatch" style="background: #25abff" data-color="#25abff"></div>
-                    <div class="color-swatch" style="background: #21ff6a" data-color="#21ff6a"></div>
-                    <div class="color-swatch" style="background: #bf4aff" data-color="#bf4aff"></div>
-                    <div class="color-swatch" style="background: #ffe360" data-color="#ffe360"></div>
-                    <div class="color-swatch" style="background: #ffffff" data-color="#ffffff"></div>
-                  </div>
-                  <input type="color" id="timerColor" value="#ff0000" />
+                                      <div class="color-swatch" style="background: #ff0000" data-color="#ff0000"></div>
+                                      <div class="color-swatch" style="background: #25abff" data-color="#25abff"></div>
+                                      <div class="color-swatch" style="background: #21ff6a" data-color="#21ff6a"></div>
+                                      <div class="color-swatch" style="background: #bf4aff" data-color="#bf4aff"></div>
+                                      <div class="color-swatch" style="background: #ffe360" data-color="#ffe360"></div>
+                                      <div class="color-swatch" style="background: #ffffff" data-color="#ffffff"></div>
+                                      <input type="color" id="timerColor" value="#ff0000" class="color-picker-input" title="Custom Color" />
+                                    </div>
                 </div>
         
                 <label>Timer Font</label>
@@ -806,14 +838,14 @@ input[type="range"]::-webkit-slider-thumb {
         <label>Clock Color</label>
                 <div>
                   <div class="color-palette" id="clockColorPalette">
-                    <div class="color-swatch" style="background: #25abff" data-color="#25abff"></div>
-                    <div class="color-swatch" style="background: #21ff6a" data-color="#21ff6a"></div>
-                    <div class="color-swatch" style="background: #bf4aff" data-color="#bf4aff"></div>
-                    <div class="color-swatch" style="background: #ffe360" data-color="#ffe360"></div>
-                    <div class="color-swatch" style="background: #ff2079" data-color="#ff2079"></div>
-                    <div class="color-swatch" style="background: #ffffff" data-color="#ffffff"></div>
-                  </div>
-                  <input type="color" id="clockColor" value="#ffffff" />
+                                      <div class="color-swatch" style="background: #25abff" data-color="#25abff"></div>
+                                      <div class="color-swatch" style="background: #21ff6a" data-color="#21ff6a"></div>
+                                      <div class="color-swatch" style="background: #bf4aff" data-color="#bf4aff"></div>
+                                      <div class="color-swatch" style="background: #ffe360" data-color="#ffe360"></div>
+                                      <div class="color-swatch" style="background: #ff2079" data-color="#ff2079"></div>
+                                      <div class="color-swatch" style="background: #ffffff" data-color="#ffffff"></div>
+                                      <input type="color" id="clockColor" value="#ffffff" class="color-picker-input" title="Custom Color" />
+                                    </div>
                 </div>
         
                 <label>Clock Font</label>
@@ -857,14 +889,14 @@ input[type="range"]::-webkit-slider-thumb {
         <label>Card Color</label>
         <div>
           <div class="color-palette" id="cardColorPalette">
-            <div class="color-swatch" style="background: #262c3d" data-color="#262c3d"></div>
-            <div class="color-swatch" style="background: #1e2530" data-color="#1e2530"></div>
-            <div class="color-swatch" style="background: #2d3748" data-color="#2d3748"></div>
-            <div class="color-swatch" style="background: #4a5568" data-color="#4a5568"></div>
-            <div class="color-swatch" style="background: #2a4365" data-color="#2a4365"></div>
-            <div class="color-swatch" style="background: #553c9a" data-color="#553c9a"></div>
-          </div>
-          <input type="color" id="cardColor" value="#262c3d" />
+                      <div class="color-swatch" style="background: #262c3d" data-color="#262c3d"></div>
+                      <div class="color-swatch" style="background: #1e2530" data-color="#1e2530"></div>
+                      <div class="color-swatch" style="background: #2d3748" data-color="#2d3748"></div>
+                      <div class="color-swatch" style="background: #4a5568" data-color="#4a5568"></div>
+                      <div class="color-swatch" style="background: #2a4365" data-color="#2a4365"></div>
+                      <div class="color-swatch" style="background: #553c9a" data-color="#553c9a"></div>
+                      <input type="color" id="cardColor" value="#262c3d" class="color-picker-input" title="Custom Color" />
+                    </div>
         </div>
         
         <label>Card Transparency</label>
@@ -894,13 +926,13 @@ input[type="range"]::-webkit-slider-thumb {
         <label>Shadow/Glow Color</label>
         <div>
           <div class="color-palette" id="cardShadowPalette">
-            <div class="color-swatch" style="background: #000000" data-color="#000000"></div>
-            <div class="color-swatch" style="background: #25abff" data-color="#25abff"></div>
-            <div class="color-swatch" style="background: #21ff6a" data-color="#21ff6a"></div>
-            <div class="color-swatch" style="background: #bf4aff" data-color="#bf4aff"></div>
-            <div class="color-swatch" style="background: #ff2079" data-color="#ff2079"></div>
-          </div>
-          <input type="color" id="cardShadowColor" value="#000000" />
+                      <div class="color-swatch" style="background: #000000" data-color="#000000"></div>
+                      <div class="color-swatch" style="background: #25abff" data-color="#25abff"></div>
+                      <div class="color-swatch" style="background: #21ff6a" data-color="#21ff6a"></div>
+                      <div class="color-swatch" style="background: #bf4aff" data-color="#bf4aff"></div>
+                      <div class="color-swatch" style="background: #ff2079" data-color="#ff2079"></div>
+                      <input type="color" id="cardShadowColor" value="#000000" class="color-picker-input" title="Custom Color" />
+                    </div>
         </div>
         
         <label>Shadow Intensity</label>
@@ -969,12 +1001,12 @@ input[type="range"]::-webkit-slider-thumb {
         <label>Font Color</label>
         <div>
           <div class="color-palette" id="fontColorPalette">
-            <div class="color-swatch" style="background: #d0d4e0" data-color="#d0d4e0"></div>
-            <div class="color-swatch" style="background: #ffffff" data-color="#ffffff"></div>
-            <div class="color-swatch" style="background: #25abff" data-color="#25abff"></div>
-            <div class="color-swatch" style="background: #21ff6a" data-color="#21ff6a"></div>
-          </div>
-          <input type="color" id="fontColor" value="#d0d4e0" />
+                      <div class="color-swatch" style="background: #d0d4e0" data-color="#d0d4e0"></div>
+                      <div class="color-swatch" style="background: #ffffff" data-color="#ffffff"></div>
+                      <div class="color-swatch" style="background: #25abff" data-color="#25abff"></div>
+                      <div class="color-swatch" style="background: #21ff6a" data-color="#21ff6a"></div>
+                      <input type="color" id="fontColor" value="#d0d4e0" class="color-picker-input" title="Custom Color" />
+                    </div>
         </div>
         
         <label>Font Size</label>
@@ -1238,21 +1270,18 @@ input[type="range"]::-webkit-slider-thumb {
     <h2>Personalize</h2>
     <form class="settings-grid" autocomplete="off">
       <label>Accent Color</label>
-      <div>
-        <div class="color-palette" id="accentColorPalette">
-          <div class="color-swatch" style="background: #2f82ff" data-color="#2f82ff"></div>
-          <div class="color-swatch" style="background: #21ff6a" data-color="#21ff6a"></div>
-          <div class="color-swatch" style="background: #bf4aff" data-color="#bf4aff"></div>
-          <div class="color-swatch" style="background: #ffe360" data-color="#ffe360"></div>
-          <div class="color-swatch" style="background: #ff2079" data-color="#ff2079"></div>
-          <div class="color-swatch" style="background: #ffffff" data-color="#ffffff"></div>
-        </div>
-        <input type="color" id="accentColor" value="#2f82ff" />
-      </div>
-      
-      <label>Custom Sound</label>
-      <input type="file" id="customSound" accept="audio/mpeg,audio/wav" />
-    </form>
+            <div>
+              <div class="color-palette" id="accentColorPalette">
+                <div class="color-swatch" style="background: #2f82ff" data-color="#2f82ff"></div>
+                <div class="color-swatch" style="background: #21ff6a" data-color="#21ff6a"></div>
+                <div class="color-swatch" style="background: #bf4aff" data-color="#bf4aff"></div>
+                <div class="color-swatch" style="background: #ffe360" data-color="#ffe360"></div>
+                <div class="color-swatch" style="background: #ff2079" data-color="#ff2079"></div>
+                <div class="color-swatch" style="background: #ffffff" data-color="#ffffff"></div>
+                <input type="color" id="accentColor" value="#2f82ff" class="color-picker-input" title="Custom Color" />
+              </div>
+            </div>
+          </form>
     <div class="personalize-controls">
               <button id="editClockBtn" class="mini-btn neon">Edit Clock</button>
               <button id="editTimerBtn" class="mini-btn neon">Edit Timer</button>
@@ -2413,29 +2442,14 @@ input[type="range"]::-webkit-slider-thumb {
     });
 
     if (accentColor) {
-      accentColor.oninput = (e) => {
-        document.documentElement.style.setProperty('--accent', e.target.value);
-        document.documentElement.style.setProperty('--theme-color', e.target.value);
-        localStorage.setItem('accentColor', e.target.value);
-      };
-    }
-
-    const customSound = document.getElementById("customSound");
-    if (customSound && soundCustom) {
-      customSound.onchange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = (ev) => {
-            soundCustom.src = ev.target.result;
-            localStorage.setItem('customSound', ev.target.result);
+          accentColor.oninput = (e) => {
+            document.documentElement.style.setProperty('--accent', e.target.value);
+            document.documentElement.style.setProperty('--theme-color', e.target.value);
+            localStorage.setItem('accentColor', e.target.value);
           };
-          reader.readAsDataURL(file);
         }
-      };
-    }
 
-    function restoreAllSettings() {
+        function restoreAllSettings() {
       try {
         const savedAccent = localStorage.getItem('accentColor');
         if (savedAccent) {
