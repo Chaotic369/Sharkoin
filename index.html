@@ -755,12 +755,13 @@ input[type="range"]::-webkit-slider-thumb {
   <div id="bgOverlay"></div>
   
   <header class="menu-bar">
-    <span class="app-title" id="avatarArea">
-      <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9IiMyZjgyZmYiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiPgo8dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmYiIGZvbnQtc2l6ZT0iMTRweCIgZm9udC13ZWlnaHQ9IjYwMCI+VTwvdGV4dD4KPC9zdmc+CjwvY2lyY2xlPgo8L3N2Zz4K" alt="User" />
-      <span id="avatarName">User</span>
-    </span>
-    <button id="menuBtn" class="menu-btn" aria-label="Menu">☰</button>
-  </header>
+      <span class="app-title" id="avatarArea">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9IiMyZjgyZmYiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiPgo8dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmYiIGZvbnQtc2l6ZT0iMTRweCIgZm9udC13ZWlnaHQ9IjYwMCI+VTwvdGV4dD4KPC9zdmc+CjwvY2lyY2xlPgo8L3N2Zz4K" alt="User" />
+        <span id="avatarName">User</span>
+        <span id="syncIndicator" style="width: 10px; height: 10px; border-radius: 50%; background: #ff4a4a; margin-left: 12px; box-shadow: 0 0 6px #ff4a4a; transition: all 0.3s ease;" title="Firebase Disconnected"></span>
+      </span>
+      <button id="menuBtn" class="menu-btn" aria-label="Menu">☰</button>
+    </header>
 
   <nav id="sideDrawer" class="side-drawer">
     <button class="drawer-close-btn" id="closeDrawer">&times;</button>
@@ -1426,12 +1427,30 @@ input[type="range"]::-webkit-slider-thumb {
       };
   
       if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-      }
-      const db = firebase.database();
-      const dbPath = 'users/chaotic369/local_storage_cache';
+              firebase.initializeApp(firebaseConfig);
+            }
+            const db = firebase.database();
+            const dbPath = 'users/chaotic369/local_storage_cache';
+      
+            // Real-time connection status listener
+            const syncIndicator = document.getElementById('syncIndicator');
+            db.ref('.info/connected').on('value', function(snap) {
+              if (snap.val() === true) {
+                if (syncIndicator) {
+                  syncIndicator.style.background = '#21ff6a';
+                  syncIndicator.style.boxShadow = '0 0 6px #21ff6a';
+                  syncIndicator.title = 'Firebase Connected & Syncing';
+                }
+              } else {
+                if (syncIndicator) {
+                  syncIndicator.style.background = '#ff4a4a';
+                  syncIndicator.style.boxShadow = '0 0 6px #ff4a4a';
+                  syncIndicator.title = 'Firebase Disconnected';
+                }
+              }
+            });
   
-      const originalSetItem = localStorage.setItem;
+            const originalSetItem = localStorage.setItem;
       const originalRemoveItem = localStorage.removeItem;
       const originalClear = localStorage.clear;
 
