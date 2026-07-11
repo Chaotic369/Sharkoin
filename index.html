@@ -1599,13 +1599,54 @@ input[type="range"]::-moz-range-thumb {
     const originalClear = localStorage.clear;
 
     // 1. Await Firebase pull to seed local cache before app initializes
-    try {
-      const snapshot = await db.ref(dbPath).once('value');
-      const data = snapshot.val();
-      if (data) {
-        for (const key in data) {
-          originalSetItem.call(localStorage, key, data[key]);
+      try {
+        const snapshot = await db.ref(dbPath).once('value');
+        const data = snapshot.val();
+        if (data) {
+          for (const key in data) {
+            originalSetItem.call(localStorage, key, data[key]);
+          }
         }
+    
+        // --- FIREBASE SYNC NOTIFICATION ---
+        const toast = document.createElement('div');
+        toast.innerHTML = '☁️ <b>Firebase Sync Active</b><br><span style="font-size:0.85em;font-weight:normal">Memory successfully loaded</span>';
+        Object.assign(toast.style, {
+          position: 'fixed', bottom: '24px', right: '24px', zIndex: '9999',
+          background: 'linear-gradient(135deg, rgba(33, 255, 106, 0.95), rgba(47, 130, 255, 0.95))',
+          color: '#1e2530', padding: '14px 24px', borderRadius: '12px',
+          boxShadow: '0 8px 32px rgba(33, 255, 106, 0.3)', backdropFilter: 'blur(10px)',
+          transform: 'translateY(100px)', opacity: '0', transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+        });
+        document.body.appendChild(toast);
+    
+        // Animate in
+        requestAnimationFrame(() => {
+          toast.style.transform = 'translateY(0)';
+          toast.style.opacity = '1';
+        });
+    
+        // Animate out after 4 seconds
+        setTimeout(() => {
+          toast.style.transform = 'translateY(20px)';
+          toast.style.opacity = '0';
+          setTimeout(() => toast.remove(), 500);
+        }, 4000);
+        // ----------------------------------
+
+      } catch (err) {
+        console.warn("Firebase Sync Error (Check RTDB rules!):", err);
+    
+        // --- FIREBASE ERROR NOTIFICATION ---
+        const errToast = document.createElement('div');
+        errToast.innerHTML = '⚠️ <b>Sync Blocked</b><br><span style="font-size:0.85em;font-weight:normal">Check console / DB rules</span>';
+        Object.assign(errToast.style, {
+          position: 'fixed', bottom: '24px', right: '24px', zIndex: '9999',
+          background: 'rgba(255, 74, 74, 0.95)', color: '#ffffff', padding: '14px 24px', borderRadius: '12px',
+          boxShadow: '0 8px 32px rgba(255, 74, 74, 0.4)', backdropFilter: 'blur(10px)'
+        });
+        document.body.appendChild(errToast);
+        setTimeout(() => errToast.remove(), 5000);
       }
     } catch (err) {
       console.warn("Firebase Sync Error (Check RTDB rules!):", err);
