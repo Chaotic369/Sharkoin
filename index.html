@@ -889,10 +889,10 @@ input[type="range"]::-webkit-slider-thumb {
   </div>
 
   <div id="cardModal" class="modal">
-      <div class="modal-content">
-        <button class="modal-close-btn">&times;</button>
-        <h3>Card & Sidebar Settings</h3>
-      <form class="settings-grid">
+        <div class="modal-content">
+          <button class="modal-close-btn">&times;</button>
+          <h3>Card, Sidebar & Menu Settings</h3>
+        <form class="settings-grid">
         <label>Card Color</label>
         <div>
           <div class="color-palette" id="cardColorPalette">
@@ -907,16 +907,16 @@ input[type="range"]::-webkit-slider-thumb {
         </div>
         
         <label>Card Transparency</label>
-        <div>
-          <input type="range" id="cardAlpha" min="0" max="100" value="88" />
-          <span class="range-value" id="cardAlphaVal">88</span>%
-        </div>
-        
-        <label>Card & Sidebar Blur</label>
                 <div>
-                  <input type="range" id="cardBlur" min="0" max="30" value="10" />
-                  <span class="range-value" id="cardBlurVal">10</span>px
+                  <input type="range" id="cardAlpha" min="0" max="100" value="88" />
+                  <span class="range-value" id="cardAlphaVal">88</span>%
                 </div>
+        
+                <label>Unified Blur</label>
+                        <div>
+                          <input type="range" id="cardBlur" min="0" max="30" value="10" />
+                          <span class="range-value" id="cardBlurVal">10</span>px
+                        </div>
         
         <label>Card Opacity</label>
         <div>
@@ -978,36 +978,7 @@ input[type="range"]::-webkit-slider-thumb {
       </div>
     </div>
 
-    <div id="menuModal" class="modal">
-    <div class="modal-content">
-      <button class="modal-close-btn">&times;</button>
-      <h3>Menu Settings</h3>
-      <form class="settings-grid">
-        <label>Menu Color</label>
-        <div>
-          <div class="color-palette" id="menuColorPalette">
-            <div class="color-swatch" style="background: #1a1d22" data-color="#1a1d22"></div>
-            <div class="color-swatch" style="background: #1e2530" data-color="#1e2530"></div>
-            <div class="color-swatch" style="background: #2d3748" data-color="#2d3748"></div>
-            <div class="color-swatch" style="background: #4a5568" data-color="#4a5568"></div>
-          </div>
-          <input type="color" id="modalMenuColor" value="#1a1d22" />
-        </div>
-        
-        <label>Menu Transparency</label>
-        <div>
-          <input type="range" min="0" max="100" id="modalMenuAlpha" value="70" />
-          <span class="range-value" id="modalMenuAlphaVal">70</span>%
-        </div>
-        
-        <label>Menu Blur</label>
-        <div>
-          <input type="range" min="0" max="20" id="modalMenuBlur" value="8" />
-          <span class="range-value" id="modalMenuBlurVal">8</span>px
-        </div>
-      </form>
-    </div>
-  </div>
+    
 
   <div id="avatarModal" class="modal">
     <div class="modal-content">
@@ -1359,15 +1330,14 @@ input[type="range"]::-webkit-slider-thumb {
       <input type="file" id="customSound" accept="audio/mpeg,audio/wav" />
     </form>
     <div class="personalize-controls">
-          <button id="editClockBtn" class="mini-btn neon">Edit Clock</button>
-          <button id="editTimerBtn" class="mini-btn neon">Edit Timer</button>
-          <button id="editCardBtn" class="mini-btn neon">Edit Cards & Sidebar</button>
-          <button id="editBgBtn" class="mini-btn neon">Edit Background</button>
-          <button id="editMenuBtn" class="mini-btn neon">Edit Menu</button>
-          <button id="editAvatarBtn" class="mini-btn neon">Edit Avatar</button>
-      <button id="editFontBtn" class="mini-btn neon">Edit Font</button>
-      <button id="editSoundBtn" class="mini-btn neon">Edit Sound</button>
-    </div>
+              <button id="editClockBtn" class="mini-btn neon">Edit Clock</button>
+              <button id="editTimerBtn" class="mini-btn neon">Edit Timer</button>
+              <button id="editCardBtn" class="mini-btn neon">Edit Cards, Sidebar & Menu</button>
+              <button id="editBgBtn" class="mini-btn neon">Edit Background</button>
+              <button id="editAvatarBtn" class="mini-btn neon">Edit Avatar</button>
+          <button id="editFontBtn" class="mini-btn neon">Edit Font</button>
+          <button id="editSoundBtn" class="mini-btn neon">Edit Sound</button>
+        </div>
   </main>
 
   <audio id="sound-beep" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12c0297316.mp3"></audio>
@@ -2172,20 +2142,18 @@ input[type="range"]::-webkit-slider-thumb {
     }
 
     const editClockBtn = document.getElementById("editClockBtn");
-        const editTimerBtn = document.getElementById("editTimerBtn");
-        const editCardBtn = document.getElementById("editCardBtn");
-        const editBgBtn = document.getElementById("editBgBtn");
-        const editMenuBtn = document.getElementById("editMenuBtn");
-        const editAvatarBtn = document.getElementById("editAvatarBtn");
-        const editFontBtn = document.getElementById("editFontBtn");
-        const editSoundBtn = document.getElementById("editSoundBtn");
+            const editTimerBtn = document.getElementById("editTimerBtn");
+            const editCardBtn = document.getElementById("editCardBtn");
+            const editBgBtn = document.getElementById("editBgBtn");
+            const editAvatarBtn = document.getElementById("editAvatarBtn");
+            const editFontBtn = document.getElementById("editFontBtn");
+            const editSoundBtn = document.getElementById("editSoundBtn");
 
-        if (editClockBtn) editClockBtn.onclick = () => openModal("clockModal");
-        if (editTimerBtn) editTimerBtn.onclick = () => openModal("timerModal");
-        if (editCardBtn) editCardBtn.onclick = () => openModal("cardModal");
-        if (editBgBtn) editBgBtn.onclick = () => openModal("bgModal");
-        if (editMenuBtn) editMenuBtn.onclick = () => openModal("menuModal");
-    if (editAvatarBtn) editAvatarBtn.onclick = () => openModal("avatarModal");
+            if (editClockBtn) editClockBtn.onclick = () => openModal("clockModal");
+            if (editTimerBtn) editTimerBtn.onclick = () => openModal("timerModal");
+            if (editCardBtn) editCardBtn.onclick = () => openModal("cardModal");
+            if (editBgBtn) editBgBtn.onclick = () => openModal("bgModal");
+        if (editAvatarBtn) editAvatarBtn.onclick = () => openModal("avatarModal");
     if (editFontBtn) editFontBtn.onclick = () => openModal("fontModal");
     if (editSoundBtn) editSoundBtn.onclick = () => openModal("soundModal");
 
@@ -2358,13 +2326,20 @@ input[type="range"]::-webkit-slider-thumb {
           });
       
           const sideDrawer = document.getElementById("sideDrawer");
-          if (sideDrawer) {
-            sideDrawer.style.background = background;
-            sideDrawer.style.backdropFilter = backdropFilter;
-            sideDrawer.style.boxShadow = boxShadow;
-          }
+                    if (sideDrawer) {
+                      sideDrawer.style.background = background;
+                      sideDrawer.style.backdropFilter = backdropFilter;
+                      sideDrawer.style.boxShadow = boxShadow;
+                    }
+
+                    const menuBar = document.querySelector(".menu-bar");
+                    if (menuBar) {
+                      menuBar.style.background = background;
+                      menuBar.style.backdropFilter = backdropFilter;
+                      menuBar.style.boxShadow = boxShadow;
+                    }
       
-          localStorage.setItem('cardSettings', JSON.stringify({
+                    localStorage.setItem('cardSettings', JSON.stringify({
             color, alpha, blur, opacity, corners, shadowColor, shadowIntensity
           }));
         }
@@ -2411,23 +2386,7 @@ input[type="range"]::-webkit-slider-thumb {
 
     
 
-    function updateMenuStyles() {
-      const color = document.getElementById("modalMenuColor")?.value || "#1a1d22";
-      const alpha = document.getElementById("modalMenuAlpha")?.value || "70";
-      const blur = document.getElementById("modalMenuBlur")?.value || "8";
-      
-      const menuBar = document.querySelector(".menu-bar");
-      if (menuBar) {
-        menuBar.style.background = hex2rgba(color, alpha / 100);
-        menuBar.style.backdropFilter = `blur(${blur}px)`;
-      }
-      
-      localStorage.setItem('menuSettings', JSON.stringify({ color, alpha, blur }));
-    }
-
-    setupColorPalette("menuColorPalette", "modalMenuColor", updateMenuStyles);
-    setupRangeInput("modalMenuAlpha", "modalMenuAlphaVal", updateMenuStyles);
-    setupRangeInput("modalMenuBlur", "modalMenuBlurVal", updateMenuStyles);
+    
 
     const modalAvatarUpload = document.getElementById("modalAvatarUpload");
     const avatarArea = document.getElementById("avatarArea");
@@ -2703,14 +2662,21 @@ input[type="range"]::-webkit-slider-thumb {
                   });
           
                   const sideDrawer = document.getElementById("sideDrawer");
-                  if (sideDrawer) {
-                    sideDrawer.style.background = background;
-                    sideDrawer.style.backdropFilter = backdropFilter;
-                    sideDrawer.style.boxShadow = boxShadow;
-                  }
-                }
+                                    if (sideDrawer) {
+                                      sideDrawer.style.background = background;
+                                      sideDrawer.style.backdropFilter = backdropFilter;
+                                      sideDrawer.style.boxShadow = boxShadow;
+                                    }
 
-        const savedVolume = localStorage.getItem('soundVolume');
+                                    const menuBar = document.querySelector(".menu-bar");
+                                    if (menuBar) {
+                                      menuBar.style.background = background;
+                                      menuBar.style.backdropFilter = backdropFilter;
+                                      menuBar.style.boxShadow = boxShadow;
+                                    }
+                                  }
+
+                          const savedVolume = localStorage.getItem('soundVolume');
         if (savedVolume) {
           if (soundCustom) soundCustom.volume = savedVolume / 100;
           if (soundBeep) soundBeep.volume = savedVolume / 100;
@@ -2767,85 +2733,7 @@ input[type="range"]::-webkit-slider-thumb {
       }
     });
 
-    function hexToRgba(hex, alpha) {
-      const h = hex.replace('#','');
-      const bigint = parseInt(h, 16);
-      const r = (bigint >> 16) & 255;
-      const g = (bigint >> 8) & 255;
-      const b = bigint & 255;
-      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-    }
-    function applyMenuSettings(settings) {
-      const header = document.querySelector('.menu-bar');
-      const drawer = document.getElementById('sideDrawer');
-      const submenu = document.querySelector('.submenu-card');
-      if (!settings) return;
-      const alpha = (settings.alpha ?? 70) / 100;
-      const col = settings.color || '#1a1d22';
-      const blur = parseInt(settings.blur ?? 8, 10);
-      const rgba = hexToRgba(col, alpha);
-      [header, drawer, submenu].forEach(el => {
-        if (!el) return;
-        el.style.background = rgba;
-        el.style.backdropFilter = `blur(${blur}px)`;
-        el.style.webkitBackdropFilter = `blur(${blur}px)`;
-      });
-      const colorInput = document.getElementById('modalMenuColor');
-      const alphaInput = document.getElementById('modalMenuAlpha');
-      const alphaVal = document.getElementById('modalMenuAlphaVal');
-      const blurInput = document.getElementById('modalMenuBlur');
-      const blurVal = document.getElementById('modalMenuBlurVal');
-      if (colorInput) colorInput.value = col;
-      if (alphaInput && alphaVal) { alphaInput.value = Math.round(alpha*100); alphaVal.textContent = Math.round(alpha*100); }
-      if (blurInput && blurVal) { blurInput.value = blur; blurVal.textContent = blur; }
-    }
-    function loadMenuSettings() {
-      try {
-        const raw = localStorage.getItem('menuSettings');
-        return raw ? JSON.parse(raw) : null;
-      } catch { return null; }
-    }
-    function saveMenuSettings(settings) {
-      try { localStorage.setItem('menuSettings', JSON.stringify(settings)); } catch {}
-    }
-    (function initMenuSettings(){
-      const palette = document.getElementById('menuColorPalette');
-      const colorInput = document.getElementById('modalMenuColor');
-      const alphaInput = document.getElementById('modalMenuAlpha');
-      const blurInput = document.getElementById('modalMenuBlur');
-      const saved = loadMenuSettings() || { color: (colorInput?.value || '#1a1d22'), alpha: parseInt(alphaInput?.value || '70',10), blur: parseInt(blurInput?.value || '8',10) };
-      applyMenuSettings(saved);
-      function onChange() {
-        const settings = {
-          color: colorInput?.value || '#1a1d22',
-          alpha: parseInt(alphaInput?.value || '70',10),
-          blur: parseInt(blurInput?.value || '8',10)
-        };
-        applyMenuSettings(settings);
-        saveMenuSettings(settings);
-      }
-      if (palette) {
-        palette.querySelectorAll('.color-swatch').forEach(s => {
-          s.addEventListener('click', (e)=>{
-            const c = e.currentTarget.getAttribute('data-color');
-            if (colorInput && c) { colorInput.value = c; onChange(); }
-          });
-        });
-      }
-      if (colorInput) colorInput.addEventListener('input', onChange);
-      if (alphaInput) alphaInput.addEventListener('input', ()=> {
-        const alphaVal = document.getElementById('modalMenuAlphaVal');
-        if (alphaVal) alphaVal.textContent = alphaInput.value;
-        onChange();
-      });
-      if (blurInput) blurInput.addEventListener('input', ()=>{
-              const blurVal = document.getElementById('modalMenuBlurVal');
-              if (blurVal) blurVal.textContent = blurInput.value;
-              onChange();
-            });
-          })();
-
-          // Apply specific requested defaults (Migration Hook)
+    // Apply specific requested defaults (Migration Hook)
           if (!localStorage.getItem('themeUpdateApplied_v3')) {
             localStorage.setItem('timerColor', '#ff0000');
             localStorage.setItem('timerFont', 'font-alarm');
