@@ -291,18 +291,19 @@ h2 {
 }
 
 .main-btn, .mini-btn.neon {
-  background: var(--theme-color);
-  color: #1e2530;
+  background: var(--theme-color) !important;
+  color: #111827 !important;
+  font-family: inherit;
+  font-weight: 700;
   border: none;
   border-radius: 20px;
   padding: 10px 16px;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
+  transition: filter 0.2s, transform 0.1s;
 }
 
 .main-btn:hover, .mini-btn.neon:hover {
-  background: var(--theme-color);
-  filter: brightness(1.2);
+  filter: brightness(1.15);
 }
 
 .main-btn:active, .mini-btn.neon:active {
@@ -310,12 +311,11 @@ h2 {
 }
 
 .main-btn.accent {
-  background: var(--theme-color);
+  background: var(--theme-color) !important;
 }
 
 .main-btn.accent:hover {
-  background: var(--theme-color);
-  filter: brightness(1.2);
+  filter: brightness(1.15);
 }
 
 .settings-grid {
@@ -640,34 +640,6 @@ h2 {
   display: flex;
   justify-content: space-between;
   margin: 8px 0;
-}
-
-.logbook-stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-  margin: 20px 0;
-}
-
-.stat-card {
-  background: rgba(35, 50, 55, 0.6);
-  border-radius: 12px;
-  padding: 16px;
-  text-align: center;
-  backdrop-filter: blur(10px);
-}
-
-.milestone-section {
-  margin: 20px 0;
-}
-
-.milestone-card {
-  background: linear-gradient(135deg, rgba(47, 130, 255, 0.2), rgba(33, 255, 106, 0.2));
-  border-radius: 12px;
-  padding: 16px;
-  margin: 12px 0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
 }
 
 input[type="range"] {
@@ -1242,47 +1214,10 @@ input[type="range"]::-webkit-slider-thumb {
   </main>
 
   <main id="logsPage" class="glass-card page">
-    <h2>Logbook</h2>
-    <div class="logbook-stats">
-      <div class="stat-card">
-        <div class="stat-emoji">📈</div>
-        <div class="stat-value" id="weekAverage">0.00%</div>
-        <div class="stat-label">Week Average</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-emoji">📅</div>
-        <div class="stat-value" id="dailyAverage">0.00%</div>
-        <div class="stat-label">Daily Average</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-emoji">⚡</div>
-        <div class="stat-value" id="partAverage">0.00%</div>
-        <div class="stat-label">Part Average</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-emoji">🏆</div>
-        <div class="stat-value" id="totalSessions">0</div>
-        <div class="stat-label">Total Sessions</div>
-      </div>
-    </div>
+      <h2>Logbook</h2>
     
-    <div class="milestone-section">
-        <div class="milestone-card" id="milestone2">
-          <div>🔥 Achieve 5% daily target</div>
-          <div class="stat-label">Reward: Sound pack</div>
-        </div>
-        <div class="milestone-card" id="milestone3">
-          <div>⭐ 7-day streak</div>
-          <div class="stat-label">Reward: Premium backgrounds</div>
-        </div>
-        <div class="milestone-card" id="milestone4">
-          <div>💎 10 successful sessions</div>
-          <div class="stat-label">Reward: Advanced analytics</div>
-        </div>
-      </div>
-    
-    <div id="allLogsPanel" class="log-table">
-      <table>
+      <div id="allLogsPanel" class="log-table">
+        <table>
         <thead>
           <tr>
             <th>#</th>
@@ -2087,19 +2022,10 @@ input[type="range"]::-webkit-slider-thumb {
     }
 
     function updateLogbookStats() {
-      const logs = JSON.parse(localStorage.getItem("logs") || "[]");
-      
-      if (logs.length === 0) return;
-      
-      const totalSessions = logs.length;
-      document.getElementById("totalSessions").textContent = totalSessions;
-      
-      document.getElementById("weekAverage").textContent = "0.00%";
-      document.getElementById("dailyAverage").textContent = "0.00%";
-      document.getElementById("partAverage").textContent = "0.00%";
-    }
+          // Analytics removed
+        }
 
-    const modalOverlay = document.getElementById("modalOverlay");
+        const modalOverlay = document.getElementById("modalOverlay");
 
     function openModal(modalId) {
       try {
