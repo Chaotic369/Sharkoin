@@ -130,8 +130,7 @@ body {
 }
 
 .drawer-link {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
+  background: transparent;
   border: none;
   color: #d0d4e0;
   border-radius: 8px;
@@ -140,20 +139,21 @@ body {
   font-size: 1.1em;
   text-align: left;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+  transition: all 0.2s ease;
 }
 
 .drawer-link:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
 }
 
 .drawer-link.active,
 .drawer-link:focus {
-  background: rgba(47, 130, 255, 0.3);
+  background: rgba(47, 130, 255, 0.2);
   color: #ffffff;
+  border-left: 4px solid var(--theme-color);
+  border-radius: 0 8px 8px 0;
 }
 
 .drawer-link:active {
@@ -889,9 +889,9 @@ input[type="range"]::-webkit-slider-thumb {
   </div>
 
   <div id="cardModal" class="modal">
-    <div class="modal-content">
-      <button class="modal-close-btn">&times;</button>
-      <h3>Card Settings</h3>
+      <div class="modal-content">
+        <button class="modal-close-btn">&times;</button>
+        <h3>Card & Sidebar Settings</h3>
       <form class="settings-grid">
         <label>Card Color</label>
         <div>
@@ -952,58 +952,33 @@ input[type="range"]::-webkit-slider-thumb {
   </div>
 
   <div id="bgModal" class="modal">
-    <div class="modal-content">
-      <button class="modal-close-btn">&times;</button>
-      <h3>Background Settings</h3>
-      <form class="settings-grid">
-        <label>Background Image</label>
-        <input type="file" id="modalBgImageUpload" accept="image/jpeg,image/png" />
+      <div class="modal-content">
+        <button class="modal-close-btn">&times;</button>
+        <h3>Background Settings</h3>
+        <form class="settings-grid">
+          <label>Background Image</label>
+          <input type="file" id="modalBgImageUpload" accept="image/jpeg,image/png" />
         
-        <label>Preset Wallpapers</label>
-        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" class="bg-thumb" alt="Abstract Background" />
-          <img src="https://images.unsplash.com/photo-1557683316-973673baf926" class="bg-thumb" alt="Gradient Background" />
-          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba" class="bg-thumb" alt="Mountain Background" />
-          <img src="https://images.unsplash.com/photo-1516321310763-3830f9737d9d" class="bg-thumb" alt="Tech Background" />
-          <img src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f" class="bg-thumb" alt="Space Background" />
-          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa" class="bg-thumb" alt="Galaxy Background" />
-        </div>
+          <label>Preset Wallpapers</label>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" class="bg-thumb" alt="Abstract Background" />
+            <img src="https://images.unsplash.com/photo-1557683316-973673baf926" class="bg-thumb" alt="Gradient Background" />
+            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba" class="bg-thumb" alt="Mountain Background" />
+            <img src="https://images.unsplash.com/photo-1516321310763-3830f9737d9d" class="bg-thumb" alt="Tech Background" />
+            <img src="https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f" class="bg-thumb" alt="Space Background" />
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa" class="bg-thumb" alt="Galaxy Background" />
+          </div>
         
-        <label>Background Blur</label>
-        <div>
-          <input type="range" min="0" max="24" id="modalBgBlur" value="7" />
-          <span class="range-value" id="modalBgBlurVal">7</span>px
-        </div>
-      </form>
+          <label>Background Blur</label>
+          <div>
+            <input type="range" min="0" max="24" id="modalBgBlur" value="7" />
+            <span class="range-value" id="modalBgBlurVal">7</span>px
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <div id="sidebarModal" class="modal">
-    <div class="modal-content">
-      <button class="modal-close-btn">&times;</button>
-      <h3>Sidebar Settings</h3>
-      <form class="settings-grid">
-        <label>Sidebar Color</label>
-        <div>
-          <div class="color-palette" id="sidebarColorPalette">
-            <div class="color-swatch" style="background: #272f4c" data-color="#272f4c"></div>
-            <div class="color-swatch" style="background: #1e2530" data-color="#1e2530"></div>
-            <div class="color-swatch" style="background: #2d3748" data-color="#2d3748"></div>
-            <div class="color-swatch" style="background: #4a5568" data-color="#4a5568"></div>
-          </div>
-          <input type="color" id="sidebarColor" value="#272f4c" />
-        </div>
-        
-        <label>Sidebar Transparency</label>
-                <div>
-                  <input type="range" min="0" max="100" id="sidebarAlpha" value="88" />
-                  <span class="range-value" id="sidebarAlphaVal">88</span>%
-                </div>
-              </form>
-            </div>
-          </div>
-
-  <div id="menuModal" class="modal">
+    <div id="menuModal" class="modal">
     <div class="modal-content">
       <button class="modal-close-btn">&times;</button>
       <h3>Menu Settings</h3>
@@ -1384,13 +1359,12 @@ input[type="range"]::-webkit-slider-thumb {
       <input type="file" id="customSound" accept="audio/mpeg,audio/wav" />
     </form>
     <div class="personalize-controls">
-      <button id="editClockBtn" class="mini-btn neon">Edit Clock</button>
-      <button id="editTimerBtn" class="mini-btn neon">Edit Timer</button>
-      <button id="editCardBtn" class="mini-btn neon">Edit Cards</button>
-      <button id="editBgBtn" class="mini-btn neon">Edit Background</button>
-      <button id="editSidebarBtn" class="mini-btn neon">Edit Sidebar</button>
-      <button id="editMenuBtn" class="mini-btn neon">Edit Menu</button>
-      <button id="editAvatarBtn" class="mini-btn neon">Edit Avatar</button>
+          <button id="editClockBtn" class="mini-btn neon">Edit Clock</button>
+          <button id="editTimerBtn" class="mini-btn neon">Edit Timer</button>
+          <button id="editCardBtn" class="mini-btn neon">Edit Cards & Sidebar</button>
+          <button id="editBgBtn" class="mini-btn neon">Edit Background</button>
+          <button id="editMenuBtn" class="mini-btn neon">Edit Menu</button>
+          <button id="editAvatarBtn" class="mini-btn neon">Edit Avatar</button>
       <button id="editFontBtn" class="mini-btn neon">Edit Font</button>
       <button id="editSoundBtn" class="mini-btn neon">Edit Sound</button>
     </div>
@@ -2198,21 +2172,19 @@ input[type="range"]::-webkit-slider-thumb {
     }
 
     const editClockBtn = document.getElementById("editClockBtn");
-    const editTimerBtn = document.getElementById("editTimerBtn");
-    const editCardBtn = document.getElementById("editCardBtn");
-    const editBgBtn = document.getElementById("editBgBtn");
-    const editSidebarBtn = document.getElementById("editSidebarBtn");
-    const editMenuBtn = document.getElementById("editMenuBtn");
-    const editAvatarBtn = document.getElementById("editAvatarBtn");
-    const editFontBtn = document.getElementById("editFontBtn");
-    const editSoundBtn = document.getElementById("editSoundBtn");
+        const editTimerBtn = document.getElementById("editTimerBtn");
+        const editCardBtn = document.getElementById("editCardBtn");
+        const editBgBtn = document.getElementById("editBgBtn");
+        const editMenuBtn = document.getElementById("editMenuBtn");
+        const editAvatarBtn = document.getElementById("editAvatarBtn");
+        const editFontBtn = document.getElementById("editFontBtn");
+        const editSoundBtn = document.getElementById("editSoundBtn");
 
-    if (editClockBtn) editClockBtn.onclick = () => openModal("clockModal");
-    if (editTimerBtn) editTimerBtn.onclick = () => openModal("timerModal");
-    if (editCardBtn) editCardBtn.onclick = () => openModal("cardModal");
-    if (editBgBtn) editBgBtn.onclick = () => openModal("bgModal");
-    if (editSidebarBtn) editSidebarBtn.onclick = () => openModal("sidebarModal");
-    if (editMenuBtn) editMenuBtn.onclick = () => openModal("menuModal");
+        if (editClockBtn) editClockBtn.onclick = () => openModal("clockModal");
+        if (editTimerBtn) editTimerBtn.onclick = () => openModal("timerModal");
+        if (editCardBtn) editCardBtn.onclick = () => openModal("cardModal");
+        if (editBgBtn) editBgBtn.onclick = () => openModal("bgModal");
+        if (editMenuBtn) editMenuBtn.onclick = () => openModal("menuModal");
     if (editAvatarBtn) editAvatarBtn.onclick = () => openModal("avatarModal");
     if (editFontBtn) editFontBtn.onclick = () => openModal("fontModal");
     if (editSoundBtn) editSoundBtn.onclick = () => openModal("soundModal");
@@ -2375,7 +2347,7 @@ input[type="range"]::-webkit-slider-thumb {
           const background = hex2rgba(color, alpha / 100);
           const backdropFilter = `blur(${blur}px)`;
           const borderRadius = corners + "px";
-          const boxShadow = `0 4px ${shadowIntensity}px ${shadowColor}`;
+          const boxShadow = shadowIntensity === "0" ? "none" : `0 4px ${shadowIntensity}px ${shadowColor}`;
       
           document.querySelectorAll('.glass-card, .modal-content').forEach(card => {
             card.style.background = background;
@@ -2387,7 +2359,9 @@ input[type="range"]::-webkit-slider-thumb {
       
           const sideDrawer = document.getElementById("sideDrawer");
           if (sideDrawer) {
+            sideDrawer.style.background = background;
             sideDrawer.style.backdropFilter = backdropFilter;
+            sideDrawer.style.boxShadow = boxShadow;
           }
       
           localStorage.setItem('cardSettings', JSON.stringify({
@@ -2435,21 +2409,7 @@ input[type="range"]::-webkit-slider-thumb {
       localStorage.setItem('bgBlurValue', value);
     });
 
-    function updateSidebarStyles() {
-          const color = document.getElementById("sidebarColor")?.value || "#272f4c";
-          const alpha = document.getElementById("sidebarAlpha")?.value || "88";
-          const blur = document.getElementById("cardBlur")?.value || "10";
-      
-          if (sideDrawer) {
-            sideDrawer.style.background = hex2rgba(color, alpha / 100);
-            sideDrawer.style.backdropFilter = `blur(${blur}px)`;
-          }
-      
-          localStorage.setItem('sidebarSettings', JSON.stringify({ color, alpha }));
-        }
-
-        setupColorPalette("sidebarColorPalette", "sidebarColor", updateSidebarStyles);
-        setupRangeInput("sidebarAlpha", "sidebarAlphaVal", updateSidebarStyles);
+    
 
     function updateMenuStyles() {
       const color = document.getElementById("modalMenuColor")?.value || "#1a1d22";
@@ -2732,7 +2692,7 @@ input[type="range"]::-webkit-slider-thumb {
                   const background = hex2rgba(settings.color, settings.alpha / 100);
                   const backdropFilter = `blur(${settings.blur}px)`;
                   const borderRadius = settings.corners + "px";
-                  const boxShadow = `0 4px ${settings.shadowIntensity}px ${settings.shadowColor}`;
+                  const boxShadow = settings.shadowIntensity === "0" ? "none" : `0 4px ${settings.shadowIntensity}px ${settings.shadowColor}`;
           
                   document.querySelectorAll('.glass-card, .modal-content').forEach(card => {
                     card.style.background = background;
@@ -2744,7 +2704,9 @@ input[type="range"]::-webkit-slider-thumb {
           
                   const sideDrawer = document.getElementById("sideDrawer");
                   if (sideDrawer) {
+                    sideDrawer.style.background = background;
                     sideDrawer.style.backdropFilter = backdropFilter;
+                    sideDrawer.style.boxShadow = boxShadow;
                   }
                 }
 
