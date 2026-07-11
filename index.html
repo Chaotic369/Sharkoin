@@ -800,41 +800,41 @@ input[type="range"]::-webkit-slider-thumb {
         </div>
         
         <label>Timer Color</label>
-        <div>
-          <div class="color-palette" id="timerColorPalette">
-            <div class="color-swatch" style="background: #25abff" data-color="#25abff"></div>
-            <div class="color-swatch" style="background: #21ff6a" data-color="#21ff6a"></div>
-            <div class="color-swatch" style="background: #bf4aff" data-color="#bf4aff"></div>
-            <div class="color-swatch" style="background: #ffe360" data-color="#ffe360"></div>
-            <div class="color-swatch" style="background: #ff2079" data-color="#ff2079"></div>
-            <div class="color-swatch" style="background: #ffffff" data-color="#ffffff"></div>
-          </div>
-          <input type="color" id="timerColor" value="#25abff" />
-        </div>
+                <div>
+                  <div class="color-palette" id="timerColorPalette">
+                    <div class="color-swatch" style="background: #ff0000" data-color="#ff0000"></div>
+                    <div class="color-swatch" style="background: #25abff" data-color="#25abff"></div>
+                    <div class="color-swatch" style="background: #21ff6a" data-color="#21ff6a"></div>
+                    <div class="color-swatch" style="background: #bf4aff" data-color="#bf4aff"></div>
+                    <div class="color-swatch" style="background: #ffe360" data-color="#ffe360"></div>
+                    <div class="color-swatch" style="background: #ffffff" data-color="#ffffff"></div>
+                  </div>
+                  <input type="color" id="timerColor" value="#ff0000" />
+                </div>
         
-        <label>Timer Font</label>
-        <select id="timerFont">
-          <option value="font-orbitron">Orbitron</option>
-          <option value="font-montserrat">Montserrat</option>
-          <option value="font-roboto">Roboto</option>
-          <option value="font-inter">Inter</option>
-          <option value="font-poppins">Poppins</option>
-          <option value="font-space-mono">Space Mono</option>
-          <option value="font-alarm">Alarm Clock</option>
-          <option value="font-digital7">Digital‑7</option>
-        </select>
+                <label>Timer Font</label>
+                <select id="timerFont">
+                  <option value="font-orbitron">Orbitron</option>
+                  <option value="font-montserrat">Montserrat</option>
+                  <option value="font-roboto">Roboto</option>
+                  <option value="font-inter">Inter</option>
+                  <option value="font-poppins">Poppins</option>
+                  <option value="font-space-mono">Space Mono</option>
+                  <option value="font-alarm" selected>Alarm Clock</option>
+                  <option value="font-digital7">Digital‑7</option>
+                </select>
         
-        <label>Shadow Intensity</label>
-        <div>
-          <input type="range" id="timerShadow" min="0" max="20" value="0" />
-          <span class="range-value" id="timerShadowVal">0</span>px
-        </div>
+                <label>Shadow Intensity</label>
+                <div>
+                  <input type="range" id="timerShadow" min="0" max="20" value="0" />
+                  <span class="range-value" id="timerShadowVal">0</span>px
+                </div>
         
-        <label>Theme Palette</label>
-        <span id="timerPaletteIndicator" class="palette-circle"></span>
+                <label>Theme Palette</label>
+                <span id="timerPaletteIndicator" class="palette-circle" style="background: #ff0000;"></span>
         
-        <label>Preview</label>
-        <span id="timerPreview" class="mini-watch theme-ocean font-orbitron">60:00:00</span>
+                <label>Preview</label>
+                <span id="timerPreview" class="mini-watch font-alarm" style="color: #ff0000;">60:00:00</span>
       </form>
     </div>
   </div>
@@ -845,47 +845,47 @@ input[type="range"]::-webkit-slider-thumb {
       <h3>Clock Settings</h3>
       <form class="settings-grid">
         <label>Clock Color</label>
-        <div>
-          <div class="color-palette" id="clockColorPalette">
-            <div class="color-swatch" style="background: #25abff" data-color="#25abff"></div>
-            <div class="color-swatch" style="background: #21ff6a" data-color="#21ff6a"></div>
-            <div class="color-swatch" style="background: #bf4aff" data-color="#bf4aff"></div>
-            <div class="color-swatch" style="background: #ffe360" data-color="#ffe360"></div>
-            <div class="color-swatch" style="background: #ff2079" data-color="#ff2079"></div>
-            <div class="color-swatch" style="background: #ffffff" data-color="#ffffff"></div>
-          </div>
-          <input type="color" id="clockColor" value="#25abff" />
-        </div>
+                <div>
+                  <div class="color-palette" id="clockColorPalette">
+                    <div class="color-swatch" style="background: #25abff" data-color="#25abff"></div>
+                    <div class="color-swatch" style="background: #21ff6a" data-color="#21ff6a"></div>
+                    <div class="color-swatch" style="background: #bf4aff" data-color="#bf4aff"></div>
+                    <div class="color-swatch" style="background: #ffe360" data-color="#ffe360"></div>
+                    <div class="color-swatch" style="background: #ff2079" data-color="#ff2079"></div>
+                    <div class="color-swatch" style="background: #ffffff" data-color="#ffffff"></div>
+                  </div>
+                  <input type="color" id="clockColor" value="#ffffff" />
+                </div>
         
-        <label>Clock Font</label>
-        <select id="clockFont">
-          <option value="font-orbitron">Orbitron</option>
-          <option value="font-montserrat">Montserrat</option>
-          <option value="font-roboto">Roboto</option>
-          <option value="font-inter">Inter</option>
-          <option value="font-poppins">Poppins</option>
-          <option value="font-space-mono">Space Mono</option>
-          <option value="font-alarm">Alarm Clock</option>
-          <option value="font-digital7">Digital‑7</option>
-        </select>
+                <label>Clock Font</label>
+                <select id="clockFont">
+                  <option value="font-orbitron">Orbitron</option>
+                  <option value="font-montserrat">Montserrat</option>
+                  <option value="font-roboto">Roboto</option>
+                  <option value="font-inter">Inter</option>
+                  <option value="font-poppins">Poppins</option>
+                  <option value="font-space-mono">Space Mono</option>
+                  <option value="font-alarm" selected>Alarm Clock</option>
+                  <option value="font-digital7">Digital‑7</option>
+                </select>
         
-        <label>Size</label>
-        <div>
-          <input type="range" id="clockSize" min="1.5" max="4" step="0.1" value="2.8" />
-          <span class="range-value" id="clockSizeVal">2.8</span>rem
-        </div>
+                <label>Size</label>
+                <div>
+                  <input type="range" id="clockSize" min="1.5" max="4" step="0.1" value="2.8" />
+                  <span class="range-value" id="clockSizeVal">2.8</span>rem
+                </div>
         
-        <label>Shadow Intensity</label>
-        <div>
-          <input type="range" id="clockShadow" min="0" max="30" value="0" />
-          <span class="range-value" id="clockShadowVal">0</span>px
-        </div>
+                <label>Shadow Intensity</label>
+                <div>
+                  <input type="range" id="clockShadow" min="0" max="30" value="0" />
+                  <span class="range-value" id="clockShadowVal">0</span>px
+                </div>
         
-        <label>Theme Palette</label>
-        <span id="clockPaletteIndicator" class="palette-circle"></span>
+                <label>Theme Palette</label>
+                <span id="clockPaletteIndicator" class="palette-circle" style="background: #ffffff;"></span>
         
-        <label>Preview</label>
-        <span id="clockPreview" class="big-timer theme-ocean font-orbitron">52:00</span>
+                <label>Preview</label>
+                <span id="clockPreview" class="big-timer font-alarm" style="color: #ffffff;">52:00</span>
       </form>
     </div>
   </div>
@@ -1131,19 +1131,19 @@ input[type="range"]::-webkit-slider-thumb {
   <div id="modalOverlay"></div>
 
   <main id="homePage" class="glass-card page active">
-    <div class="digital-clock">
-      <span id="digitalClock" class="big-timer theme-ocean font-orbitron">12:34</span>
-    </div>
-    <div class="premium-timer-bar">
-      <span id="partTimer" class="mini-watch theme-ocean font-orbitron">00:00:00</span>
-    </div>
-  </main>
+      <div class="digital-clock">
+        <span id="digitalClock" class="big-timer font-alarm" style="color: #ffffff;">12:34</span>
+      </div>
+      <div class="premium-timer-bar">
+        <span id="partTimer" class="mini-watch font-alarm" style="color: #ff0000;">00:00:00</span>
+      </div>
+    </main>
 
-  <main id="planPage" class="glass-card page">
-    <h2>Session Planner</h2>
-    <div class="premium-timer-bar">
-      <span id="partTimerPlan" class="big-timer theme-ocean font-orbitron">00:00:00</span>
-    </div>
+    <main id="planPage" class="glass-card page">
+      <h2>Session Planner</h2>
+      <div class="premium-timer-bar">
+        <span id="partTimerPlan" class="big-timer font-alarm" style="color: #ff0000;">00:00:00</span>
+      </div>
     <div class="written-balance">
       <span>Balance: <span id="writtenBalance">0.00000000</span></span>
     </div>
@@ -2876,17 +2876,49 @@ input[type="range"]::-webkit-slider-thumb {
         onChange();
       });
       if (blurInput) blurInput.addEventListener('input', ()=>{
-        const blurVal = document.getElementById('modalMenuBlurVal');
-        if (blurVal) blurVal.textContent = blurInput.value;
-        onChange();
-      });
-    })();
+              const blurVal = document.getElementById('modalMenuBlurVal');
+              if (blurVal) blurVal.textContent = blurInput.value;
+              onChange();
+            });
+          })();
 
-    restoreAllSettings();
-    restoreSessionState();
-    updateLogbookStats();
-    console.log("✅ Fixed Smart Compounding Ecosystem loaded!");
-  });
+          // Apply specific requested defaults (Migration Hook)
+          if (!localStorage.getItem('themeUpdateApplied_v3')) {
+            localStorage.setItem('timerColor', '#ff0000');
+            localStorage.setItem('timerFont', 'font-alarm');
+            localStorage.setItem('clockColor', '#ffffff');
+            localStorage.setItem('clockFont', 'font-alarm');
+            localStorage.setItem('themeUpdateApplied_v3', 'true');
+          }
+
+          restoreAllSettings();
+
+          // Ensure inputs and previews reflect restored values correctly
+          const cColor = localStorage.getItem('clockColor') || '#ffffff';
+          const cFont = localStorage.getItem('clockFont') || 'font-alarm';
+          const tColor = localStorage.getItem('timerColor') || '#ff0000';
+          const tFont = localStorage.getItem('timerFont') || 'font-alarm';
+    
+          if(document.getElementById('clockColor')) document.getElementById('clockColor').value = cColor;
+          if(document.getElementById('clockFont')) document.getElementById('clockFont').value = cFont;
+          if(document.getElementById('clockPaletteIndicator')) document.getElementById('clockPaletteIndicator').style.background = cColor;
+          if(document.getElementById('clockPreview')) {
+            document.getElementById('clockPreview').style.color = cColor;
+            document.getElementById('clockPreview').className = 'big-timer ' + cFont;
+          }
+
+          if(document.getElementById('timerColor')) document.getElementById('timerColor').value = tColor;
+          if(document.getElementById('timerFont')) document.getElementById('timerFont').value = tFont;
+          if(document.getElementById('timerPaletteIndicator')) document.getElementById('timerPaletteIndicator').style.background = tColor;
+          if(document.getElementById('timerPreview')) {
+            document.getElementById('timerPreview').style.color = tColor;
+            document.getElementById('timerPreview').className = 'mini-watch ' + tFont;
+          }
+
+          restoreSessionState();
+          updateLogbookStats();
+          console.log("✅ Fixed Smart Compounding Ecosystem loaded!");
+        });
   </script>
 </body>
 </html>
