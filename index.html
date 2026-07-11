@@ -1576,11 +1576,59 @@ input[type="range"]::-moz-range-thumb {
   <audio id="sound-bell" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12dcfd21d0.mp3"></audio>
   <audio id="sound-custom"></audio>
 
-  <script>
-// Financial Session Planner - FULLY FIXED TIMER SCALING AND LIVE UPDATES
-document.addEventListener('DOMContentLoaded', () => {
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
 
-  // Utility Functions
+    <script>
+  // Financial Session Planner - FULLY FIXED TIMER SCALING AND LIVE UPDATES
+  document.addEventListener('DOMContentLoaded', async () => {
+
+    // --- FIREBASE SYNC & LOCALSTORAGE INTERCEPTOR ---
+    const firebaseConfig = {
+      databaseURL: "https://infinity-369-default-rtdb.firebaseio.com/" 
+    };
+  
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    const db = firebase.database();
+    const dbPath = 'users/chaotic369/local_storage_cache';
+  
+    const originalSetItem = localStorage.setItem;
+    const originalRemoveItem = localStorage.removeItem;
+    const originalClear = localStorage.clear;
+
+    // 1. Await Firebase pull to seed local cache before app initializes
+    try {
+      const snapshot = await db.ref(dbPath).once('value');
+      const data = snapshot.val();
+      if (data) {
+        for (const key in data) {
+          originalSetItem.call(localStorage, key, data[key]);
+        }
+      }
+    } catch (err) {
+      console.warn("Firebase Sync Error (Check RTDB rules!):", err);
+    }
+
+    // 2. Intercept LocalStorage to write to Firebase dynamically
+    localStorage.setItem = function(key, value) {
+      originalSetItem.call(localStorage, key, value);
+      db.ref(dbPath + '/' + key).set(value).catch(err => console.warn('Firebase set error:', err));
+    };
+
+    localStorage.removeItem = function(key) {
+      originalRemoveItem.call(localStorage, key);
+      db.ref(dbPath + '/' + key).remove().catch(err => console.warn('Firebase rm error:', err));
+    };
+
+    localStorage.clear = function() {
+      originalClear.call(localStorage);
+      db.ref(dbPath).remove().catch(err => console.warn('Firebase clear error:', err));
+    };
+    // ------------------------------------------------
+
+    // Utility Functions
   function hex2rgba(hex, alpha = 1) {
     try {
       const r = parseInt(hex.slice(1, 3), 16);
