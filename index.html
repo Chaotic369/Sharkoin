@@ -8,8 +8,100 @@
   <link href="https://fonts.cdnfonts.com/css/digital-7" rel="stylesheet" />
   <link href="https://fonts.cdnfonts.com/css/alarm-clock" rel="stylesheet" />
   <style>
-:root {
-  --accent: #2f82ff;
+  /* Firebase Cloud Sync Toast Notification */
+  .sync-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: rgba(38, 44, 61, 0.95);
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-left: 4px solid var(--theme-color);
+    font-size: 0.9em;
+    font-weight: 500;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sync-toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  :root {
+    --accent: #2f82ff;
+  ===SPLIT===
+  <body>
+    <div id="bgOverlay"></div>
+  ===SPLIT===
+  <body>
+    <div id="bgOverlay"></div>
+    <div id="syncToast" class="sync-toast">☁️ Firebase Synced</div>
+  ===SPLIT===
+    // 2. Intercept LocalStorage to write to Firebase dynamically
+    localStorage.setItem = function(key, value) {
+      originalSetItem.call(localStorage, key, value);
+      db.ref(dbPath + '/' + key).set(value).catch(err => console.warn('Firebase set error:', err));
+    };
+
+    localStorage.removeItem = function(key) {
+      originalRemoveItem.call(localStorage, key);
+      db.ref(dbPath + '/' + key).remove().catch(err => console.warn('Firebase rm error:', err));
+    };
+
+    localStorage.clear = function() {
+      originalClear.call(localStorage);
+      db.ref(dbPath).remove().catch(err => console.warn('Firebase clear error:', err));
+    };
+    // ------------------------------------------------
+  ===SPLIT===
+    // 2. Intercept LocalStorage to write to Firebase dynamically
+    function triggerSyncNotification(message) {
+      const toast = document.getElementById("syncToast");
+      if (toast) {
+        toast.innerHTML = message;
+        toast.classList.add("show");
+        clearTimeout(toast.timeoutId);
+        toast.timeoutId = setTimeout(() => {
+          toast.classList.remove("show");
+        }, 2500);
+      }
+    }
+
+    // Initial pull success notification
+    triggerSyncNotification("☁️ Cloud Cache Loaded Successfully");
+
+    localStorage.setItem = function(key, value) {
+      originalSetItem.call(localStorage, key, value);
+      db.ref(dbPath + '/' + key).set(value)
+        .then(() => triggerSyncNotification(`🔄 Saved to Cloud: <strong>${key}</strong>`))
+        .catch(err => {
+          console.warn('Firebase set error:', err);
+          triggerSyncNotification('❌ Sync Failed');
+        });
+    };
+
+    localStorage.removeItem = function(key) {
+      originalRemoveItem.call(localStorage, key);
+      db.ref(dbPath + '/' + key).remove()
+        .then(() => triggerSyncNotification(`🗑️ Removed: <strong>${key}</strong>`))
+        .catch(err => console.warn('Firebase rm error:', err));
+    };
+
+    localStorage.clear = function() {
+      originalClear.call(localStorage);
+      db.ref(dbPath).remove()
+        .then(() => triggerSyncNotification('🧹 All Cache Wiped From Cloud'))
+        .catch(err => console.warn('Firebase clear error:', err));
+    };
+    // ------------------------------------------------
   --theme-ocean: #25abff;
   --theme-neon-green: #21ff6a;
   --theme-magenta: #bf4aff;
@@ -1599,54 +1691,13 @@ input[type="range"]::-moz-range-thumb {
     const originalClear = localStorage.clear;
 
     // 1. Await Firebase pull to seed local cache before app initializes
-      try {
-        const snapshot = await db.ref(dbPath).once('value');
-        const data = snapshot.val();
-        if (data) {
-          for (const key in data) {
-            originalSetItem.call(localStorage, key, data[key]);
-          }
+    try {
+      const snapshot = await db.ref(dbPath).once('value');
+      const data = snapshot.val();
+      if (data) {
+        for (const key in data) {
+          originalSetItem.call(localStorage, key, data[key]);
         }
-    
-        // --- FIREBASE SYNC NOTIFICATION ---
-        const toast = document.createElement('div');
-        toast.innerHTML = '☁️ <b>Firebase Sync Active</b><br><span style="font-size:0.85em;font-weight:normal">Memory successfully loaded</span>';
-        Object.assign(toast.style, {
-          position: 'fixed', bottom: '24px', right: '24px', zIndex: '9999',
-          background: 'linear-gradient(135deg, rgba(33, 255, 106, 0.95), rgba(47, 130, 255, 0.95))',
-          color: '#1e2530', padding: '14px 24px', borderRadius: '12px',
-          boxShadow: '0 8px 32px rgba(33, 255, 106, 0.3)', backdropFilter: 'blur(10px)',
-          transform: 'translateY(100px)', opacity: '0', transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
-        });
-        document.body.appendChild(toast);
-    
-        // Animate in
-        requestAnimationFrame(() => {
-          toast.style.transform = 'translateY(0)';
-          toast.style.opacity = '1';
-        });
-    
-        // Animate out after 4 seconds
-        setTimeout(() => {
-          toast.style.transform = 'translateY(20px)';
-          toast.style.opacity = '0';
-          setTimeout(() => toast.remove(), 500);
-        }, 4000);
-        // ----------------------------------
-
-      } catch (err) {
-        console.warn("Firebase Sync Error (Check RTDB rules!):", err);
-    
-        // --- FIREBASE ERROR NOTIFICATION ---
-        const errToast = document.createElement('div');
-        errToast.innerHTML = '⚠️ <b>Sync Blocked</b><br><span style="font-size:0.85em;font-weight:normal">Check console / DB rules</span>';
-        Object.assign(errToast.style, {
-          position: 'fixed', bottom: '24px', right: '24px', zIndex: '9999',
-          background: 'rgba(255, 74, 74, 0.95)', color: '#ffffff', padding: '14px 24px', borderRadius: '12px',
-          boxShadow: '0 8px 32px rgba(255, 74, 74, 0.4)', backdropFilter: 'blur(10px)'
-        });
-        document.body.appendChild(errToast);
-        setTimeout(() => errToast.remove(), 5000);
       }
     } catch (err) {
       console.warn("Firebase Sync Error (Check RTDB rules!):", err);
