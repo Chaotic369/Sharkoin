@@ -132,7 +132,7 @@ body {
 .drawer-link {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: none;
   color: #d0d4e0;
   border-radius: 8px;
   padding: 12px 16px;
@@ -145,7 +145,6 @@ body {
 
 .drawer-link:hover {
   background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(47, 130, 255, 0.5);
   color: #ffffff;
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
@@ -154,7 +153,6 @@ body {
 .drawer-link.active,
 .drawer-link:focus {
   background: rgba(47, 130, 255, 0.3);
-  border-color: rgba(47, 130, 255, 0.8);
   color: #ffffff;
 }
 
@@ -914,11 +912,11 @@ input[type="range"]::-webkit-slider-thumb {
           <span class="range-value" id="cardAlphaVal">88</span>%
         </div>
         
-        <label>Card Blur</label>
-        <div>
-          <input type="range" id="cardBlur" min="0" max="30" value="10" />
-          <span class="range-value" id="cardBlurVal">10</span>px
-        </div>
+        <label>Card & Sidebar Blur</label>
+                <div>
+                  <input type="range" id="cardBlur" min="0" max="30" value="10" />
+                  <span class="range-value" id="cardBlurVal">10</span>px
+                </div>
         
         <label>Card Opacity</label>
         <div>
@@ -997,19 +995,13 @@ input[type="range"]::-webkit-slider-thumb {
         </div>
         
         <label>Sidebar Transparency</label>
-        <div>
-          <input type="range" min="0" max="100" id="sidebarAlpha" value="88" />
-          <span class="range-value" id="sidebarAlphaVal">88</span>%
-        </div>
-        
-        <label>Sidebar Blur</label>
-        <div>
-          <input type="range" min="0" max="20" id="sidebarBlur" value="10" />
-          <span class="range-value" id="sidebarBlurVal">10</span>px
-        </div>
-      </form>
-    </div>
-  </div>
+                <div>
+                  <input type="range" min="0" max="100" id="sidebarAlpha" value="88" />
+                  <span class="range-value" id="sidebarAlphaVal">88</span>%
+                </div>
+              </form>
+            </div>
+          </div>
 
   <div id="menuModal" class="modal">
     <div class="modal-content">
@@ -2372,31 +2364,36 @@ input[type="range"]::-webkit-slider-thumb {
     });
 
     function updateCardStyles() {
-      const color = document.getElementById("cardColor")?.value || "#262c3d";
-      const alpha = document.getElementById("cardAlpha")?.value || "88";
-      const blur = document.getElementById("cardBlur")?.value || "10";
-      const opacity = document.getElementById("cardOpacity")?.value || "1";
-      const corners = document.getElementById("cardCorners")?.value || "16";
-      const shadowColor = document.getElementById("cardShadowColor")?.value || "#000000";
-      const shadowIntensity = document.getElementById("cardShadowIntensity")?.value || "20";
+          const color = document.getElementById("cardColor")?.value || "#262c3d";
+          const alpha = document.getElementById("cardAlpha")?.value || "88";
+          const blur = document.getElementById("cardBlur")?.value || "10";
+          const opacity = document.getElementById("cardOpacity")?.value || "1";
+          const corners = document.getElementById("cardCorners")?.value || "16";
+          const shadowColor = document.getElementById("cardShadowColor")?.value || "#000000";
+          const shadowIntensity = document.getElementById("cardShadowIntensity")?.value || "20";
       
-      const background = hex2rgba(color, alpha / 100);
-      const backdropFilter = `blur(${blur}px)`;
-      const borderRadius = corners + "px";
-      const boxShadow = `0 4px ${shadowIntensity}px ${shadowColor}`;
+          const background = hex2rgba(color, alpha / 100);
+          const backdropFilter = `blur(${blur}px)`;
+          const borderRadius = corners + "px";
+          const boxShadow = `0 4px ${shadowIntensity}px ${shadowColor}`;
       
-      document.querySelectorAll('.glass-card, .modal-content').forEach(card => {
-        card.style.background = background;
-        card.style.backdropFilter = backdropFilter;
-        card.style.borderRadius = borderRadius;
-        card.style.boxShadow = boxShadow;
-        card.style.opacity = opacity;
-      });
+          document.querySelectorAll('.glass-card, .modal-content').forEach(card => {
+            card.style.background = background;
+            card.style.backdropFilter = backdropFilter;
+            card.style.borderRadius = borderRadius;
+            card.style.boxShadow = boxShadow;
+            card.style.opacity = opacity;
+          });
       
-      localStorage.setItem('cardSettings', JSON.stringify({
-        color, alpha, blur, opacity, corners, shadowColor, shadowIntensity
-      }));
-    }
+          const sideDrawer = document.getElementById("sideDrawer");
+          if (sideDrawer) {
+            sideDrawer.style.backdropFilter = backdropFilter;
+          }
+      
+          localStorage.setItem('cardSettings', JSON.stringify({
+            color, alpha, blur, opacity, corners, shadowColor, shadowIntensity
+          }));
+        }
 
     setupColorPalette("cardColorPalette", "cardColor", updateCardStyles);
     setupColorPalette("cardShadowPalette", "cardShadowColor", updateCardStyles);
@@ -2439,21 +2436,20 @@ input[type="range"]::-webkit-slider-thumb {
     });
 
     function updateSidebarStyles() {
-      const color = document.getElementById("sidebarColor")?.value || "#272f4c";
-      const alpha = document.getElementById("sidebarAlpha")?.value || "88";
-      const blur = document.getElementById("sidebarBlur")?.value || "10";
+          const color = document.getElementById("sidebarColor")?.value || "#272f4c";
+          const alpha = document.getElementById("sidebarAlpha")?.value || "88";
+          const blur = document.getElementById("cardBlur")?.value || "10";
       
-      if (sideDrawer) {
-        sideDrawer.style.background = hex2rgba(color, alpha / 100);
-        sideDrawer.style.backdropFilter = `blur(${blur}px)`;
-      }
+          if (sideDrawer) {
+            sideDrawer.style.background = hex2rgba(color, alpha / 100);
+            sideDrawer.style.backdropFilter = `blur(${blur}px)`;
+          }
       
-      localStorage.setItem('sidebarSettings', JSON.stringify({ color, alpha, blur }));
-    }
+          localStorage.setItem('sidebarSettings', JSON.stringify({ color, alpha }));
+        }
 
-    setupColorPalette("sidebarColorPalette", "sidebarColor", updateSidebarStyles);
-    setupRangeInput("sidebarAlpha", "sidebarAlphaVal", updateSidebarStyles);
-    setupRangeInput("sidebarBlur", "sidebarBlurVal", updateSidebarStyles);
+        setupColorPalette("sidebarColorPalette", "sidebarColor", updateSidebarStyles);
+        setupRangeInput("sidebarAlpha", "sidebarAlphaVal", updateSidebarStyles);
 
     function updateMenuStyles() {
       const color = document.getElementById("modalMenuColor")?.value || "#1a1d22";
@@ -2731,21 +2727,26 @@ input[type="range"]::-webkit-slider-thumb {
         }
 
         const savedCardSettings = localStorage.getItem('cardSettings');
-        if (savedCardSettings) {
-          const settings = JSON.parse(savedCardSettings);
-          const background = hex2rgba(settings.color, settings.alpha / 100);
-          const backdropFilter = `blur(${settings.blur}px)`;
-          const borderRadius = settings.corners + "px";
-          const boxShadow = `0 4px ${settings.shadowIntensity}px ${settings.shadowColor}`;
+                if (savedCardSettings) {
+                  const settings = JSON.parse(savedCardSettings);
+                  const background = hex2rgba(settings.color, settings.alpha / 100);
+                  const backdropFilter = `blur(${settings.blur}px)`;
+                  const borderRadius = settings.corners + "px";
+                  const boxShadow = `0 4px ${settings.shadowIntensity}px ${settings.shadowColor}`;
           
-          document.querySelectorAll('.glass-card, .modal-content').forEach(card => {
-            card.style.background = background;
-            card.style.backdropFilter = backdropFilter;
-            card.style.borderRadius = borderRadius;
-            card.style.boxShadow = boxShadow;
-            card.style.opacity = settings.opacity;
-          });
-        }
+                  document.querySelectorAll('.glass-card, .modal-content').forEach(card => {
+                    card.style.background = background;
+                    card.style.backdropFilter = backdropFilter;
+                    card.style.borderRadius = borderRadius;
+                    card.style.boxShadow = boxShadow;
+                    card.style.opacity = settings.opacity;
+                  });
+          
+                  const sideDrawer = document.getElementById("sideDrawer");
+                  if (sideDrawer) {
+                    sideDrawer.style.backdropFilter = backdropFilter;
+                  }
+                }
 
         const savedVolume = localStorage.getItem('soundVolume');
         if (savedVolume) {
