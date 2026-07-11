@@ -40,10 +40,9 @@ body {
   max-width: 640px;
   padding: 32px;
   box-sizing: border-box;
-  overflow: visible; /* FIXED: Allow timers to grow */
+  overflow: visible;
 }
 
-/* ORIGINAL MENU BAR */
 .menu-bar {
   background: rgba(26, 29, 34, 0.7);
   backdrop-filter: blur(8px);
@@ -214,7 +213,6 @@ h2 {
   text-align: center;
 }
 
-/* FIXED: Timer containers - no height restrictions */
 .premium-timer-bar {
   display: flex;
   justify-content: center;
@@ -223,15 +221,15 @@ h2 {
   margin: 24px 0;
   position: relative;
   z-index: 5;
-  overflow: visible; /* FIXED: Allow overflow */
-  height: auto; /* FIXED: No fixed height */
+  overflow: visible;
+  height: auto;
 }
 
 .digital-clock {
   text-align: center;
   margin: 24px 0;
-  overflow: visible; /* FIXED: Allow overflow */
-  height: auto; /* FIXED: No fixed height */
+  overflow: visible;
+  height: auto;
 }
 
 .written-balance {
@@ -241,7 +239,6 @@ h2 {
   color: #d0d4e0;
 }
 
-/* FIXED: Timer elements with proper scaling */
 .big-timer {
   display: block;
   font-size: 2.8rem;
@@ -253,9 +250,9 @@ h2 {
   background: transparent;
   user-select: none;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  line-height: 1.1; /* FIXED: Proportional line-height */
-  overflow: visible; /* FIXED: Allow text to show completely */
-  white-space: nowrap; /* FIXED: Prevent wrapping */
+  line-height: 1.1;
+  overflow: visible;
+  white-space: nowrap;
   text-align: center;
 }
 
@@ -269,9 +266,9 @@ h2 {
   background: transparent;
   user-select: none;
   text-align: center;
-  overflow: visible; /* FIXED: Allow text to show completely */
-  white-space: nowrap; /* FIXED: Prevent wrapping */
-  line-height: 1.1; /* FIXED: Proportional line-height */
+  overflow: visible;
+  white-space: nowrap;
+  line-height: 1.1;
 }
 
 .font-orbitron { font-family: 'Orbitron', monospace; }
@@ -334,8 +331,8 @@ h2 {
 
 .settings-grid {
   display: grid;
-  grid-template-columns: minmax(120px, 200px) 1fr;
-  grid-gap: 16px 24px;
+  grid-template-columns: minmax(120px, 1fr) 2fr; /* Better alignment */
+  gap: 16px;
   align-items: center;
   max-width: 100%;
   margin: 24px 0;
@@ -343,13 +340,10 @@ h2 {
 }
 
 .settings-grid label {
-  justify-self: end;
+  justify-self: start;
   font-weight: 500;
   font-size: 1.1em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding-right: 12px;
+  white-space: normal;
 }
 
 .settings-grid input,
@@ -363,7 +357,6 @@ h2 {
   color: #d0d4e0;
   outline: none;
   width: 100%;
-  max-width: 240px;
   box-sizing: border-box;
   transition: background 0.2s, box-shadow 0.2s;
   display: block;
@@ -373,17 +366,6 @@ h2 {
 .settings-grid select:focus {
   background: rgba(20, 30, 45, 0.8);
   box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
-}
-
-input[type='number'].part-input,
-input[type='number'].balance-input {
-  max-width: 180px;
-  background: rgba(18, 23, 32, 0.7);
-  border: 1px solid rgba(57, 170, 255, 0.3);
-  border-radius: 8px;
-  font-size: 1em;
-  color: #d0d4e0;
-  display: block;
 }
 
 .bg-thumb {
@@ -447,23 +429,6 @@ input[type='number'].balance-input {
   font-weight: 600;
 }
 
-.log-table .target-met {
-  color: #21ff6a;
-}
-
-.log-table .target-missed {
-  color: #ff4a4a;
-}
-
-.log-table .warning-excess-gain {
-  color: #ffcc00;
-}
-
-.log-table .warning-too-early,
-.log-table .warning-too-late {
-  color: #ff6666;
-}
-
 .log-panel-controls {
   display: flex;
   gap: 12px;
@@ -475,7 +440,7 @@ input[type='number'].balance-input {
   flex-wrap: wrap;
   gap: 12px;
   margin: 24px 0;
-  justify-content: start;
+  justify-content: center; /* Centered for better flow */
 }
 
 #plannerForm.slide-down {
@@ -560,7 +525,6 @@ input[type='number'].balance-input {
   display: block;
 }
 
-/* Enhanced Features */
 .target-info-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -615,7 +579,6 @@ input[type='number'].balance-input {
   transform: scale(1.1);
 }
 
-/* Calculator Results Styling */
 .calc-results {
   margin-top: 20px;
   padding: 20px;
@@ -646,10 +609,6 @@ input[type='number'].balance-input {
   background: rgba(47, 130, 255, 0.3);
   border-color: rgba(47, 130, 255, 0.6);
   color: #ffffff;
-}
-
-.period-tab:hover {
-  background: rgba(255, 255, 255, 0.2);
 }
 
 .results-container {
@@ -694,17 +653,6 @@ input[type='number'].balance-input {
   margin: 8px 0;
 }
 
-.summary-label {
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.summary-value {
-  font-weight: 600;
-  color: var(--theme-color);
-}
-
-/* Logbook Statistics */
 .logbook-stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -720,23 +668,6 @@ input[type='number'].balance-input {
   backdrop-filter: blur(10px);
 }
 
-.stat-emoji {
-  font-size: 2em;
-  margin-bottom: 8px;
-}
-
-.stat-value {
-  font-size: 1.4em;
-  font-weight: 600;
-  color: var(--theme-color);
-}
-
-.stat-label {
-  font-size: 0.9em;
-  color: rgba(255, 255, 255, 0.7);
-  margin-top: 4px;
-}
-
 .milestone-section {
   margin: 20px 0;
 }
@@ -750,12 +681,6 @@ input[type='number'].balance-input {
   backdrop-filter: blur(10px);
 }
 
-.milestone-achieved {
-  background: linear-gradient(135deg, rgba(33, 255, 106, 0.3), rgba(47, 130, 255, 0.3));
-  border-color: rgba(33, 255, 106, 0.5);
-}
-
-/* Slider Styles */
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
@@ -774,27 +699,8 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: 50%;
   background: var(--theme-color);
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-input[type="range"]::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--theme-color);
-  cursor: pointer;
-  border: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
-
-.range-value {
-  display: inline-block;
-  margin-left: 8px;
-  min-width: 40px;
-  font-weight: 500;
-}
-
-/* Warning Popup */
 .warning-popup {
   position: fixed;
   top: 50%;
@@ -811,31 +717,12 @@ input[type="range"]::-moz-range-thumb {
   backdrop-filter: blur(20px);
   display: none;
   opacity: 0;
-  transform: translate(-50%, -50%) scale(0.8);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .warning-popup.show {
   display: block;
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.warning-popup .close-btn {
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  background: none;
-  border: none;
-  color: #ffffff;
-  font-size: 1.5em;
-  cursor: pointer;
-  padding: 0;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 @media (max-width: 600px) {
@@ -857,36 +744,9 @@ input[type="range"]::-moz-range-thumb {
     font-size: 1.05em;
   }
 
-  .settings-grid input,
-  .settings-grid select,
-  .settings-grid button {
-    max-width: 100%;
-    padding: 12px 16px;
-    font-size: 1.05em;
-  }
-
   .big-timer {
     font-size: 2.2rem;
     padding: 12px 20px;
-  }
-
-  .mini-watch {
-    font-size: 1.2rem;
-    padding: 6px 10px;
-    max-width: 100px;
-  }
-
-  .target-info-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .logbook-stats {
-    grid-template-columns: 1fr;
-  }
-
-  .calc-period-tabs {
-    flex-direction: column;
-    gap: 4px;
   }
 }
   </style>
@@ -902,7 +762,6 @@ input[type="range"]::-moz-range-thumb {
     <button id="menuBtn" class="menu-btn" aria-label="Menu">☰</button>
   </header>
 
-  <!-- Side Drawer -->
   <nav id="sideDrawer" class="side-drawer">
     <button class="drawer-close-btn" id="closeDrawer">&times;</button>
     <div class="submenu-card">
@@ -917,13 +776,11 @@ input[type="range"]::-moz-range-thumb {
   </nav>
   <div id="drawerOverlay"></div>
 
-  <!-- Warning Popup -->
   <div id="warningPopup" class="warning-popup">
     <button class="close-btn" id="closeWarning">&times;</button>
     <div id="warningMessage"></div>
   </div>
 
-  <!-- Timer Modal -->
   <div id="timerModal" class="modal">
     <div class="modal-content">
       <button class="modal-close-btn">&times;</button>
@@ -981,7 +838,6 @@ input[type="range"]::-moz-range-thumb {
     </div>
   </div>
 
-  <!-- Clock Modal -->
   <div id="clockModal" class="modal">
     <div class="modal-content">
       <button class="modal-close-btn">&times;</button>
@@ -1033,7 +889,6 @@ input[type="range"]::-moz-range-thumb {
     </div>
   </div>
 
-  <!-- Card Modal -->
   <div id="cardModal" class="modal">
     <div class="modal-content">
       <button class="modal-close-btn">&times;</button>
@@ -1097,7 +952,6 @@ input[type="range"]::-moz-range-thumb {
     </div>
   </div>
 
-  <!-- Background Modal -->
   <div id="bgModal" class="modal">
     <div class="modal-content">
       <button class="modal-close-btn">&times;</button>
@@ -1125,7 +979,6 @@ input[type="range"]::-moz-range-thumb {
     </div>
   </div>
 
-  <!-- Sidebar Modal -->
   <div id="sidebarModal" class="modal">
     <div class="modal-content">
       <button class="modal-close-btn">&times;</button>
@@ -1157,7 +1010,6 @@ input[type="range"]::-moz-range-thumb {
     </div>
   </div>
 
-  <!-- Menu Modal -->
   <div id="menuModal" class="modal">
     <div class="modal-content">
       <button class="modal-close-btn">&times;</button>
@@ -1189,7 +1041,6 @@ input[type="range"]::-moz-range-thumb {
     </div>
   </div>
 
-  <!-- Avatar Modal -->
   <div id="avatarModal" class="modal">
     <div class="modal-content">
       <button class="modal-close-btn">&times;</button>
@@ -1210,7 +1061,6 @@ input[type="range"]::-moz-range-thumb {
     </div>
   </div>
 
-  <!-- Font Modal -->
   <div id="fontModal" class="modal">
     <div class="modal-content">
       <button class="modal-close-btn">&times;</button>
@@ -1254,7 +1104,6 @@ input[type="range"]::-moz-range-thumb {
     </div>
   </div>
 
-  <!-- Sound Modal -->
   <div id="soundModal" class="modal">
     <div class="modal-content">
       <button class="modal-close-btn">&times;</button>
@@ -1280,7 +1129,6 @@ input[type="range"]::-moz-range-thumb {
 
   <div id="modalOverlay"></div>
 
-  <!-- Home Page -->
   <main id="homePage" class="glass-card page active">
     <div class="digital-clock">
       <span id="digitalClock" class="big-timer theme-ocean font-orbitron">12:34</span>
@@ -1290,7 +1138,6 @@ input[type="range"]::-moz-range-thumb {
     </div>
   </main>
 
-  <!-- Session Planner -->
   <main id="planPage" class="glass-card page">
     <h2>Session Planner</h2>
     <div class="premium-timer-bar">
@@ -1302,7 +1149,6 @@ input[type="range"]::-moz-range-thumb {
     <div id="sessionPanel" style="display:none;">
       <h3>Part <span id="currentPart"></span> of <span id="totalParts"></span></h3>
       
-      <!-- Fixed Target Info Layout -->
       <div class="target-info-grid">
         <div class="target-info-item">
           <div class="target-info-label">Next Target</div>
@@ -1338,7 +1184,6 @@ input[type="range"]::-moz-range-thumb {
         <button id="closeAlert" class="mini-btn neon">×</button>
       </div>
       
-      <!-- Updated Log Table Headers (Session Page - Emojis) -->
       <div id="sessionLogs" class="log-table">
         <table>
           <thead>
@@ -1369,20 +1214,19 @@ input[type="range"]::-moz-range-thumb {
       
       <label>Parts</label>
       <input type="number" id="planParts" min="1" max="24" value="15" class="part-input" />
+      
       <label>Flexible Hours (optional)</label>
       <input type="text" id="planFlexibleHours" placeholder="e.g. 7-12, 20-23" class="part-input" />
 
       <label>Available Hours</label>
       <input type="text" id="planAvailableHoursDisplay" class="part-input" readonly />
 
-      
       <label></label>
       <button id="planStartBtn" class="main-btn accent" type="button">Start Session</button>
     </form>
     <div id="planInfo" class="info-badge"></div>
   </main>
 
-  <!-- Calculator Page -->
   <main id="calcPage" class="glass-card page">
     <h2>Calculator</h2>
     <form id="calcForm" autocomplete="off" class="settings-grid">
@@ -1418,9 +1262,7 @@ input[type="range"]::-moz-range-thumb {
       <button class="main-btn" type="submit">Calculate</button>
     </form>
     
-    <!-- Enhanced Calculator Results -->
     <div id="calcResults" class="calc-results" style="display:none;">
-      <!-- Summary Section -->
       <div class="calc-summary">
         <div class="summary-item">
           <span class="summary-label">Investment Value:</span>
@@ -1448,7 +1290,6 @@ input[type="range"]::-moz-range-thumb {
         </div>
       </div>
       
-      <!-- Period Tabs -->
       <div class="calc-period-tabs">
         <button type="button" class="period-tab active" data-period="daily">Daily</button>
         <button type="button" class="period-tab" data-period="weekly">Weekly</button>
@@ -1456,7 +1297,6 @@ input[type="range"]::-moz-range-thumb {
         <button type="button" class="period-tab" data-period="yearly">Yearly</button>
       </div>
       
-      <!-- Results Table -->
       <div class="results-container">
         <table class="results-table">
           <thead>
@@ -1473,11 +1313,8 @@ input[type="range"]::-moz-range-thumb {
     </div>
   </main>
 
-  <!-- Logs Page -->
   <main id="logsPage" class="glass-card page">
     <h2>Logbook</h2>
-    
-    <!-- Statistics Cards -->
     <div class="logbook-stats">
       <div class="stat-card">
         <div class="stat-emoji">📈</div>
@@ -1501,9 +1338,7 @@ input[type="range"]::-moz-range-thumb {
       </div>
     </div>
     
-    <!-- Milestones -->
     <div class="milestone-section">
-      
         <div class="milestone-card" id="milestone2">
           <div>🔥 Achieve 5% daily target</div>
           <div class="stat-label">Reward: Sound pack</div>
@@ -1517,9 +1352,7 @@ input[type="range"]::-moz-range-thumb {
           <div class="stat-label">Reward: Advanced analytics</div>
         </div>
       </div>
-    </div>
     
-    <!-- Updated Log Table Headers (Logs Page - Labels) -->
     <div id="allLogsPanel" class="log-table">
       <table>
         <thead>
@@ -1538,7 +1371,6 @@ input[type="range"]::-moz-range-thumb {
     <button id="exportAllBtn" class="mini-btn accent">Export All Logs</button>
   </main>
 
-  <!-- Settings / Personalize Page -->
   <main id="settingsPage" class="glass-card page">
     <h2>Personalize</h2>
     <form class="settings-grid" autocomplete="off">
@@ -1576,1329 +1408,800 @@ input[type="range"]::-moz-range-thumb {
   <audio id="sound-bell" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12dcfd21d0.mp3"></audio>
   <audio id="sound-custom"></audio>
 
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
-
-    <script>
-  // Financial Session Planner - FULLY FIXED TIMER SCALING AND LIVE UPDATES
+  <script>
   document.addEventListener('DOMContentLoaded', async () => {
 
-    // --- FIREBASE SYNC & LOCALSTORAGE INTERCEPTOR ---
-    const firebaseConfig = {
-      databaseURL: "https://infinity-369-default-rtdb.firebaseio.com/" 
-    };
-  
-    if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
-    }
-    const db = firebase.database();
-    const dbPath = 'users/chaotic369/local_storage_cache';
-  
-    const originalSetItem = localStorage.setItem;
-    const originalRemoveItem = localStorage.removeItem;
-    const originalClear = localStorage.clear;
-
-    // 1. Await Firebase pull to seed local cache before app initializes
-    try {
-      const snapshot = await db.ref(dbPath).once('value');
-      const data = snapshot.val();
-      if (data) {
-        for (const key in data) {
-          originalSetItem.call(localStorage, key, data[key]);
-        }
+    function hex2rgba(hex, alpha = 1) {
+      try {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+      } catch (err) {
+        console.error("Error converting hex to RGBA:", err);
+        return hex;
       }
-    } catch (err) {
-      console.warn("Firebase Sync Error (Check RTDB rules!):", err);
     }
 
-    // 2. Intercept LocalStorage to write to Firebase dynamically
-    localStorage.setItem = function(key, value) {
-      originalSetItem.call(localStorage, key, value);
-      db.ref(dbPath + '/' + key).set(value).catch(err => console.warn('Firebase set error:', err));
-    };
-
-    localStorage.removeItem = function(key) {
-      originalRemoveItem.call(localStorage, key);
-      db.ref(dbPath + '/' + key).remove().catch(err => console.warn('Firebase rm error:', err));
-    };
-
-    localStorage.clear = function() {
-      originalClear.call(localStorage);
-      db.ref(dbPath).remove().catch(err => console.warn('Firebase clear error:', err));
-    };
-    // ------------------------------------------------
-
-    // Utility Functions
-  function hex2rgba(hex, alpha = 1) {
-    try {
-      const r = parseInt(hex.slice(1, 3), 16);
-      const g = parseInt(hex.slice(3, 5), 16);
-      const b = parseInt(hex.slice(5, 7), 16);
-      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-    } catch (err) {
-      console.error("Error converting hex to RGBA:", err);
-      return hex;
-    }
-  }
-
-  // Warning Popup Functions
-  function showWarning(message) {
-    const warningPopup = document.getElementById("warningPopup");
-    const warningMessage = document.getElementById("warningMessage");
-    
-    if (warningMessage && warningPopup) {
-      warningMessage.textContent = message;
-      warningPopup.classList.add('show');
+    function showWarning(message) {
+      const warningPopup = document.getElementById("warningPopup");
+      const warningMessage = document.getElementById("warningMessage");
       
-      setTimeout(() => {
-        warningPopup.classList.remove('show');
-      }, 4000);
-    }
-  }
-
-  const closeWarning = document.getElementById("closeWarning");
-  if (closeWarning) {
-    closeWarning.onclick = () => {
-      document.getElementById("warningPopup").classList.remove('show');
-    };
-  }
-
-  // Navigation
-  const sideDrawer = document.getElementById("sideDrawer");
-  const drawerOverlay = document.getElementById("drawerOverlay");
-  const menuBtn = document.getElementById("menuBtn");
-  const closeDrawer = document.getElementById("closeDrawer");
-  
-  if (sideDrawer && drawerOverlay) {
-    sideDrawer.classList.remove('open');
-    drawerOverlay.classList.remove('active');
-  }
-
-  if (menuBtn && sideDrawer && drawerOverlay) {
-    menuBtn.onclick = () => {
-      sideDrawer.classList.add('open');
-      drawerOverlay.classList.add('active');
-    };
-  }
-
-  if (closeDrawer) {
-    closeDrawer.onclick = () => {
-      sideDrawer.classList.remove('open');
-      drawerOverlay.classList.remove('active');
-    };
-  }
-
-  if (drawerOverlay) {
-    drawerOverlay.onclick = () => {
-      sideDrawer.classList.remove('open');
-      drawerOverlay.classList.remove('active');
-    };
-  }
-
-  // Navigation Links
-  const navLinks = document.querySelectorAll('.drawer-link');
-  const pageNames = ["homePage", "planPage", "calcPage", "logsPage", "settingsPage"];
-
-  function showPage(name) {
-    pageNames.forEach(id => {
-      const page = document.getElementById(id);
-      if (page) {
-        page.classList.toggle('active', id === name);
+      if (warningMessage && warningPopup) {
+        warningMessage.textContent = message;
+        warningPopup.classList.add('show');
         
-        // Timer/Clock Animation Effects
-        if (id === "homePage") {
-          const homeTimer = page.querySelector('#partTimer');
-          const clock = page.querySelector('#digitalClock');
-          
-          if (homeTimer && clock) {
-            if (name === id) {
-              homeTimer.style.transform = 'scale(1) translateY(0)';
-              homeTimer.style.opacity = '1';
-              clock.style.transform = 'scale(1) translateY(0)';
-              clock.style.opacity = '1';
-            } else {
-              homeTimer.style.transform = 'scale(0.8) translateY(-20px)';
-              homeTimer.style.opacity = '0';
-              clock.style.transform = 'scale(0.8) translateY(20px)';
-              clock.style.opacity = '0';
-            }
-          }
-        }
-        
-        if (id === "planPage") {
-          const planTimer = page.querySelector('#partTimerPlan');
-          if (planTimer) {
-            if (name === id) {
-              planTimer.style.transform = 'scale(1) translateY(0)';
-              planTimer.style.opacity = '1';
-            } else {
-              planTimer.style.transform = 'scale(0.9) translateY(-30px)';
-              planTimer.style.opacity = '0';
-            }
-          }
-        }
+        setTimeout(() => {
+          warningPopup.classList.remove('show');
+        }, 4000);
       }
-    });
-    
-    navLinks.forEach(btn => {
-      if (btn) btn.classList.toggle('active', btn.dataset.page === name);
-    });
+    }
+
+    const closeWarning = document.getElementById("closeWarning");
+    if (closeWarning) {
+      closeWarning.onclick = () => {
+        document.getElementById("warningPopup").classList.remove('show');
+      };
+    }
+
+    const sideDrawer = document.getElementById("sideDrawer");
+    const drawerOverlay = document.getElementById("drawerOverlay");
+    const menuBtn = document.getElementById("menuBtn");
+    const closeDrawer = document.getElementById("closeDrawer");
     
     if (sideDrawer && drawerOverlay) {
       sideDrawer.classList.remove('open');
       drawerOverlay.classList.remove('active');
     }
-  }
 
-  navLinks.forEach(btn => {
-    if (btn && btn.dataset.page) {
-      btn.onclick = () => showPage(btn.dataset.page);
-    }
-  });
-
-  showPage("homePage");
-
-  // Digital Clock
-  const digitalClock = document.getElementById("digitalClock");
-  
-  function updateClock() {
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    if (digitalClock) digitalClock.textContent = `${hours}:${minutes}`;
-  }
-
-  updateClock();
-  setInterval(updateClock, 1000);
-
-   // Timer System
-  const timerEl = document.getElementById("partTimer");
-  const timerPlanEl = document.getElementById("partTimerPlan");
-  const soundBeep = document.getElementById("sound-beep");
-  const soundCustom = document.getElementById("sound-custom");
-
-  let timerInterval, milliseconds = 0, partDuration = 3600 * 1000;
-  let timerRunning = false, startTime = 0, timerStarted = false;
-
-  function formatTime(ms) {
-    const totalSeconds = Math.floor(ms / 1000);
-    const mins = Math.floor(totalSeconds / 60);
-    const secs = totalSeconds % 60;
-    const millis = Math.floor((ms % 1000) / 10);
-    return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}:${String(millis).padStart(2, '0')}`;
-  }
-
-  function updateTimer() {
-    if (timerRunning && milliseconds > 0) {
-      const elapsed = Date.now() - startTime;
-      milliseconds = partDuration - elapsed;
-      if (milliseconds <= 0) {
-        milliseconds = 0;
-        clearInterval(timerInterval);
-        timerInterval = null;
-        timerRunning = false;
-        // Mark timer as finished in storage
-        try { localStorage.setItem('comp_timerRunning','false'); } catch(e) {}
-        playTimerSound();
-      }
-      if (timerEl) timerEl.textContent = formatTime(milliseconds);
-      if (timerPlanEl) timerPlanEl.textContent = formatTime(milliseconds);
-      // Also persist current milliseconds so UI can restore more precisely
-      try { localStorage.setItem('comp_lastMilliseconds', String(milliseconds)); } catch(e) {}
-    }
-  }
-
-  function startTimer() {
-    if (!timerStarted) return;
-    timerRunning = true;
-    startTime = Date.now();
-    clearInterval(timerInterval);
-    timerInterval = setInterval(updateTimer, 10);
-  }
-
-  function playTimerSound() {
-    try {
-      if (soundCustom && soundCustom.src && soundCustom.src !== window.location.href) {
-        soundCustom.play().catch(err => console.error("Custom audio play failed:", err));
-      } else if (soundBeep) {
-        soundBeep.play().catch(err => console.error("Default audio play failed:", err));
-      }
-    } catch (err) {
-      console.error("Audio playback error:", err);
-    }
-  }
-
-
-  
-  // Session Persistence Functions
-  function saveSessionState() {
-    try {
-      const sessionState = {
-        currentPart,
-        totalParts,
-        startBalance,
-        planStartBalance,
-        dailyPct,
-        dailyGoal,
-        hasLoggedFirstPart,
-        partDuration,
-        timerStarted,
-        sessionActive: sessionPanel && sessionPanel.style.display !== "none"
+    if (menuBtn && sideDrawer && drawerOverlay) {
+      menuBtn.onclick = () => {
+        sideDrawer.classList.add('open');
+        drawerOverlay.classList.add('active');
       };
-      localStorage.setItem('compoundingSessionState', JSON.stringify(sessionState));
-    } catch (err) {
-      console.error("Error saving session state:", err);
     }
-  }
 
-  function restoreSessionState() {
-    try {
-      const saved = localStorage.getItem('compoundingSessionState');
-      if (saved) {
-        const sessionState = JSON.parse(saved);
-        currentPart = sessionState.currentPart || 1;
-        totalParts = sessionState.totalParts || 15;
-        startBalance = sessionState.startBalance || 0;
-        planStartBalance = sessionState.planStartBalance || 0;
-        dailyPct = sessionState.dailyPct || 3.5;
-        dailyGoal = sessionState.dailyGoal || 0;
-        hasLoggedFirstPart = sessionState.hasLoggedFirstPart || false;
-        partDuration = sessionState.partDuration || 3600 * 1000;
-        timerStarted = sessionState.timerStarted || false;
+    if (closeDrawer) {
+      closeDrawer.onclick = () => {
+        sideDrawer.classList.remove('open');
+        drawerOverlay.classList.remove('active');
+      };
+    }
 
-        if (sessionState.sessionActive && sessionPanel) {
-          sessionPanel.style.display = "block";
+    if (drawerOverlay) {
+      drawerOverlay.onclick = () => {
+        sideDrawer.classList.remove('open');
+        drawerOverlay.classList.remove('active');
+      };
+    }
+
+    const navLinks = document.querySelectorAll('.drawer-link');
+    const pageNames = ["homePage", "planPage", "calcPage", "logsPage", "settingsPage"];
+
+    function showPage(name) {
+      pageNames.forEach(id => {
+        const page = document.getElementById(id);
+        if (page) {
+          page.classList.toggle('active', id === name);
+          
+          if (id === "homePage") {
+            const homeTimer = page.querySelector('#partTimer');
+            const clock = page.querySelector('#digitalClock');
+            
+            if (homeTimer && clock) {
+              if (name === id) {
+                homeTimer.style.transform = 'scale(1) translateY(0)';
+                homeTimer.style.opacity = '1';
+                clock.style.transform = 'scale(1) translateY(0)';
+                clock.style.opacity = '1';
+              } else {
+                homeTimer.style.transform = 'scale(0.8) translateY(-20px)';
+                homeTimer.style.opacity = '0';
+                clock.style.transform = 'scale(0.8) translateY(20px)';
+                clock.style.opacity = '0';
+              }
+            }
+          }
+          
+          if (id === "planPage") {
+            const planTimer = page.querySelector('#partTimerPlan');
+            if (planTimer) {
+              if (name === id) {
+                planTimer.style.transform = 'scale(1) translateY(0)';
+                planTimer.style.opacity = '1';
+              } else {
+                planTimer.style.transform = 'scale(0.9) translateY(-30px)';
+                planTimer.style.opacity = '0';
+              }
+            }
+          }
+        }
+      });
+      
+      navLinks.forEach(btn => {
+        if (btn) btn.classList.toggle('active', btn.dataset.page === name);
+      });
+      
+      if (sideDrawer && drawerOverlay) {
+        sideDrawer.classList.remove('open');
+        drawerOverlay.classList.remove('active');
+      }
+    }
+
+    navLinks.forEach(btn => {
+      if (btn && btn.dataset.page) {
+        btn.onclick = () => showPage(btn.dataset.page);
+      }
+    });
+
+    showPage("homePage");
+
+    const digitalClock = document.getElementById("digitalClock");
+    
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      if (digitalClock) digitalClock.textContent = `${hours}:${minutes}`;
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    const timerEl = document.getElementById("partTimer");
+    const timerPlanEl = document.getElementById("partTimerPlan");
+    const soundBeep = document.getElementById("sound-beep");
+    const soundCustom = document.getElementById("sound-custom");
+
+    let timerInterval, milliseconds = 0, partDuration = 3600 * 1000;
+    let timerRunning = false, startTime = 0, timerStarted = false;
+
+    function formatTime(ms) {
+      const totalSeconds = Math.floor(ms / 1000);
+      const mins = Math.floor(totalSeconds / 60);
+      const secs = totalSeconds % 60;
+      const millis = Math.floor((ms % 1000) / 10);
+      return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}:${String(millis).padStart(2, '0')}`;
+    }
+
+    function updateTimer() {
+      if (timerRunning && milliseconds > 0) {
+        const elapsed = Date.now() - startTime;
+        milliseconds = partDuration - elapsed;
+        if (milliseconds <= 0) {
+          milliseconds = 0;
+          clearInterval(timerInterval);
+          timerInterval = null;
+          timerRunning = false;
+          try { localStorage.setItem('comp_timerRunning','false'); } catch(e) {}
+          playTimerSound();
+        }
+        if (timerEl) timerEl.textContent = formatTime(milliseconds);
+        if (timerPlanEl) timerPlanEl.textContent = formatTime(milliseconds);
+        try { localStorage.setItem('comp_lastMilliseconds', String(milliseconds)); } catch(e) {}
+      }
+    }
+
+    function startTimer() {
+      if (!timerStarted) return;
+      timerRunning = true;
+      startTime = Date.now();
+      clearInterval(timerInterval);
+      timerInterval = setInterval(updateTimer, 10);
+    }
+
+    function playTimerSound() {
+      try {
+        if (soundCustom && soundCustom.src && soundCustom.src !== window.location.href) {
+          soundCustom.play().catch(err => console.error("Custom audio play failed:", err));
+        } else if (soundBeep) {
+          soundBeep.play().catch(err => console.error("Default audio play failed:", err));
+        }
+      } catch (err) {
+        console.error("Audio playback error:", err);
+      }
+    }
+
+    function saveSessionState() {
+      try {
+        const sessionState = {
+          currentPart,
+          totalParts,
+          startBalance,
+          planStartBalance,
+          dailyPct,
+          dailyGoal,
+          hasLoggedFirstPart,
+          partDuration,
+          timerStarted,
+          sessionActive: sessionPanel && sessionPanel.style.display !== "none"
+        };
+        localStorage.setItem('compoundingSessionState', JSON.stringify(sessionState));
+      } catch (err) {
+        console.error("Error saving session state:", err);
+      }
+    }
+
+    function restoreSessionState() {
+      try {
+        const saved = localStorage.getItem('compoundingSessionState');
+        if (saved) {
+          const sessionState = JSON.parse(saved);
+          currentPart = sessionState.currentPart || 1;
+          totalParts = sessionState.totalParts || 15;
+          startBalance = sessionState.startBalance || 0;
+          planStartBalance = sessionState.planStartBalance || 0;
+          dailyPct = sessionState.dailyPct || 3.5;
+          dailyGoal = sessionState.dailyGoal || 0;
+          hasLoggedFirstPart = sessionState.hasLoggedFirstPart || false;
+          partDuration = sessionState.partDuration || 3600 * 1000;
+          timerStarted = sessionState.timerStarted || false;
+
+          if (sessionState.sessionActive && sessionPanel) {
+            sessionPanel.style.display = "block";
+            if (sessionPanel && plannerForm) {
+              sessionPanel.classList.add('slide-up');
+              plannerForm.classList.add('slide-down');
+            }
+            if (currentPartEl) currentPartEl.textContent = currentPart;
+            if (totalPartsEl) totalPartsEl.textContent = totalParts;
+            updateTargetInfo();
+          }
+        }
+      } catch (err) {
+        console.error("Error restoring session state:", err);
+      }
+    }
+
+    const planStartBtn = document.getElementById("planStartBtn");
+    const plannerForm = document.getElementById("plannerForm");
+    const sessionPanel = document.getElementById("sessionPanel");
+    const currentPartEl = document.getElementById("currentPart");
+    const totalPartsEl = document.getElementById("totalParts");
+    const planInfo = document.getElementById("planInfo");
+    const writtenBalanceEl = document.getElementById("writtenBalance");
+    const targetEndBalanceEl = document.getElementById("targetEndBalance");
+    const remainingGoalEl = document.getElementById("remainingGoal");
+    const remainingGoalPctEl = document.getElementById("remainingGoalPct");
+    const remainingPartsEl = document.getElementById("remainingParts");
+
+    let currentPart = 1, totalParts = 15, startBalance = 0, planStartBalance = 0;
+    let dailyPct = 3.5, dailyGoal = 0, hasLoggedFirstPart = false;
+
+    function updateTargetInfo() {
+      try {
+        const partTargetPct = dailyPct / 100 / totalParts;
+        const nextTarget = (startBalance * (1 + partTargetPct)).toFixed(8);
+        
+        const remainingGoal = hasLoggedFirstPart ? (dailyGoal - startBalance) : (dailyGoal - planStartBalance);
+        const remainingGoalPct = dailyGoal > 0 ? ((remainingGoal / planStartBalance) * 100).toFixed(2) : "3.50";
+        const remainingParts = totalParts - currentPart + 1;
+
+        if (writtenBalanceEl) writtenBalanceEl.textContent = startBalance.toFixed(8);
+        if (targetEndBalanceEl) targetEndBalanceEl.textContent = nextTarget;
+        if (remainingGoalEl) remainingGoalEl.textContent = remainingGoal.toFixed(8);
+        if (remainingGoalPctEl) remainingGoalPctEl.textContent = remainingGoalPct;
+        if (remainingPartsEl) remainingPartsEl.textContent = remainingParts;
+      } catch (err) {
+        console.error("Error updating target info:", err);
+      }
+    }
+
+    if (planStartBtn) {
+      planStartBtn.onclick = () => {
+        try {
+          planStartBalance = parseFloat(document.getElementById("planStartBalance")?.value) || 0;
+          dailyPct = parseFloat(document.getElementById("planPct")?.value) || 3.5;
+          totalParts = parseInt(document.getElementById("planParts")?.value) || 15;
+          const flexRaw = (document.getElementById("planFlexibleHours")?.value || '').trim();
+          let hours = 15;
+          if (flexRaw) {
+            let total = 0;
+            const tokens = flexRaw.split(/\s*,\s*/).filter(Boolean);
+            let sawRange = false;
+            for (const t of tokens) {
+              const m = t.match(/^(\d{1,2})\s*-\s*(\d{1,2})$/);
+              if (m) {
+                const a = parseInt(m[1],10), b = parseInt(m[2],10);
+                if (!isNaN(a) && !isNaN(b) && b > a) { total += (b - a); sawRange = true; }
+              }
+            }
+            if (sawRange) { hours = total; } else {
+              const single = parseInt(flexRaw, 10);
+              if (!isNaN(single) && single > 0) hours = single;
+            }
+          }
+
+          try {
+            const savedFlexible = localStorage.getItem('planFlexibleHours');
+            if (savedFlexible !== null && savedFlexible !== undefined) {
+              document.getElementById("planFlexibleHours").value = savedFlexible;
+            }
+          } catch(e){}
+
+          function calculateAvailableHoursLocal() {
+            const sessionLen = parseFloat(document.getElementById("planHours")?.value) || 0;
+            const flexInput = (document.getElementById("planFlexibleHours")?.value || "").trim();
+            let excluded = 0;
+            if (flexInput.length > 0) {
+              const ranges = flexInput.split(',').map(r => r.trim()).filter(r => r);
+              ranges.forEach(range => {
+                const parts = range.split('-').map(s => s.trim());
+                if (parts.length === 2) {
+                  const s = Number(parts[0]);
+                  const e = Number(parts[1]);
+                  if (!isNaN(s) && !isNaN(e)) {
+                    if (e > s) {
+                      excluded += Math.max(0, e - s);
+                    } else if (e < s) {
+                      excluded += Math.max(0, (24 - s) + e);
+                    }
+                  }
+                }
+              });
+            }
+            const available = Math.max(sessionLen - excluded, 0);
+            const disp = document.getElementById("planAvailableHoursDisplay");
+            if (disp) disp.value = String(available);
+            try {
+              localStorage.setItem('planFlexibleHours', flexInput);
+              localStorage.setItem('planAvailableHours', String(available));
+            } catch(e){}
+            return available;
+          }
+
+          const ph = document.getElementById("planHours");
+          const pf = document.getElementById("planFlexibleHours");
+          if (ph) ph.addEventListener('input', calculateAvailableHoursLocal);
+          if (pf) pf.addEventListener('input', calculateAvailableHoursLocal);
+          try {
+            const savedAvail = localStorage.getItem('planAvailableHours');
+            if (savedAvail !== null && savedAvail !== undefined && savedAvail !== "") {
+              const disp = document.getElementById("planAvailableHoursDisplay");
+              if (disp) disp.value = savedAvail;
+            } else {
+              calculateAvailableHoursLocal();
+            }
+          } catch(e) {
+            calculateAvailableHoursLocal();
+          }
+          const usableHours = calculateAvailableHoursLocal();
+
+          if (planStartBalance <= 0 || dailyPct <= 0 || totalParts <= 0 || hours <= 0) {
+            if (planInfo) planInfo.textContent = "Please enter valid values.";
+            return;
+          }
+
+          startBalance = planStartBalance;
+          currentPart = 1;
+          hasLoggedFirstPart = false;
+          partDuration = Math.floor((hours * 3600) / totalParts) * 1000;
+          milliseconds = partDuration;
+          
+          timerStarted = false;
+
+          if (sessionPanel) sessionPanel.style.display = "block";
           if (sessionPanel && plannerForm) {
             sessionPanel.classList.add('slide-up');
             plannerForm.classList.add('slide-down');
           }
           if (currentPartEl) currentPartEl.textContent = currentPart;
           if (totalPartsEl) totalPartsEl.textContent = totalParts;
+
+          dailyGoal = planStartBalance * (1 + dailyPct / 100);
+          if (planInfo) planInfo.textContent = `Session ready! Log your first part to begin the timer.`;
           updateTargetInfo();
+          saveSessionState();
+        } catch (err) {
+          console.error("Error starting session:", err);
+          if (planInfo) planInfo.textContent = "Error starting session. Please try again.";
         }
-      }
-    } catch (err) {
-      console.error("Error restoring session state:", err);
+      };
     }
-  }
 
+    const logBtn = document.getElementById("logBtn");
+    const sessionLogsBody = document.getElementById("sessionLogsBody");
+    const allLogsBody = document.getElementById("allLogsBody");
+    const alertBar = document.getElementById("alertBar");
+    const alertMsg = document.getElementById("alertMsg");
+    const closeAlert = document.getElementById("closeAlert");
 
-  // Session Planner
-  const planStartBtn = document.getElementById("planStartBtn");
-  const plannerForm = document.getElementById("plannerForm");
-  const sessionPanel = document.getElementById("sessionPanel");
-  const currentPartEl = document.getElementById("currentPart");
-  const totalPartsEl = document.getElementById("totalParts");
-  const planInfo = document.getElementById("planInfo");
-  const writtenBalanceEl = document.getElementById("writtenBalance");
-  const targetEndBalanceEl = document.getElementById("targetEndBalance");
-  const remainingGoalEl = document.getElementById("remainingGoal");
-  const remainingGoalPctEl = document.getElementById("remainingGoalPct");
-  const remainingPartsEl = document.getElementById("remainingParts");
-
-  let currentPart = 1, totalParts = 15, startBalance = 0, planStartBalance = 0;
-  let dailyPct = 3.5, dailyGoal = 0, hasLoggedFirstPart = false;
-
-  function updateTargetInfo() {
-    try {
-      const partTargetPct = dailyPct / 100 / totalParts;
-      const nextTarget = (startBalance * (1 + partTargetPct)).toFixed(8);
-      
-      const remainingGoal = hasLoggedFirstPart ? (dailyGoal - startBalance) : (dailyGoal - planStartBalance);
-      const remainingGoalPct = dailyGoal > 0 ? ((remainingGoal / planStartBalance) * 100).toFixed(2) : "3.50";
-      const remainingParts = totalParts - currentPart + 1;
-
-      if (writtenBalanceEl) writtenBalanceEl.textContent = startBalance.toFixed(8);
-      if (targetEndBalanceEl) targetEndBalanceEl.textContent = nextTarget;
-      if (remainingGoalEl) remainingGoalEl.textContent = remainingGoal.toFixed(8);
-      if (remainingGoalPctEl) remainingGoalPctEl.textContent = remainingGoalPct;
-      if (remainingPartsEl) remainingPartsEl.textContent = remainingParts;
-    } catch (err) {
-      console.error("Error updating target info:", err);
-    }
-  }
-
-  if (planStartBtn) {
-    planStartBtn.onclick = () => {
-      try {
-        planStartBalance = parseFloat(document.getElementById("planStartBalance")?.value) || 0;
-        dailyPct = parseFloat(document.getElementById("planPct")?.value) || 3.5;
-        totalParts = parseInt(document.getElementById("planParts")?.value) || 15;
-        const flexRaw = (document.getElementById("planFlexibleHours")?.value || '').trim();
-        let hours = 15;
-        if (flexRaw) {
-          let total = 0;
-          const tokens = flexRaw.split(/\s*,\s*/).filter(Boolean);
-          let sawRange = false;
-          for (const t of tokens) {
-            const m = t.match(/^(\d{1,2})\s*-\s*(\d{1,2})$/);
-            if (m) {
-              const a = parseInt(m[1],10), b = parseInt(m[2],10);
-              if (!isNaN(a) && !isNaN(b) && b > a) { total += (b - a); sawRange = true; }
-            }
-          }
-          if (sawRange) { hours = total; } else {
-            const single = parseInt(flexRaw, 10);
-            if (!isNaN(single) && single > 0) hours = single;
-          }
-        }
-
-        // --- Flexible Hours support (added) ---
-        // restore saved flexible hours
+    if (logBtn) {
+      logBtn.onclick = () => {
         try {
-          const savedFlexible = localStorage.getItem('planFlexibleHours');
-          if (savedFlexible !== null && savedFlexible !== undefined) {
-            document.getElementById("planFlexibleHours").value = savedFlexible;
-          }
-        } catch(e){}
+          const endBalance = parseFloat(document.getElementById("logBalance")?.value) || 0;
+          const tags = document.getElementById("logTags")?.value || "";
 
-        function calculateAvailableHoursLocal() {
-          const sessionLen = parseFloat(document.getElementById("planHours")?.value) || 0;
-          const flexInput = (document.getElementById("planFlexibleHours")?.value || "").trim();
-          let excluded = 0;
-          if (flexInput.length > 0) {
-            const ranges = flexInput.split(',').map(r => r.trim()).filter(r => r);
-            ranges.forEach(range => {
-              const parts = range.split('-').map(s => s.trim());
-              if (parts.length === 2) {
-                const s = Number(parts[0]);
-                const e = Number(parts[1]);
-                if (!isNaN(s) && !isNaN(e)) {
-                  // handle wrap-around (e.g., 22-2) by treating as across midnight
-                  if (e > s) {
-                    excluded += Math.max(0, e - s);
-                  } else if (e < s) {
-                    excluded += Math.max(0, (24 - s) + e);
-                  }
-                }
-              }
-            });
+          if (endBalance <= 0) {
+            showWarning("Please enter a valid end balance.");
+            return;
           }
-          const available = Math.max(sessionLen - excluded, 0);
-          // update display and persist
-          const disp = document.getElementById("planAvailableHoursDisplay");
-          if (disp) disp.value = String(available);
-          try {
-            localStorage.setItem('planFlexibleHours', flexInput);
-            localStorage.setItem('planAvailableHours', String(available));
-          } catch(e){}
-          return available;
-        }
 
-        // attach listeners to keep available hours updated and persisted
-        const ph = document.getElementById("planHours");
-        const pf = document.getElementById("planFlexibleHours");
-        if (ph) ph.addEventListener('input', calculateAvailableHoursLocal);
-        if (pf) pf.addEventListener('input', calculateAvailableHoursLocal);
-        // initialize display
-        try {
-          const savedAvail = localStorage.getItem('planAvailableHours');
-          if (savedAvail !== null && savedAvail !== undefined && savedAvail !== "") {
-            const disp = document.getElementById("planAvailableHoursDisplay");
-            if (disp) disp.value = savedAvail;
+          const lastBalance = startBalance;
+          const partTargetPct = dailyPct / 100 / totalParts;
+          const targetProfit = (lastBalance * partTargetPct);
+          const actualProfit = endBalance - lastBalance;
+          const extraGain = actualProfit - targetProfit;
+          
+          const extraGainPercent = targetProfit > 0 ? ((extraGain / targetProfit) * 100) : 0;
+          
+          if (extraGainPercent > 10) {
+            showWarning(`🚨 GREED WARNING! You gained ${extraGainPercent.toFixed(2)}% more than your target!`);
+          }
+          
+          const expectedTime = partDuration / 1000 / 60;
+          const actualTime = timerStarted ? (partDuration - milliseconds) / 1000 / 60 : 0;
+          if (timerStarted && actualTime > expectedTime * 1.5) {
+            showWarning("⏰ LATENESS WARNING! You're taking much longer than expected!");
+          }
+
+          const now = new Date();
+          const time = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+
+          const logEntry = {
+            part: currentPart,
+            time: time,
+            pastBalance: lastBalance.toFixed(8),
+            targetForPart: targetProfit.toFixed(8),
+            totalAfterLog: endBalance.toFixed(8),
+            extraGain: `${extraGainPercent >= 0 ? '+' : ''}${extraGainPercent.toFixed(2)}% / ${extraGain >= 0 ? '+' : ''}${extraGain.toFixed(8)}`
+          };
+
+          if (sessionLogsBody) {
+            const row = sessionLogsBody.insertRow();
+            row.innerHTML = `
+              <td>${logEntry.part}</td>
+              <td>${logEntry.time}</td>
+              <td>${logEntry.pastBalance}</td>
+              <td>${logEntry.targetForPart}</td>
+              <td>${logEntry.totalAfterLog}</td>
+              <td>${logEntry.extraGain}</td>
+            `;
+          }
+
+          if (allLogsBody) {
+            const row = allLogsBody.insertRow();
+            row.innerHTML = `
+              <td>${logEntry.part}</td>
+              <td>${logEntry.time}</td>
+              <td>${logEntry.pastBalance}</td>
+              <td>${logEntry.targetForPart}</td>
+              <td>${logEntry.totalAfterLog}</td>
+              <td>${logEntry.extraGain}</td>
+            `;
+          }
+
+          let logs = JSON.parse(localStorage.getItem("logs") || "[]");
+          logs.push(logEntry);
+          localStorage.setItem("logs", JSON.stringify(logs));
+
+          if (!timerStarted) {
+            timerStarted = true;
+            startTimer();
+          }
+
+          startBalance = endBalance;
+          currentPart++;
+          hasLoggedFirstPart = true;
+
+          if (currentPart <= totalParts) {
+            startTime = Date.now();
+            milliseconds = partDuration;
+            timerRunning = true;
+            clearInterval(timerInterval);
+            timerInterval = setInterval(updateTimer, 10);
+            updateTargetInfo();
+            try {
+              localStorage.setItem('comp_timerStartTime', String(startTime));
+              localStorage.setItem('comp_partDuration', String(partDuration));
+              localStorage.setItem('comp_timerRunning', 'true');
+              localStorage.setItem('comp_timerStarted', 'true');
+              localStorage.setItem('comp_currentPart', String(currentPart));
+              localStorage.setItem('comp_startBalance', String(startBalance));
+            } catch (e) { console.error('Failed to persist timer state:', e); }
+
           } else {
-            calculateAvailableHoursLocal();
+            showWarning("🎉 Session complete!");
+            clearInterval(timerInterval);
+            timerInterval = null;
+            timerRunning = false;
           }
-        } catch(e) {
-          calculateAvailableHoursLocal();
-        }
-        // use usableHours (available) instead of raw hours for session calculations
-        const usableHours = calculateAvailableHoursLocal();
-        // --- end Flexible Hours support ---
 
+          const logBalanceInput = document.getElementById("logBalance");
+          const logTagsInput = document.getElementById("logTags");
+          if (logBalanceInput) logBalanceInput.value = "";
+          if (logTagsInput) logTagsInput.value = "";
 
-        if (planStartBalance <= 0 || dailyPct <= 0 || totalParts <= 0 || hours <= 0) {
-          if (planInfo) planInfo.textContent = "Please enter valid values.";
-          return;
-        }
-
-        startBalance = planStartBalance;
-        currentPart = 1;
-        hasLoggedFirstPart = false;
-        partDuration = Math.floor((hours * 3600) / totalParts) * 1000;
-        milliseconds = partDuration;
-        
-        timerStarted = false;
-
-        if (sessionPanel) sessionPanel.style.display = "block";
-        if (sessionPanel && plannerForm) {
-          sessionPanel.classList.add('slide-up');
-          plannerForm.classList.add('slide-down');
-        }
-        if (currentPartEl) currentPartEl.textContent = currentPart;
-        if (totalPartsEl) totalPartsEl.textContent = totalParts;
-
-        dailyGoal = planStartBalance * (1 + dailyPct / 100);
-        if (planInfo) planInfo.textContent = `Session ready! Log your first part to begin the timer.`;
-        updateTargetInfo();
-        // Save session state
-        saveSessionState();
-      } catch (err) {
-        console.error("Error starting session:", err);
-        if (planInfo) planInfo.textContent = "Error starting session. Please try again.";
-      }
-    };
-  }
-
-  // Log Part with Warnings and Fixed Calculations
-  const logBtn = document.getElementById("logBtn");
-  const sessionLogsBody = document.getElementById("sessionLogsBody");
-  const allLogsBody = document.getElementById("allLogsBody");
-  const alertBar = document.getElementById("alertBar");
-  const alertMsg = document.getElementById("alertMsg");
-  const closeAlert = document.getElementById("closeAlert");
-
-  if (logBtn) {
-    logBtn.onclick = () => {
-      try {
-        const endBalance = parseFloat(document.getElementById("logBalance")?.value) || 0;
-        const tags = document.getElementById("logTags")?.value || "";
-
-        if (endBalance <= 0) {
-          showWarning("Please enter a valid end balance.");
-          return;
-        }
-
-        const lastBalance = startBalance;
-        const partTargetPct = dailyPct / 100 / totalParts;
-        const targetProfit = (lastBalance * partTargetPct);
-        const actualProfit = endBalance - lastBalance;
-        const extraGain = actualProfit - targetProfit;
-        
-        // FIXED: Proper percentage calculation
-        const extraGainPercent = targetProfit > 0 ? ((extraGain / targetProfit) * 100) : 0;
-        
-        // Warning Logic
-        if (extraGainPercent > 10) {
-          showWarning(`🚨 GREED WARNING! You gained ${extraGainPercent.toFixed(2)}% more than your target!`);
-        }
-        
-        const expectedTime = partDuration / 1000 / 60;
-        const actualTime = timerStarted ? (partDuration - milliseconds) / 1000 / 60 : 0;
-        if (timerStarted && actualTime > expectedTime * 1.5) {
-          showWarning("⏰ LATENESS WARNING! You're taking much longer than expected!");
-        }
-
-        const now = new Date();
-        const time = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
-
-        // Log Entry with Fixed Format - No "Achieved" column
-        const logEntry = {
-          part: currentPart,
-          time: time,
-          pastBalance: lastBalance.toFixed(8),
-          targetForPart: targetProfit.toFixed(8),
-          totalAfterLog: endBalance.toFixed(8),
-          extraGain: `${extraGainPercent >= 0 ? '+' : ''}${extraGainPercent.toFixed(2)}% / ${extraGain >= 0 ? '+' : ''}${extraGain.toFixed(8)}`
-        };
-
-        // Add to session logs (with emojis)
-        if (sessionLogsBody) {
-          const row = sessionLogsBody.insertRow();
-          row.innerHTML = `
-            <td>${logEntry.part}</td>
-            <td>${logEntry.time}</td>
-            <td>${logEntry.pastBalance}</td>
-            <td>${logEntry.targetForPart}</td>
-            <td>${logEntry.totalAfterLog}</td>
-            <td>${logEntry.extraGain}</td>
-          `;
-        }
-
-        // Add to all logs (with labels)
-        if (allLogsBody) {
-          const row = allLogsBody.insertRow();
-          row.innerHTML = `
-            <td>${logEntry.part}</td>
-            <td>${logEntry.time}</td>
-            <td>${logEntry.pastBalance}</td>
-            <td>${logEntry.targetForPart}</td>
-            <td>${logEntry.totalAfterLog}</td>
-            <td>${logEntry.extraGain}</td>
-          `;
-        }
-
-         // Save to localStorage
-        let logs = JSON.parse(localStorage.getItem("logs") || "[]");
-        logs.push(logEntry);
-        localStorage.setItem("logs", JSON.stringify(logs));
-
-        // Start timer after first log
-        if (!timerStarted) {
-          timerStarted = true;
-          startTimer();
-        }
-
-        startBalance = endBalance;
-        currentPart++;
-        hasLoggedFirstPart = true;
-
-        if (currentPart <= totalParts) {
-          startTime = Date.now();
-          milliseconds = partDuration;
-          timerRunning = true;
-          clearInterval(timerInterval);
-          timerInterval = setInterval(updateTimer, 10);
-          updateTargetInfo();
-          // Persist timer state so it survives reloads
-          try {
-            localStorage.setItem('comp_timerStartTime', String(startTime));
-            localStorage.setItem('comp_partDuration', String(partDuration));
-            localStorage.setItem('comp_timerRunning', 'true');
-            localStorage.setItem('comp_timerStarted', 'true');
-            localStorage.setItem('comp_currentPart', String(currentPart));
-            localStorage.setItem('comp_startBalance', String(startBalance));
-          } catch (e) { console.error('Failed to persist timer state:', e); }
-
-        } else {
-          showWarning("🎉 Session complete!");
-          clearInterval(timerInterval);
-          timerInterval = null;
-          timerRunning = false;
-        }
-
-        // Clear inputs
-        const logBalanceInput = document.getElementById("logBalance");
-        const logTagsInput = document.getElementById("logTags");
-        if (logBalanceInput) logBalanceInput.value = "";
-        if (logTagsInput) logTagsInput.value = "";
-
-        updateLogbookStats();
-        // Save session state after logging
-        saveSessionState();
-      } catch (err) {
-        console.error("Error logging part:", err);
-        showWarning("Error logging part. Please try again.");
-      }
-    };
-  }
-
-  if (closeAlert) {
-    closeAlert.onclick = () => {
-      if (alertBar) alertBar.style.display = "none";
-    };
-  }
-
-  // Reset and Export Logs
-  const resetLogsBtn = document.getElementById("resetLogsBtn");
-  const saveLogsBtn = document.getElementById("saveLogsBtn");
-  const exportAllBtn = document.getElementById("exportAllBtn");
-
-  if (resetLogsBtn) {
-    resetLogsBtn.onclick = () => {
-      try {
-        if (confirm("Are you sure you want to reset all logs?")) {
-          localStorage.removeItem("logs");
-          localStorage.removeItem("compoundingSessionState");
-          // Reset session UI
-          if (sessionPanel) sessionPanel.style.display = "none";
-          currentPart = 1;
-          totalParts = 15;
-          startBalance = 0;
-          planStartBalance = 0;
-          dailyPct = 3.5;
-          dailyGoal = 0;
-          hasLoggedFirstPart = false;
-          timerStarted = false;
-          if (sessionLogsBody) sessionLogsBody.innerHTML = "";
-          if (allLogsBody) allLogsBody.innerHTML = "";
           updateLogbookStats();
+          saveSessionState();
+        } catch (err) {
+          console.error("Error logging part:", err);
+          showWarning("Error logging part. Please try again.");
         }
-      } catch (err) {
-        console.error("Error resetting logs:", err);
-      }
-    };
-  }
-
-  function exportLogs() {
-    try {
-      const logs = localStorage.getItem("logs") || "[]";
-      const blob = new Blob([logs], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "financial_session_logs.json";
-      a.click();
-      URL.revokeObjectURL(url);
-    } catch (err) {
-      console.error("Error exporting logs:", err);
+      };
     }
-  }
 
-  if (saveLogsBtn) saveLogsBtn.onclick = exportLogs;
-  if (exportAllBtn) exportAllBtn.onclick = exportLogs;
+    if (closeAlert) {
+      closeAlert.onclick = () => {
+        if (alertBar) alertBar.style.display = "none";
+      };
+    }
 
-  // Calculator
-  const calcForm = document.getElementById("calcForm");
-  const calcResults = document.getElementById("calcResults");
+    const resetLogsBtn = document.getElementById("resetLogsBtn");
+    const saveLogsBtn = document.getElementById("saveLogsBtn");
+    const exportAllBtn = document.getElementById("exportAllBtn");
 
-  if (calcForm) {
-    calcForm.onsubmit = (e) => {
-      e.preventDefault();
+    if (resetLogsBtn) {
+      resetLogsBtn.onclick = () => {
+        try {
+          if (confirm("Are you sure you want to reset all logs?")) {
+            localStorage.removeItem("logs");
+            localStorage.removeItem("compoundingSessionState");
+            if (sessionPanel) sessionPanel.style.display = "none";
+            currentPart = 1;
+            totalParts = 15;
+            startBalance = 0;
+            planStartBalance = 0;
+            dailyPct = 3.5;
+            dailyGoal = 0;
+            hasLoggedFirstPart = false;
+            timerStarted = false;
+            if (sessionLogsBody) sessionLogsBody.innerHTML = "";
+            if (allLogsBody) allLogsBody.innerHTML = "";
+            updateLogbookStats();
+          }
+        } catch (err) {
+          console.error("Error resetting logs:", err);
+        }
+      };
+    }
+
+    function exportLogs() {
       try {
-        const principal = parseFloat(document.getElementById("calcPrincipal")?.value) || 0;
-        const rate = parseFloat(document.getElementById("calcRate")?.value) / 100 || 0;
-        const years = parseInt(document.getElementById("calcYears")?.value) || 0;
-        const months = parseInt(document.getElementById("calcMonths")?.value) || 0;
-        const days = parseInt(document.getElementById("calcDays")?.value) || 0;
-        const reinvest = parseFloat(document.getElementById("calcReinvest")?.value) || 1;
-        const contribution = parseFloat(document.getElementById("calcContribution")?.value) || 0;
-
-        if (principal <= 0 || rate <= 0) {
-          showWarning("Please enter valid principal and rate values.");
-          return;
-        }
-
-        const totalDays = years * 365 + months * 30 + days;
-        calculateAndDisplay(principal, rate, totalDays, reinvest, contribution);
+        const logs = localStorage.getItem("logs") || "[]";
+        const blob = new Blob([logs], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "financial_session_logs.json";
+        a.click();
+        URL.revokeObjectURL(url);
       } catch (err) {
-        console.error("Calculator error:", err);
+        console.error("Error exporting logs:", err);
       }
-    };
-  }
-
-  function calculateAndDisplay(principal, rate, totalDays, reinvest, contribution) {
-    if (!calcResults) return;
-    
-    calcResults.style.display = "block";
-    
-    let balance = principal;
-    let totalContributions = 0;
-    
-    for (let day = 1; day <= totalDays; day++) {
-      balance = balance * (1 + rate * reinvest) + contribution;
-      totalContributions += contribution;
     }
-    
-    const totalInvested = principal + totalContributions;
-    const totalEarnings = balance - totalInvested;
-    const percentageProfit = ((totalEarnings / totalInvested) * 100);
-    
-    document.getElementById("investmentValue").textContent = `₹${balance.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-    document.getElementById("totalEarnings").textContent = `₹${totalEarnings.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-    document.getElementById("percentageProfit").textContent = `${percentageProfit.toFixed(2)}%`;
-    document.getElementById("dailyRate").textContent = `${(rate * 100).toFixed(2)}%`;
-    document.getElementById("totalDays").textContent = totalDays.toString();
-    document.getElementById("initialBalance").textContent = `₹${principal.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-    
-    setupPeriodTabs(principal, rate, totalDays, reinvest, contribution);
-  }
 
-  function setupPeriodTabs(principal, rate, totalDays, reinvest, contribution) {
-    const periodTabs = document.querySelectorAll('.period-tab');
-    const tableBody = document.getElementById('calcTableBody');
-    
-    function showPeriodData(period) {
-      let increment = 1;
-      switch(period) {
-        case 'weekly': increment = 7; break;
-        case 'monthly': increment = 30; break;
-        case 'yearly': increment = 365; break;
-      }
+    if (saveLogsBtn) saveLogsBtn.onclick = exportLogs;
+    if (exportAllBtn) exportAllBtn.onclick = exportLogs;
+
+    const calcForm = document.getElementById("calcForm");
+    const calcResults = document.getElementById("calcResults");
+
+    if (calcForm) {
+      calcForm.onsubmit = (e) => {
+        e.preventDefault();
+        try {
+          const principal = parseFloat(document.getElementById("calcPrincipal")?.value) || 0;
+          const rate = parseFloat(document.getElementById("calcRate")?.value) / 100 || 0;
+          const years = parseInt(document.getElementById("calcYears")?.value) || 0;
+          const months = parseInt(document.getElementById("calcMonths")?.value) || 0;
+          const days = parseInt(document.getElementById("calcDays")?.value) || 0;
+          const reinvest = parseFloat(document.getElementById("calcReinvest")?.value) || 1;
+          const contribution = parseFloat(document.getElementById("calcContribution")?.value) || 0;
+
+          if (principal <= 0 || rate <= 0) {
+            showWarning("Please enter valid principal and rate values.");
+            return;
+          }
+
+          const totalDays = years * 365 + months * 30 + days;
+          calculateAndDisplay(principal, rate, totalDays, reinvest, contribution);
+        } catch (err) {
+          console.error("Calculator error:", err);
+        }
+      };
+    }
+
+    function calculateAndDisplay(principal, rate, totalDays, reinvest, contribution) {
+      if (!calcResults) return;
       
-      let currentBalance = principal;
+      calcResults.style.display = "block";
+      
+      let balance = principal;
       let totalContributions = 0;
-      let html = '';
       
-      for (let day = increment; day <= totalDays; day += increment) {
-        let prevBalance = currentBalance;
-        
-        for (let d = 0; d < increment && (day - increment + d) < totalDays; d++) {
-          currentBalance = currentBalance * (1 + rate * reinvest) + contribution;
-          totalContributions += contribution;
-        }
-        
-        const periodEarnings = currentBalance - prevBalance - (contribution * increment);
-        const totalEarnings = currentBalance - principal - totalContributions;
-        
-        let periodLabel = '';
+      for (let day = 1; day <= totalDays; day++) {
+        balance = balance * (1 + rate * reinvest) + contribution;
+        totalContributions += contribution;
+      }
+      
+      const totalInvested = principal + totalContributions;
+      const totalEarnings = balance - totalInvested;
+      const percentageProfit = ((totalEarnings / totalInvested) * 100);
+      
+      document.getElementById("investmentValue").textContent = `₹${balance.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      document.getElementById("totalEarnings").textContent = `₹${totalEarnings.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      document.getElementById("percentageProfit").textContent = `${percentageProfit.toFixed(2)}%`;
+      document.getElementById("dailyRate").textContent = `${(rate * 100).toFixed(2)}%`;
+      document.getElementById("totalDays").textContent = totalDays.toString();
+      document.getElementById("initialBalance").textContent = `₹${principal.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      
+      setupPeriodTabs(principal, rate, totalDays, reinvest, contribution);
+    }
+
+    function setupPeriodTabs(principal, rate, totalDays, reinvest, contribution) {
+      const periodTabs = document.querySelectorAll('.period-tab');
+      const tableBody = document.getElementById('calcTableBody');
+      
+      function showPeriodData(period) {
+        let increment = 1;
         switch(period) {
-          case 'daily': periodLabel = `Day ${day}`; break;
-          case 'weekly': periodLabel = `Week ${Math.ceil(day/7)}`; break;
-          case 'monthly': periodLabel = `Month ${Math.ceil(day/30)}`; break;
-          case 'yearly': periodLabel = `Year ${Math.ceil(day/365)}`; break;
+          case 'weekly': increment = 7; break;
+          case 'monthly': increment = 30; break;
+          case 'yearly': increment = 365; break;
         }
         
-        html += `
-          <tr>
-            <td>${periodLabel}</td>
-            <td>₹${periodEarnings.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-            <td>₹${totalEarnings.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-            <td>₹${currentBalance.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-          </tr>
-        `;
-      }
-      
-      if (tableBody) tableBody.innerHTML = html;
-    }
-    
-    periodTabs.forEach(tab => {
-      tab.onclick = () => {
-        periodTabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        showPeriodData(tab.dataset.period);
-      };
-    });
-    
-    showPeriodData('daily');
-  }
-
-  // Logbook Statistics
-  function updateLogbookStats() {
-    const logs = JSON.parse(localStorage.getItem("logs") || "[]");
-    
-    if (logs.length === 0) return;
-    
-    const totalSessions = logs.length;
-    document.getElementById("totalSessions").textContent = totalSessions;
-    
-    document.getElementById("weekAverage").textContent = "0.00%";
-    document.getElementById("dailyAverage").textContent = "0.00%";
-    document.getElementById("partAverage").textContent = "0.00%";
-  }
-
-  // Modal System
-  const modalOverlay = document.getElementById("modalOverlay");
-
-  function openModal(modalId) {
-    try {
-      const modal = document.getElementById(modalId);
-      if (modal && modalOverlay) {
-        modal.classList.add('active');
-        modalOverlay.classList.add('active');
-      }
-    } catch (err) {
-      console.error(`Error opening modal ${modalId}:`, err);
-    }
-  }
-
-  function closeModal() {
-    try {
-      document.querySelectorAll('.modal').forEach(modal => modal.classList.remove('active'));
-      if (modalOverlay) modalOverlay.classList.remove('active');
-    } catch (err) {
-      console.error("Error closing modals:", err);
-    }
-  }
-
-  document.querySelectorAll('.modal-close-btn').forEach(btn => {
-    btn.onclick = closeModal;
-  });
-
-  if (modalOverlay) {
-    modalOverlay.onclick = closeModal;
-  }
-
-  // Personalization Buttons - ALL WORKING
-  const editClockBtn = document.getElementById("editClockBtn");
-  const editTimerBtn = document.getElementById("editTimerBtn");
-  const editCardBtn = document.getElementById("editCardBtn");
-  const editBgBtn = document.getElementById("editBgBtn");
-  const editSidebarBtn = document.getElementById("editSidebarBtn");
-  const editMenuBtn = document.getElementById("editMenuBtn");
-  const editAvatarBtn = document.getElementById("editAvatarBtn");
-  const editFontBtn = document.getElementById("editFontBtn");
-  const editSoundBtn = document.getElementById("editSoundBtn");
-
-  if (editClockBtn) editClockBtn.onclick = () => openModal("clockModal");
-  if (editTimerBtn) editTimerBtn.onclick = () => openModal("timerModal");
-  if (editCardBtn) editCardBtn.onclick = () => openModal("cardModal");
-  if (editBgBtn) editBgBtn.onclick = () => openModal("bgModal");
-  if (editSidebarBtn) editSidebarBtn.onclick = () => openModal("sidebarModal");
-  if (editMenuBtn) editMenuBtn.onclick = () => openModal("menuModal");
-  if (editAvatarBtn) editAvatarBtn.onclick = () => openModal("avatarModal");
-  if (editFontBtn) editFontBtn.onclick = () => openModal("fontModal");
-  if (editSoundBtn) editSoundBtn.onclick = () => openModal("soundModal");
-
-  // Color Palette Setup Function
-  function setupColorPalette(paletteId, inputId, callback) {
-    const palette = document.getElementById(paletteId);
-    const input = document.getElementById(inputId);
-    
-    if (palette && input) {
-      palette.querySelectorAll('.color-swatch').forEach(swatch => {
-        swatch.onclick = () => {
-          palette.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
-          swatch.classList.add('active');
+        let currentBalance = principal;
+        let totalContributions = 0;
+        let html = '';
+        
+        for (let day = increment; day <= totalDays; day += increment) {
+          let prevBalance = currentBalance;
           
-          const color = swatch.dataset.color;
-          input.value = color;
+          for (let d = 0; d < increment && (day - increment + d) < totalDays; d++) {
+            currentBalance = currentBalance * (1 + rate * reinvest) + contribution;
+            totalContributions += contribution;
+          }
           
-          if (callback) callback(color);
-        };
-      });
-      
-      input.oninput = (e) => {
-        if (callback) callback(e.target.value);
-      };
-    }
-  }
-
-  // Range Input Setup Function
-  function setupRangeInput(inputId, valueId, callback) {
-    const input = document.getElementById(inputId);
-    const valueSpan = document.getElementById(valueId);
-    
-    if (input && valueSpan) {
-      input.oninput = (e) => {
-        const value = e.target.value;
-        valueSpan.textContent = value;
-        if (callback) callback(value);
-      };
-    }
-  }
-
-  // FIXED: Timer Settings Implementation with LIVE UPDATES and NO CLIPPING
-  setupColorPalette("timerColorPalette", "timerColor", (color) => {
-    // FIXED: Apply to both home and session timer + preview
-    if (timerEl) timerEl.style.color = color;
-    if (timerPlanEl) timerPlanEl.style.color = color;
-    const timerPreview = document.getElementById("timerPreview");
-    if (timerPreview) timerPreview.style.color = color;
-    const paletteIndicator = document.getElementById("timerPaletteIndicator");
-    if (paletteIndicator) paletteIndicator.style.background = color;
-    localStorage.setItem('timerColor', color);
-  });
-
-  // FIXED: Home Timer Size (Independent) with proper scaling and NO CLIPPING
-  setupRangeInput("homeTimerSize", "homeTimerSizeVal", (value) => {
-    if (timerEl) {
-      timerEl.style.fontSize = value + "rem";
-      timerEl.style.lineHeight = "1.1"; // FIXED: Proportional, not absolute
-      // FIXED: Ensure container can expand
-      const container = timerEl.parentElement;
-      if (container) {
-        container.style.height = "auto";
-        container.style.minHeight = "auto";
-        container.style.overflow = "visible";
-      }
-    }
-    localStorage.setItem('homeTimerSize', value);
-  });
-
-  // FIXED: Session Timer Size (Independent) with proper scaling and NO CLIPPING
-  setupRangeInput("sessionTimerSize", "sessionTimerSizeVal", (value) => {
-    if (timerPlanEl) {
-      timerPlanEl.style.fontSize = value + "rem";
-      timerPlanEl.style.lineHeight = "1.1"; // FIXED: Proportional, not absolute
-      // FIXED: Ensure container can expand
-      const container = timerPlanEl.parentElement;
-      if (container) {
-        container.style.height = "auto";
-        container.style.minHeight = "auto";
-        container.style.overflow = "visible";
-      }
-    }
-    localStorage.setItem('sessionTimerSize', value);
-  });
-
-  const timerFont = document.getElementById("timerFont");
-  if (timerFont) {
-    timerFont.onchange = (e) => {
-      const fontClasses = ["font-orbitron", "font-montserrat", "font-roboto", "font-inter", "font-poppins", "font-space-mono", "font-alarm", "font-digital7"];
-      const elements = [timerEl, timerPlanEl, document.getElementById("timerPreview")];
-      
-      elements.forEach(el => {
-        if (el) {
-          fontClasses.forEach(cls => el.classList.remove(cls));
-          el.classList.add(e.target.value);
-        }
-      });
-      localStorage.setItem('timerFont', e.target.value);
-    };
-  }
-
-  // FIXED: Timer Shadow - Now Working with LIVE UPDATES
-  setupRangeInput("timerShadow", "timerShadowVal", (value) => {
-    const shadow = value > 0 ? `0 0 ${value}px currentColor` : 'none';
-    // FIXED: Apply to both timers AND preview in real-time
-    if (timerEl) timerEl.style.textShadow = shadow;
-    if (timerPlanEl) timerPlanEl.style.textShadow = shadow;
-    const timerPreview = document.getElementById("timerPreview");
-    if (timerPreview) timerPreview.style.textShadow = shadow;
-    localStorage.setItem('timerShadow', value);
-  });
-
-  // FIXED: Clock Settings Implementation with LIVE UPDATES and NO CLIPPING
-  setupColorPalette("clockColorPalette", "clockColor", (color) => {
-    // FIXED: Apply to clock AND preview in real-time
-    if (digitalClock) digitalClock.style.color = color;
-    const clockPreview = document.getElementById("clockPreview");
-    if (clockPreview) clockPreview.style.color = color;
-    const paletteIndicator = document.getElementById("clockPaletteIndicator");
-    if (paletteIndicator) paletteIndicator.style.background = color;
-    localStorage.setItem('clockColor', color);
-  });
-
-  const clockFont = document.getElementById("clockFont");
-  if (clockFont) {
-    clockFont.onchange = (e) => {
-      const fontClasses = ["font-orbitron", "font-montserrat", "font-roboto", "font-inter", "font-poppins", "font-space-mono", "font-alarm", "font-digital7"];
-      const elements = [digitalClock, document.getElementById("clockPreview")];
-      
-      elements.forEach(el => {
-        if (el) {
-          fontClasses.forEach(cls => el.classList.remove(cls));
-          el.classList.add(e.target.value);
-        }
-      });
-      localStorage.setItem('clockFont', e.target.value);
-    };
-  }
-
-  // FIXED: Clock Size with proper scaling and NO CLIPPING
-  setupRangeInput("clockSize", "clockSizeVal", (value) => {
-    if (digitalClock) {
-      digitalClock.style.fontSize = value + "rem";
-      digitalClock.style.lineHeight = "1.1"; // FIXED: Proportional, not absolute
-      // FIXED: Ensure container can expand
-      const container = digitalClock.parentElement;
-      if (container) {
-        container.style.height = "auto";
-        container.style.minHeight = "auto";
-        container.style.overflow = "visible";
-      }
-    }
-    localStorage.setItem('clockSize', value);
-  });
-
-  // FIXED: Clock Shadow - Now Working with LIVE UPDATES
-  setupRangeInput("clockShadow", "clockShadowVal", (value) => {
-    const shadow = value > 0 ? `0 0 ${value}px currentColor` : 'none';
-    // FIXED: Apply to clock AND preview in real-time
-    if (digitalClock) digitalClock.style.textShadow = shadow;
-    const clockPreview = document.getElementById("clockPreview");
-    if (clockPreview) clockPreview.style.textShadow = shadow;
-    localStorage.setItem('clockShadow', value);
-  });
-
-  // Card Settings Implementation
-  function updateCardStyles() {
-    const color = document.getElementById("cardColor")?.value || "#262c3d";
-    const alpha = document.getElementById("cardAlpha")?.value || "88";
-    const blur = document.getElementById("cardBlur")?.value || "10";
-    const opacity = document.getElementById("cardOpacity")?.value || "1";
-    const corners = document.getElementById("cardCorners")?.value || "16";
-    const shadowColor = document.getElementById("cardShadowColor")?.value || "#000000";
-    const shadowIntensity = document.getElementById("cardShadowIntensity")?.value || "20";
-    
-    const background = hex2rgba(color, alpha / 100);
-    const backdropFilter = `blur(${blur}px)`;
-    const borderRadius = corners + "px";
-    const boxShadow = `0 4px ${shadowIntensity}px ${shadowColor}`;
-    
-    document.querySelectorAll('.glass-card, .modal-content').forEach(card => {
-      card.style.background = background;
-      card.style.backdropFilter = backdropFilter;
-      card.style.borderRadius = borderRadius;
-      card.style.boxShadow = boxShadow;
-      card.style.opacity = opacity;
-    });
-    
-    localStorage.setItem('cardSettings', JSON.stringify({
-      color, alpha, blur, opacity, corners, shadowColor, shadowIntensity
-    }));
-  }
-
-  setupColorPalette("cardColorPalette", "cardColor", updateCardStyles);
-  setupColorPalette("cardShadowPalette", "cardShadowColor", updateCardStyles);
-  setupRangeInput("cardAlpha", "cardAlphaVal", updateCardStyles);
-  setupRangeInput("cardBlur", "cardBlurVal", updateCardStyles);
-  setupRangeInput("cardOpacity", "cardOpacityVal", updateCardStyles);
-  setupRangeInput("cardCorners", "cardCornersVal", updateCardStyles);
-  setupRangeInput("cardShadowIntensity", "cardShadowIntensityVal", updateCardStyles);
-
-  // Background Settings
-  const modalBgImageUpload = document.getElementById("modalBgImageUpload");
-  const bgOverlay = document.getElementById("bgOverlay");
-  const bgThumbs = document.querySelectorAll('.bg-thumb');
-
-  if (modalBgImageUpload && bgOverlay) {
-    modalBgImageUpload.onchange = (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-          bgOverlay.style.backgroundImage = `url(${ev.target.result})`;
-          localStorage.setItem('bgImage', ev.target.result);
-        };
-        reader.readAsDataURL(file);
-      }
-    };
-  }
-
-  if (bgThumbs && bgOverlay) {
-    bgThumbs.forEach(thumb => {
-      thumb.onclick = () => {
-        bgOverlay.style.backgroundImage = `url(${thumb.src})`;
-        localStorage.setItem('bgImage', thumb.src);
-      };
-    });
-  }
-
-  setupRangeInput("modalBgBlur", "modalBgBlurVal", (value) => {
-    if (bgOverlay) bgOverlay.style.filter = `blur(${value}px)`;
-    localStorage.setItem('bgBlurValue', value);
-  });
-
-  // Sidebar Settings
-  function updateSidebarStyles() {
-    const color = document.getElementById("sidebarColor")?.value || "#272f4c";
-    const alpha = document.getElementById("sidebarAlpha")?.value || "88";
-    const blur = document.getElementById("sidebarBlur")?.value || "10";
-    
-    if (sideDrawer) {
-      sideDrawer.style.background = hex2rgba(color, alpha / 100);
-      sideDrawer.style.backdropFilter = `blur(${blur}px)`;
-    }
-    
-    localStorage.setItem('sidebarSettings', JSON.stringify({ color, alpha, blur }));
-  }
-
-  setupColorPalette("sidebarColorPalette", "sidebarColor", updateSidebarStyles);
-  setupRangeInput("sidebarAlpha", "sidebarAlphaVal", updateSidebarStyles);
-  setupRangeInput("sidebarBlur", "sidebarBlurVal", updateSidebarStyles);
-
-  // Menu Settings
-  function updateMenuStyles() {
-    const color = document.getElementById("modalMenuColor")?.value || "#1a1d22";
-    const alpha = document.getElementById("modalMenuAlpha")?.value || "70";
-    const blur = document.getElementById("modalMenuBlur")?.value || "8";
-    
-    const menuBar = document.querySelector(".menu-bar");
-    if (menuBar) {
-      menuBar.style.background = hex2rgba(color, alpha / 100);
-      menuBar.style.backdropFilter = `blur(${blur}px)`;
-    }
-    
-    localStorage.setItem('menuSettings', JSON.stringify({ color, alpha, blur }));
-  }
-
-  setupColorPalette("menuColorPalette", "modalMenuColor", updateMenuStyles);
-  setupRangeInput("modalMenuAlpha", "modalMenuAlphaVal", updateMenuStyles);
-  setupRangeInput("modalMenuBlur", "modalMenuBlurVal", updateMenuStyles);
-
-  // Avatar Settings
-  const modalAvatarUpload = document.getElementById("modalAvatarUpload");
-  const avatarArea = document.getElementById("avatarArea");
-  const avatarNameInput = document.getElementById("avatarNameInput");
-  const avatarStyle = document.getElementById("avatarStyle");
-
-  if (modalAvatarUpload && avatarArea) {
-    modalAvatarUpload.onchange = (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-          const img = avatarArea.querySelector('img');
-          if (img) {
-            img.src = ev.target.result;
+          const periodEarnings = currentBalance - prevBalance - (contribution * increment);
+          const totalEarnings = currentBalance - principal - totalContributions;
+          
+          let periodLabel = '';
+          switch(period) {
+            case 'daily': periodLabel = `Day ${day}`; break;
+            case 'weekly': periodLabel = `Week ${Math.ceil(day/7)}`; break;
+            case 'monthly': periodLabel = `Month ${Math.ceil(day/30)}`; break;
+            case 'yearly': periodLabel = `Year ${Math.ceil(day/365)}`; break;
           }
-          localStorage.setItem('avatarImage', ev.target.result);
-        };
-        reader.readAsDataURL(file);
-      }
-    };
-  }
-
-  if (avatarNameInput) {
-    avatarNameInput.oninput = (e) => {
-      const nameSpan = document.getElementById('avatarName');
-      if (nameSpan) {
-        nameSpan.textContent = e.target.value;
-      }
-      localStorage.setItem('avatarName', e.target.value);
-    };
-  }
-
-  if (avatarStyle) {
-    avatarStyle.onchange = (e) => {
-      const img = avatarArea?.querySelector('img');
-      if (img) {
-        img.style.borderRadius = e.target.value === 'circle' ? '50%' : '8px';
-      }
-      localStorage.setItem('avatarStyle', e.target.value);
-    };
-  }
-
-  // Font Settings
-  function updateFontStyles() {
-    const color = document.getElementById("fontColor")?.value || "#d0d4e0";
-    const size = document.getElementById("fontSize")?.value || "16";
-    const shadow = document.getElementById("fontShadow")?.value || "0";
-    const family = document.getElementById("fontFamily")?.value || "'Roboto', sans-serif";
-    
-    document.body.style.color = color;
-    document.body.style.fontSize = size + "px";
-    document.body.style.fontFamily = family;
-    document.body.style.textShadow = shadow > 0 ? `0 0 ${shadow}px currentColor` : 'none';
-    
-    localStorage.setItem('fontSettings', JSON.stringify({ color, size, shadow, family }));
-  }
-
-  setupColorPalette("fontColorPalette", "fontColor", updateFontStyles);
-  setupRangeInput("fontSize", "fontSizeVal", updateFontStyles);
-  setupRangeInput("fontShadow", "fontShadowVal", updateFontStyles);
-
-  const fontFamily = document.getElementById("fontFamily");
-  if (fontFamily) {
-    fontFamily.onchange = updateFontStyles;
-  }
-
-  // Sound Settings
-  const customSoundUpload = document.getElementById("customSoundUpload");
-  const playSoundBtn = document.getElementById("playSoundBtn");
-  const pauseSoundBtn = document.getElementById("pauseSoundBtn");
-  const soundVolume = document.getElementById("soundVolume");
-
-  if (customSoundUpload && soundCustom) {
-    customSoundUpload.onchange = (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-          soundCustom.src = ev.target.result;
-          localStorage.setItem('customSound', ev.target.result);
-        };
-        reader.readAsDataURL(file);
-      }
-    };
-  }
-
-  if (playSoundBtn && soundCustom) {
-    playSoundBtn.onclick = () => {
-      soundCustom.play().catch(err => console.error("Sound play failed:", err));
-    };
-  }
-
-  if (pauseSoundBtn && soundCustom) {
-    pauseSoundBtn.onclick = () => {
-      soundCustom.pause();
-    };
-  }
-
-  setupRangeInput("soundVolume", "soundVolumeVal", (value) => {
-    if (soundCustom) soundCustom.volume = value / 100;
-    if (soundBeep) soundBeep.volume = value / 100;
-    localStorage.setItem('soundVolume', value);
-  });
-
-  // Accent Color
-  const accentColor = document.getElementById("accentColor");
-  setupColorPalette("accentColorPalette", "accentColor", (color) => {
-    document.documentElement.style.setProperty('--accent', color);
-    document.documentElement.style.setProperty('--theme-color', color);
-    localStorage.setItem('accentColor', color);
-  });
-
-  if (accentColor) {
-    accentColor.oninput = (e) => {
-      document.documentElement.style.setProperty('--accent', e.target.value);
-      document.documentElement.style.setProperty('--theme-color', e.target.value);
-      localStorage.setItem('accentColor', e.target.value);
-    };
-  }
-
-  // Custom Sound (main settings)
-  const customSound = document.getElementById("customSound");
-  if (customSound && soundCustom) {
-    customSound.onchange = (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-          soundCustom.src = ev.target.result;
-          localStorage.setItem('customSound', ev.target.result);
-        };
-        reader.readAsDataURL(file);
-      }
-    };
-  }
-
-  // Restore Settings Function
-  function restoreAllSettings() {
-    try {
-      // Restore Accent Color
-      const savedAccent = localStorage.getItem('accentColor');
-      if (savedAccent) {
-        document.documentElement.style.setProperty('--accent', savedAccent);
-        document.documentElement.style.setProperty('--theme-color', savedAccent);
-        if (accentColor) accentColor.value = savedAccent;
-      }
-
-      // Restore Custom Sound
-      const savedCustomSound = localStorage.getItem('customSound');
-      if (savedCustomSound && soundCustom) {
-        soundCustom.src = savedCustomSound;
-      }
-
-      // Restore Background
-      const savedBgImage = localStorage.getItem('bgImage');
-      const savedBgBlur = localStorage.getItem('bgBlurValue');
-      if (savedBgImage && bgOverlay) {
-        bgOverlay.style.backgroundImage = `url(${savedBgImage})`;
-      }
-      if (savedBgBlur && bgOverlay) {
-        bgOverlay.style.filter = `blur(${savedBgBlur}px)`;
-      }
-
-      // Restore Avatar
-      const savedAvatar = localStorage.getItem('avatarImage');
-      const savedAvatarName = localStorage.getItem('avatarName');
-      const savedAvatarStyle = localStorage.getItem('avatarStyle');
-      
-      if (savedAvatar && avatarArea) {
-        const img = avatarArea.querySelector('img');
-        if (img) {
-          img.src = savedAvatar;
-          if (savedAvatarStyle) {
-            img.style.borderRadius = savedAvatarStyle === 'circle' ? '50%' : '8px';
-          }
+          
+          html += `
+            <tr>
+              <td>${periodLabel}</td>
+              <td>₹${periodEarnings.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+              <td>₹${totalEarnings.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+              <td>₹${currentBalance.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+            </tr>
+          `;
         }
+        
+        if (tableBody) tableBody.innerHTML = html;
       }
+      
+      periodTabs.forEach(tab => {
+        tab.onclick = () => {
+          periodTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          showPeriodData(tab.dataset.period);
+        };
+      });
+      
+      showPeriodData('daily');
+    }
 
-      if (savedAvatarName) {
-        const nameSpan = document.getElementById('avatarName');
-        if (nameSpan) nameSpan.textContent = savedAvatarName;
-        if (avatarNameInput) avatarNameInput.value = savedAvatarName;
+    function updateLogbookStats() {
+      const logs = JSON.parse(localStorage.getItem("logs") || "[]");
+      
+      if (logs.length === 0) return;
+      
+      const totalSessions = logs.length;
+      document.getElementById("totalSessions").textContent = totalSessions;
+      
+      document.getElementById("weekAverage").textContent = "0.00%";
+      document.getElementById("dailyAverage").textContent = "0.00%";
+      document.getElementById("partAverage").textContent = "0.00%";
+    }
+
+    const modalOverlay = document.getElementById("modalOverlay");
+
+    function openModal(modalId) {
+      try {
+        const modal = document.getElementById(modalId);
+        if (modal && modalOverlay) {
+          modal.classList.add('active');
+          modalOverlay.classList.add('active');
+        }
+      } catch (err) {
+        console.error(`Error opening modal ${modalId}:`, err);
       }
+    }
 
-      if (savedAvatarStyle && avatarStyle) {
-        avatarStyle.value = savedAvatarStyle;
+    function closeModal() {
+      try {
+        document.querySelectorAll('.modal').forEach(modal => modal.classList.remove('active'));
+        if (modalOverlay) modalOverlay.classList.remove('active');
+      } catch (err) {
+        console.error("Error closing modals:", err);
       }
+    }
 
+    document.querySelectorAll('.modal-close-btn').forEach(btn => {
+      btn.onclick = closeModal;
+    });
 
-      // Restore Font Settings
-      const savedFontSettings = localStorage.getItem('fontSettings');
-      if (savedFontSettings) {
-        const settings = JSON.parse(savedFontSettings);
-        document.body.style.fontFamily = settings.family;
-        document.body.style.color = settings.color;
-        document.body.style.fontSize = settings.size + 'px';
-        document.body.style.textShadow = settings.shadow > 0 ? `0 0 ${settings.shadow}px currentColor` : 'none';
-      }
+    if (modalOverlay) {
+      modalOverlay.onclick = closeModal;
+    }
 
-      // FIXED: Restore Timer Settings with NO CLIPPING
-      const savedTimerColor = localStorage.getItem('timerColor');
-      const savedTimerFont = localStorage.getItem('timerFont');
-      const savedHomeTimerSize = localStorage.getItem('homeTimerSize');
-      const savedSessionTimerSize = localStorage.getItem('sessionTimerSize');
-      const savedTimerShadow = localStorage.getItem('timerShadow');
+    const editClockBtn = document.getElementById("editClockBtn");
+    const editTimerBtn = document.getElementById("editTimerBtn");
+    const editCardBtn = document.getElementById("editCardBtn");
+    const editBgBtn = document.getElementById("editBgBtn");
+    const editSidebarBtn = document.getElementById("editSidebarBtn");
+    const editMenuBtn = document.getElementById("editMenuBtn");
+    const editAvatarBtn = document.getElementById("editAvatarBtn");
+    const editFontBtn = document.getElementById("editFontBtn");
+    const editSoundBtn = document.getElementById("editSoundBtn");
 
-      if (savedTimerColor) {
-        [timerEl, timerPlanEl].forEach(el => {
-          if (el) el.style.color = savedTimerColor;
+    if (editClockBtn) editClockBtn.onclick = () => openModal("clockModal");
+    if (editTimerBtn) editTimerBtn.onclick = () => openModal("timerModal");
+    if (editCardBtn) editCardBtn.onclick = () => openModal("cardModal");
+    if (editBgBtn) editBgBtn.onclick = () => openModal("bgModal");
+    if (editSidebarBtn) editSidebarBtn.onclick = () => openModal("sidebarModal");
+    if (editMenuBtn) editMenuBtn.onclick = () => openModal("menuModal");
+    if (editAvatarBtn) editAvatarBtn.onclick = () => openModal("avatarModal");
+    if (editFontBtn) editFontBtn.onclick = () => openModal("fontModal");
+    if (editSoundBtn) editSoundBtn.onclick = () => openModal("soundModal");
+
+    function setupColorPalette(paletteId, inputId, callback) {
+      const palette = document.getElementById(paletteId);
+      const input = document.getElementById(inputId);
+      
+      if (palette && input) {
+        palette.querySelectorAll('.color-swatch').forEach(swatch => {
+          swatch.onclick = () => {
+            palette.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+            swatch.classList.add('active');
+            
+            const color = swatch.dataset.color;
+            input.value = color;
+            
+            if (callback) callback(color);
+          };
         });
+        
+        input.oninput = (e) => {
+          if (callback) callback(e.target.value);
+        };
       }
-      if (savedTimerFont) {
-        [timerEl, timerPlanEl].forEach(el => {
-          if (el) el.classList.add(savedTimerFont);
-        });
+    }
+
+    function setupRangeInput(inputId, valueId, callback) {
+      const input = document.getElementById(inputId);
+      const valueSpan = document.getElementById(valueId);
+      
+      if (input && valueSpan) {
+        input.oninput = (e) => {
+          const value = e.target.value;
+          valueSpan.textContent = value;
+          if (callback) callback(value);
+        };
       }
-      if (savedHomeTimerSize && timerEl) {
-        timerEl.style.fontSize = savedHomeTimerSize + 'rem';
-        timerEl.style.lineHeight = '1.1';
-        // FIXED: Ensure containers can expand
+    }
+
+    setupColorPalette("timerColorPalette", "timerColor", (color) => {
+      if (timerEl) timerEl.style.color = color;
+      if (timerPlanEl) timerPlanEl.style.color = color;
+      const timerPreview = document.getElementById("timerPreview");
+      if (timerPreview) timerPreview.style.color = color;
+      const paletteIndicator = document.getElementById("timerPaletteIndicator");
+      if (paletteIndicator) paletteIndicator.style.background = color;
+      localStorage.setItem('timerColor', color);
+    });
+
+    setupRangeInput("homeTimerSize", "homeTimerSizeVal", (value) => {
+      if (timerEl) {
+        timerEl.style.fontSize = value + "rem";
+        timerEl.style.lineHeight = "1.1";
         const container = timerEl.parentElement;
         if (container) {
           container.style.height = "auto";
@@ -2906,10 +2209,13 @@ input[type="range"]::-moz-range-thumb {
           container.style.overflow = "visible";
         }
       }
-      if (savedSessionTimerSize && timerPlanEl) {
-        timerPlanEl.style.fontSize = savedSessionTimerSize + 'rem';
-        timerPlanEl.style.lineHeight = '1.1';
-        // FIXED: Ensure containers can expand
+      localStorage.setItem('homeTimerSize', value);
+    });
+
+    setupRangeInput("sessionTimerSize", "sessionTimerSizeVal", (value) => {
+      if (timerPlanEl) {
+        timerPlanEl.style.fontSize = value + "rem";
+        timerPlanEl.style.lineHeight = "1.1";
         const container = timerPlanEl.parentElement;
         if (container) {
           container.style.height = "auto";
@@ -2917,29 +2223,63 @@ input[type="range"]::-moz-range-thumb {
           container.style.overflow = "visible";
         }
       }
-      if (savedTimerShadow) {
-        const shadow = savedTimerShadow > 0 ? `0 0 ${savedTimerShadow}px currentColor` : 'none';
-        [timerEl, timerPlanEl].forEach(el => {
-          if (el) el.style.textShadow = shadow;
+      localStorage.setItem('sessionTimerSize', value);
+    });
+
+    const timerFont = document.getElementById("timerFont");
+    if (timerFont) {
+      timerFont.onchange = (e) => {
+        const fontClasses = ["font-orbitron", "font-montserrat", "font-roboto", "font-inter", "font-poppins", "font-space-mono", "font-alarm", "font-digital7"];
+        const elements = [timerEl, timerPlanEl, document.getElementById("timerPreview")];
+        
+        elements.forEach(el => {
+          if (el) {
+            fontClasses.forEach(cls => el.classList.remove(cls));
+            el.classList.add(e.target.value);
+          }
         });
-      }
+        localStorage.setItem('timerFont', e.target.value);
+      };
+    }
 
-      // FIXED: Restore Clock Settings with NO CLIPPING
-      const savedClockColor = localStorage.getItem('clockColor');
-      const savedClockFont = localStorage.getItem('clockFont');
-      const savedClockSize = localStorage.getItem('clockSize');
-      const savedClockShadow = localStorage.getItem('clockShadow');
+    setupRangeInput("timerShadow", "timerShadowVal", (value) => {
+      const shadow = value > 0 ? `0 0 ${value}px currentColor` : 'none';
+      if (timerEl) timerEl.style.textShadow = shadow;
+      if (timerPlanEl) timerPlanEl.style.textShadow = shadow;
+      const timerPreview = document.getElementById("timerPreview");
+      if (timerPreview) timerPreview.style.textShadow = shadow;
+      localStorage.setItem('timerShadow', value);
+    });
 
-      if (savedClockColor && digitalClock) {
-        digitalClock.style.color = savedClockColor;
-      }
-      if (savedClockFont && digitalClock) {
-        digitalClock.classList.add(savedClockFont);
-      }
-      if (savedClockSize && digitalClock) {
-        digitalClock.style.fontSize = savedClockSize + 'rem';
-        digitalClock.style.lineHeight = '1.1';
-        // FIXED: Ensure container can expand
+    setupColorPalette("clockColorPalette", "clockColor", (color) => {
+      if (digitalClock) digitalClock.style.color = color;
+      const clockPreview = document.getElementById("clockPreview");
+      if (clockPreview) clockPreview.style.color = color;
+      const paletteIndicator = document.getElementById("clockPaletteIndicator");
+      if (paletteIndicator) paletteIndicator.style.background = color;
+      localStorage.setItem('clockColor', color);
+    });
+
+    const clockFont = document.getElementById("clockFont");
+    if (clockFont) {
+      clockFont.onchange = (e) => {
+        const fontClasses = ["font-orbitron", "font-montserrat", "font-roboto", "font-inter", "font-poppins", "font-space-mono", "font-alarm", "font-digital7"];
+        const elements = [digitalClock, document.getElementById("clockPreview")];
+        
+        elements.forEach(el => {
+          if (el) {
+            fontClasses.forEach(cls => el.classList.remove(cls));
+            el.classList.add(e.target.value);
+          }
+        });
+        localStorage.setItem('clockFont', e.target.value);
+      };
+    }
+
+    setupRangeInput("clockSize", "clockSizeVal", (value) => {
+      if (digitalClock) {
+        digitalClock.style.fontSize = value + "rem";
+        digitalClock.style.lineHeight = "1.1";
         const container = digitalClock.parentElement;
         if (container) {
           container.style.height = "auto";
@@ -2947,210 +2287,533 @@ input[type="range"]::-moz-range-thumb {
           container.style.overflow = "visible";
         }
       }
-      if (savedClockShadow && digitalClock) {
-        const shadow = savedClockShadow > 0 ? `0 0 ${savedClockShadow}px currentColor` : 'none';
-        digitalClock.style.textShadow = shadow;
-      }
-
-      // Restore Card Settings
-      const savedCardSettings = localStorage.getItem('cardSettings');
-      if (savedCardSettings) {
-        const settings = JSON.parse(savedCardSettings);
-        const background = hex2rgba(settings.color, settings.alpha / 100);
-        const backdropFilter = `blur(${settings.blur}px)`;
-        const borderRadius = settings.corners + "px";
-        const boxShadow = `0 4px ${settings.shadowIntensity}px ${settings.shadowColor}`;
-        
-        document.querySelectorAll('.glass-card, .modal-content').forEach(card => {
-          card.style.background = background;
-          card.style.backdropFilter = backdropFilter;
-          card.style.borderRadius = borderRadius;
-          card.style.boxShadow = boxShadow;
-          card.style.opacity = settings.opacity;
-        });
-      }
-
-      // Restore Sound Volume
-      const savedVolume = localStorage.getItem('soundVolume');
-      if (savedVolume) {
-        if (soundCustom) soundCustom.volume = savedVolume / 100;
-        if (soundBeep) soundBeep.volume = savedVolume / 100;
-      }
-
-    } catch (err) {
-      console.error("Error restoring settings:", err);
-    }
-  }
-
-  // Initialize timer display and restore settings
-  if (timerEl) timerEl.textContent = formatTime(partDuration);
-  if (timerPlanEl) timerPlanEl.textContent = formatTime(partDuration);
-
-  // Load existing logs
-   // Reconstruct timer from persisted state if any
-  try {
-    const savedRunning = localStorage.getItem('comp_timerRunning');
-    const savedStart = parseInt(localStorage.getItem('comp_timerStartTime') || '0', 10);
-    const savedDuration = parseInt(localStorage.getItem('comp_partDuration') || String(partDuration), 10);
-    const savedCurrentPart = parseInt(localStorage.getItem('comp_currentPart') || '1', 10);
-    const savedStartBalance = parseFloat(localStorage.getItem('comp_startBalance') || String(startBalance));
-    if (!isNaN(savedCurrentPart)) currentPart = savedCurrentPart;
-    if (!isNaN(savedStartBalance)) startBalance = savedStartBalance;
-    if (savedRunning === 'true' && savedStart > 0) {
-      partDuration = savedDuration || partDuration;
-      startTime = savedStart;
-      const elapsed = Date.now() - startTime;
-      milliseconds = partDuration - elapsed;
-      if (milliseconds > 0) {
-        timerRunning = true;
-        timerStarted = true;
-        clearInterval(timerInterval);
-        timerInterval = setInterval(updateTimer, 10);
-      } else {
-        // Timer already finished while app was closed
-        milliseconds = 0;
-        timerRunning = false;
-        try { localStorage.setItem('comp_timerRunning','false'); } catch(e) {}
-      }
-      if (timerEl) timerEl.textContent = formatTime(milliseconds);
-      if (timerPlanEl) timerPlanEl.textContent = formatTime(milliseconds);
-    }
-  } catch (e) { console.error('Failed to restore persisted timer:', e); }
-
-  // Load existing logs
- 
-  // Reconstruct timer from persisted state if any
-  try {
-    const savedRunning = localStorage.getItem('comp_timerRunning');
-    const savedStart = parseInt(localStorage.getItem('comp_timerStartTime') || '0', 10);
-    const savedDuration = parseInt(localStorage.getItem('comp_partDuration') || String(partDuration), 10);
-    const savedCurrentPart = parseInt(localStorage.getItem('comp_currentPart') || '1', 10);
-    const savedStartBalance = parseFloat(localStorage.getItem('comp_startBalance') || String(startBalance));
-    if (!isNaN(savedCurrentPart)) currentPart = savedCurrentPart;
-    if (!isNaN(savedStartBalance)) startBalance = savedStartBalance;
-    if (savedRunning === 'true' && savedStart > 0) {
-      partDuration = savedDuration || partDuration;
-      startTime = savedStart;
-      const elapsed = Date.now() - startTime;
-      milliseconds = partDuration - elapsed;
-      if (milliseconds > 0) {
-        timerRunning = true;
-        timerStarted = true;
-        clearInterval(timerInterval);
-        timerInterval = setInterval(updateTimer, 10);
-      } else {
-        // Timer already finished while app was closed
-        milliseconds = 0;
-        timerRunning = false;
-        try { localStorage.setItem('comp_timerRunning','false'); } catch(e) {}
-      }
-      if (timerEl) timerEl.textContent = formatTime(milliseconds);
-      if (timerPlanEl) timerPlanEl.textContent = formatTime(milliseconds);
-    }
-  } catch (e) { console.error('Failed to restore persisted timer:', e); }
-
-  // Load existing logs
-  const existingLogs = JSON.parse(localStorage.getItem("logs") || "[]");
-  existingLogs.forEach(log => {
-    if (allLogsBody) {
-      const row = allLogsBody.insertRow();
-      row.innerHTML = `
-        <td>${log.part}</td>
-        <td>${log.time}</td>
-        <td>${log.pastBalance}</td>
-        <td>${log.targetForPart}</td>
-        <td>${log.totalAfterLog}</td>
-        <td>${log.extraGain}</td>
-      `;
-    }
-  });
-
-  // === Persistent Menu/Drawer Settings ===
-  function hexToRgba(hex, alpha) {
-    const h = hex.replace('#','');
-    const bigint = parseInt(h, 16);
-    const r = (bigint >> 16) & 255;
-    const g = (bigint >> 8) & 255;
-    const b = bigint & 255;
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-  }
-  function applyMenuSettings(settings) {
-    const header = document.querySelector('.menu-bar');
-    const drawer = document.getElementById('sideDrawer');
-    const submenu = document.querySelector('.submenu-card');
-    if (!settings) return;
-    const alpha = (settings.alpha ?? 70) / 100;
-    const col = settings.color || '#1a1d22';
-    const blur = parseInt(settings.blur ?? 8, 10);
-    const rgba = hexToRgba(col, alpha);
-    [header, drawer, submenu].forEach(el => {
-      if (!el) return;
-      el.style.background = rgba;
-      el.style.backdropFilter = `blur(${blur}px)`;
-      el.style.webkitBackdropFilter = `blur(${blur}px)`;
+      localStorage.setItem('clockSize', value);
     });
-    // reflect in controls
-    const colorInput = document.getElementById('modalMenuColor');
-    const alphaInput = document.getElementById('modalMenuAlpha');
-    const alphaVal = document.getElementById('modalMenuAlphaVal');
-    const blurInput = document.getElementById('modalMenuBlur');
-    const blurVal = document.getElementById('modalMenuBlurVal');
-    if (colorInput) colorInput.value = col;
-    if (alphaInput && alphaVal) { alphaInput.value = Math.round(alpha*100); alphaVal.textContent = Math.round(alpha*100); }
-    if (blurInput && blurVal) { blurInput.value = blur; blurVal.textContent = blur; }
-  }
-  function loadMenuSettings() {
-    try {
-      const raw = localStorage.getItem('menuSettings');
-      return raw ? JSON.parse(raw) : null;
-    } catch { return null; }
-  }
-  function saveMenuSettings(settings) {
-    try { localStorage.setItem('menuSettings', JSON.stringify(settings)); } catch {}
-  }
-  (function initMenuSettings(){
-    const palette = document.getElementById('menuColorPalette');
-    const colorInput = document.getElementById('modalMenuColor');
-    const alphaInput = document.getElementById('modalMenuAlpha');
-    const blurInput = document.getElementById('modalMenuBlur');
-    const saved = loadMenuSettings() || { color: (colorInput?.value || '#1a1d22'), alpha: parseInt(alphaInput?.value || '70',10), blur: parseInt(blurInput?.value || '8',10) };
-    applyMenuSettings(saved);
-    function onChange() {
-      const settings = {
-        color: colorInput?.value || '#1a1d22',
-        alpha: parseInt(alphaInput?.value || '70',10),
-        blur: parseInt(blurInput?.value || '8',10)
-      };
-      applyMenuSettings(settings);
-      saveMenuSettings(settings);
+
+    setupRangeInput("clockShadow", "clockShadowVal", (value) => {
+      const shadow = value > 0 ? `0 0 ${value}px currentColor` : 'none';
+      if (digitalClock) digitalClock.style.textShadow = shadow;
+      const clockPreview = document.getElementById("clockPreview");
+      if (clockPreview) clockPreview.style.textShadow = shadow;
+      localStorage.setItem('clockShadow', value);
+    });
+
+    function updateCardStyles() {
+      const color = document.getElementById("cardColor")?.value || "#262c3d";
+      const alpha = document.getElementById("cardAlpha")?.value || "88";
+      const blur = document.getElementById("cardBlur")?.value || "10";
+      const opacity = document.getElementById("cardOpacity")?.value || "1";
+      const corners = document.getElementById("cardCorners")?.value || "16";
+      const shadowColor = document.getElementById("cardShadowColor")?.value || "#000000";
+      const shadowIntensity = document.getElementById("cardShadowIntensity")?.value || "20";
+      
+      const background = hex2rgba(color, alpha / 100);
+      const backdropFilter = `blur(${blur}px)`;
+      const borderRadius = corners + "px";
+      const boxShadow = `0 4px ${shadowIntensity}px ${shadowColor}`;
+      
+      document.querySelectorAll('.glass-card, .modal-content').forEach(card => {
+        card.style.background = background;
+        card.style.backdropFilter = backdropFilter;
+        card.style.borderRadius = borderRadius;
+        card.style.boxShadow = boxShadow;
+        card.style.opacity = opacity;
+      });
+      
+      localStorage.setItem('cardSettings', JSON.stringify({
+        color, alpha, blur, opacity, corners, shadowColor, shadowIntensity
+      }));
     }
-    if (palette) {
-      palette.querySelectorAll('.color-swatch').forEach(s => {
-        s.addEventListener('click', (e)=>{
-          const c = e.currentTarget.getAttribute('data-color');
-          if (colorInput && c) { colorInput.value = c; onChange(); }
-        });
+
+    setupColorPalette("cardColorPalette", "cardColor", updateCardStyles);
+    setupColorPalette("cardShadowPalette", "cardShadowColor", updateCardStyles);
+    setupRangeInput("cardAlpha", "cardAlphaVal", updateCardStyles);
+    setupRangeInput("cardBlur", "cardBlurVal", updateCardStyles);
+    setupRangeInput("cardOpacity", "cardOpacityVal", updateCardStyles);
+    setupRangeInput("cardCorners", "cardCornersVal", updateCardStyles);
+    setupRangeInput("cardShadowIntensity", "cardShadowIntensityVal", updateCardStyles);
+
+    const modalBgImageUpload = document.getElementById("modalBgImageUpload");
+    const bgOverlay = document.getElementById("bgOverlay");
+    const bgThumbs = document.querySelectorAll('.bg-thumb');
+
+    if (modalBgImageUpload && bgOverlay) {
+      modalBgImageUpload.onchange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            bgOverlay.style.backgroundImage = `url(${ev.target.result})`;
+            localStorage.setItem('bgImage', ev.target.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+    }
+
+    if (bgThumbs && bgOverlay) {
+      bgThumbs.forEach(thumb => {
+        thumb.onclick = () => {
+          bgOverlay.style.backgroundImage = `url(${thumb.src})`;
+          localStorage.setItem('bgImage', thumb.src);
+        };
       });
     }
-    if (colorInput) colorInput.addEventListener('input', onChange);
-    if (alphaInput) alphaInput.addEventListener('input', ()=> {
-      const alphaVal = document.getElementById('modalMenuAlphaVal');
-      if (alphaVal) alphaVal.textContent = alphaInput.value;
-      onChange();
-    });
-    if (blurInput) blurInput.addEventListener('input', ()=>{
-      const blurVal = document.getElementById('modalMenuBlurVal');
-      if (blurVal) blurVal.textContent = blurInput.value;
-      onChange();
-    });
-  })();
 
-  restoreAllSettings();
-  // Restore session state on page load
-  restoreSessionState();
-  updateLogbookStats();
-  console.log("✅ Complete Financial Session Planner loaded with FULLY FIXED timer scaling and live shadow/size updates!");
-});
+    setupRangeInput("modalBgBlur", "modalBgBlurVal", (value) => {
+      if (bgOverlay) bgOverlay.style.filter = `blur(${value}px)`;
+      localStorage.setItem('bgBlurValue', value);
+    });
+
+    function updateSidebarStyles() {
+      const color = document.getElementById("sidebarColor")?.value || "#272f4c";
+      const alpha = document.getElementById("sidebarAlpha")?.value || "88";
+      const blur = document.getElementById("sidebarBlur")?.value || "10";
+      
+      if (sideDrawer) {
+        sideDrawer.style.background = hex2rgba(color, alpha / 100);
+        sideDrawer.style.backdropFilter = `blur(${blur}px)`;
+      }
+      
+      localStorage.setItem('sidebarSettings', JSON.stringify({ color, alpha, blur }));
+    }
+
+    setupColorPalette("sidebarColorPalette", "sidebarColor", updateSidebarStyles);
+    setupRangeInput("sidebarAlpha", "sidebarAlphaVal", updateSidebarStyles);
+    setupRangeInput("sidebarBlur", "sidebarBlurVal", updateSidebarStyles);
+
+    function updateMenuStyles() {
+      const color = document.getElementById("modalMenuColor")?.value || "#1a1d22";
+      const alpha = document.getElementById("modalMenuAlpha")?.value || "70";
+      const blur = document.getElementById("modalMenuBlur")?.value || "8";
+      
+      const menuBar = document.querySelector(".menu-bar");
+      if (menuBar) {
+        menuBar.style.background = hex2rgba(color, alpha / 100);
+        menuBar.style.backdropFilter = `blur(${blur}px)`;
+      }
+      
+      localStorage.setItem('menuSettings', JSON.stringify({ color, alpha, blur }));
+    }
+
+    setupColorPalette("menuColorPalette", "modalMenuColor", updateMenuStyles);
+    setupRangeInput("modalMenuAlpha", "modalMenuAlphaVal", updateMenuStyles);
+    setupRangeInput("modalMenuBlur", "modalMenuBlurVal", updateMenuStyles);
+
+    const modalAvatarUpload = document.getElementById("modalAvatarUpload");
+    const avatarArea = document.getElementById("avatarArea");
+    const avatarNameInput = document.getElementById("avatarNameInput");
+    const avatarStyle = document.getElementById("avatarStyle");
+
+    if (modalAvatarUpload && avatarArea) {
+      modalAvatarUpload.onchange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            const img = avatarArea.querySelector('img');
+            if (img) {
+              img.src = ev.target.result;
+            }
+            localStorage.setItem('avatarImage', ev.target.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+    }
+
+    if (avatarNameInput) {
+      avatarNameInput.oninput = (e) => {
+        const nameSpan = document.getElementById('avatarName');
+        if (nameSpan) {
+          nameSpan.textContent = e.target.value;
+        }
+        localStorage.setItem('avatarName', e.target.value);
+      };
+    }
+
+    if (avatarStyle) {
+      avatarStyle.onchange = (e) => {
+        const img = avatarArea?.querySelector('img');
+        if (img) {
+          img.style.borderRadius = e.target.value === 'circle' ? '50%' : '8px';
+        }
+        localStorage.setItem('avatarStyle', e.target.value);
+      };
+    }
+
+    function updateFontStyles() {
+      const color = document.getElementById("fontColor")?.value || "#d0d4e0";
+      const size = document.getElementById("fontSize")?.value || "16";
+      const shadow = document.getElementById("fontShadow")?.value || "0";
+      const family = document.getElementById("fontFamily")?.value || "'Roboto', sans-serif";
+      
+      document.body.style.color = color;
+      document.body.style.fontSize = size + "px";
+      document.body.style.fontFamily = family;
+      document.body.style.textShadow = shadow > 0 ? `0 0 ${shadow}px currentColor` : 'none';
+      
+      localStorage.setItem('fontSettings', JSON.stringify({ color, size, shadow, family }));
+    }
+
+    setupColorPalette("fontColorPalette", "fontColor", updateFontStyles);
+    setupRangeInput("fontSize", "fontSizeVal", updateFontStyles);
+    setupRangeInput("fontShadow", "fontShadowVal", updateFontStyles);
+
+    const fontFamily = document.getElementById("fontFamily");
+    if (fontFamily) {
+      fontFamily.onchange = updateFontStyles;
+    }
+
+    const customSoundUpload = document.getElementById("customSoundUpload");
+    const playSoundBtn = document.getElementById("playSoundBtn");
+    const pauseSoundBtn = document.getElementById("pauseSoundBtn");
+    const soundVolume = document.getElementById("soundVolume");
+
+    if (customSoundUpload && soundCustom) {
+      customSoundUpload.onchange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            soundCustom.src = ev.target.result;
+            localStorage.setItem('customSound', ev.target.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+    }
+
+    if (playSoundBtn && soundCustom) {
+      playSoundBtn.onclick = () => {
+        soundCustom.play().catch(err => console.error("Sound play failed:", err));
+      };
+    }
+
+    if (pauseSoundBtn && soundCustom) {
+      pauseSoundBtn.onclick = () => {
+        soundCustom.pause();
+      };
+    }
+
+    setupRangeInput("soundVolume", "soundVolumeVal", (value) => {
+      if (soundCustom) soundCustom.volume = value / 100;
+      if (soundBeep) soundBeep.volume = value / 100;
+      localStorage.setItem('soundVolume', value);
+    });
+
+    const accentColor = document.getElementById("accentColor");
+    setupColorPalette("accentColorPalette", "accentColor", (color) => {
+      document.documentElement.style.setProperty('--accent', color);
+      document.documentElement.style.setProperty('--theme-color', color);
+      localStorage.setItem('accentColor', color);
+    });
+
+    if (accentColor) {
+      accentColor.oninput = (e) => {
+        document.documentElement.style.setProperty('--accent', e.target.value);
+        document.documentElement.style.setProperty('--theme-color', e.target.value);
+        localStorage.setItem('accentColor', e.target.value);
+      };
+    }
+
+    const customSound = document.getElementById("customSound");
+    if (customSound && soundCustom) {
+      customSound.onchange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            soundCustom.src = ev.target.result;
+            localStorage.setItem('customSound', ev.target.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+    }
+
+    function restoreAllSettings() {
+      try {
+        const savedAccent = localStorage.getItem('accentColor');
+        if (savedAccent) {
+          document.documentElement.style.setProperty('--accent', savedAccent);
+          document.documentElement.style.setProperty('--theme-color', savedAccent);
+          if (accentColor) accentColor.value = savedAccent;
+        }
+
+        const savedCustomSound = localStorage.getItem('customSound');
+        if (savedCustomSound && soundCustom) {
+          soundCustom.src = savedCustomSound;
+        }
+
+        const savedBgImage = localStorage.getItem('bgImage');
+        const savedBgBlur = localStorage.getItem('bgBlurValue');
+        if (savedBgImage && bgOverlay) {
+          bgOverlay.style.backgroundImage = `url(${savedBgImage})`;
+        }
+        if (savedBgBlur && bgOverlay) {
+          bgOverlay.style.filter = `blur(${savedBgBlur}px)`;
+        }
+
+        const savedAvatar = localStorage.getItem('avatarImage');
+        const savedAvatarName = localStorage.getItem('avatarName');
+        const savedAvatarStyle = localStorage.getItem('avatarStyle');
+        
+        if (savedAvatar && avatarArea) {
+          const img = avatarArea.querySelector('img');
+          if (img) {
+            img.src = savedAvatar;
+            if (savedAvatarStyle) {
+              img.style.borderRadius = savedAvatarStyle === 'circle' ? '50%' : '8px';
+            }
+          }
+        }
+
+        if (savedAvatarName) {
+          const nameSpan = document.getElementById('avatarName');
+          if (nameSpan) nameSpan.textContent = savedAvatarName;
+          if (avatarNameInput) avatarNameInput.value = savedAvatarName;
+        }
+
+        if (savedAvatarStyle && avatarStyle) {
+          avatarStyle.value = savedAvatarStyle;
+        }
+
+        const savedFontSettings = localStorage.getItem('fontSettings');
+        if (savedFontSettings) {
+          const settings = JSON.parse(savedFontSettings);
+          document.body.style.fontFamily = settings.family;
+          document.body.style.color = settings.color;
+          document.body.style.fontSize = settings.size + 'px';
+          document.body.style.textShadow = settings.shadow > 0 ? `0 0 ${settings.shadow}px currentColor` : 'none';
+        }
+
+        const savedTimerColor = localStorage.getItem('timerColor');
+        const savedTimerFont = localStorage.getItem('timerFont');
+        const savedHomeTimerSize = localStorage.getItem('homeTimerSize');
+        const savedSessionTimerSize = localStorage.getItem('sessionTimerSize');
+        const savedTimerShadow = localStorage.getItem('timerShadow');
+
+        if (savedTimerColor) {
+          [timerEl, timerPlanEl].forEach(el => {
+            if (el) el.style.color = savedTimerColor;
+          });
+        }
+        if (savedTimerFont) {
+          [timerEl, timerPlanEl].forEach(el => {
+            if (el) el.classList.add(savedTimerFont);
+          });
+        }
+        if (savedHomeTimerSize && timerEl) {
+          timerEl.style.fontSize = savedHomeTimerSize + 'rem';
+          timerEl.style.lineHeight = '1.1';
+          const container = timerEl.parentElement;
+          if (container) {
+            container.style.height = "auto";
+            container.style.minHeight = "auto";
+            container.style.overflow = "visible";
+          }
+        }
+        if (savedSessionTimerSize && timerPlanEl) {
+          timerPlanEl.style.fontSize = savedSessionTimerSize + 'rem';
+          timerPlanEl.style.lineHeight = '1.1';
+          const container = timerPlanEl.parentElement;
+          if (container) {
+            container.style.height = "auto";
+            container.style.minHeight = "auto";
+            container.style.overflow = "visible";
+          }
+        }
+        if (savedTimerShadow) {
+          const shadow = savedTimerShadow > 0 ? `0 0 ${savedTimerShadow}px currentColor` : 'none';
+          [timerEl, timerPlanEl].forEach(el => {
+            if (el) el.style.textShadow = shadow;
+          });
+        }
+
+        const savedClockColor = localStorage.getItem('clockColor');
+        const savedClockFont = localStorage.getItem('clockFont');
+        const savedClockSize = localStorage.getItem('clockSize');
+        const savedClockShadow = localStorage.getItem('clockShadow');
+
+        if (savedClockColor && digitalClock) {
+          digitalClock.style.color = savedClockColor;
+        }
+        if (savedClockFont && digitalClock) {
+          digitalClock.classList.add(savedClockFont);
+        }
+        if (savedClockSize && digitalClock) {
+          digitalClock.style.fontSize = savedClockSize + 'rem';
+          digitalClock.style.lineHeight = '1.1';
+          const container = digitalClock.parentElement;
+          if (container) {
+            container.style.height = "auto";
+            container.style.minHeight = "auto";
+            container.style.overflow = "visible";
+          }
+        }
+        if (savedClockShadow && digitalClock) {
+          const shadow = savedClockShadow > 0 ? `0 0 ${savedClockShadow}px currentColor` : 'none';
+          digitalClock.style.textShadow = shadow;
+        }
+
+        const savedCardSettings = localStorage.getItem('cardSettings');
+        if (savedCardSettings) {
+          const settings = JSON.parse(savedCardSettings);
+          const background = hex2rgba(settings.color, settings.alpha / 100);
+          const backdropFilter = `blur(${settings.blur}px)`;
+          const borderRadius = settings.corners + "px";
+          const boxShadow = `0 4px ${settings.shadowIntensity}px ${settings.shadowColor}`;
+          
+          document.querySelectorAll('.glass-card, .modal-content').forEach(card => {
+            card.style.background = background;
+            card.style.backdropFilter = backdropFilter;
+            card.style.borderRadius = borderRadius;
+            card.style.boxShadow = boxShadow;
+            card.style.opacity = settings.opacity;
+          });
+        }
+
+        const savedVolume = localStorage.getItem('soundVolume');
+        if (savedVolume) {
+          if (soundCustom) soundCustom.volume = savedVolume / 100;
+          if (soundBeep) soundBeep.volume = savedVolume / 100;
+        }
+
+      } catch (err) {
+        console.error("Error restoring settings:", err);
+      }
+    }
+
+    if (timerEl) timerEl.textContent = formatTime(partDuration);
+    if (timerPlanEl) timerPlanEl.textContent = formatTime(partDuration);
+
+    try {
+      const savedRunning = localStorage.getItem('comp_timerRunning');
+      const savedStart = parseInt(localStorage.getItem('comp_timerStartTime') || '0', 10);
+      const savedDuration = parseInt(localStorage.getItem('comp_partDuration') || String(partDuration), 10);
+      const savedCurrentPart = parseInt(localStorage.getItem('comp_currentPart') || '1', 10);
+      const savedStartBalance = parseFloat(localStorage.getItem('comp_startBalance') || String(startBalance));
+      if (!isNaN(savedCurrentPart)) currentPart = savedCurrentPart;
+      if (!isNaN(savedStartBalance)) startBalance = savedStartBalance;
+      if (savedRunning === 'true' && savedStart > 0) {
+        partDuration = savedDuration || partDuration;
+        startTime = savedStart;
+        const elapsed = Date.now() - startTime;
+        milliseconds = partDuration - elapsed;
+        if (milliseconds > 0) {
+          timerRunning = true;
+          timerStarted = true;
+          clearInterval(timerInterval);
+          timerInterval = setInterval(updateTimer, 10);
+        } else {
+          milliseconds = 0;
+          timerRunning = false;
+          try { localStorage.setItem('comp_timerRunning','false'); } catch(e) {}
+        }
+        if (timerEl) timerEl.textContent = formatTime(milliseconds);
+        if (timerPlanEl) timerPlanEl.textContent = formatTime(milliseconds);
+      }
+    } catch (e) { console.error('Failed to restore persisted timer:', e); }
+
+    const existingLogs = JSON.parse(localStorage.getItem("logs") || "[]");
+    existingLogs.forEach(log => {
+      if (allLogsBody) {
+        const row = allLogsBody.insertRow();
+        row.innerHTML = `
+          <td>${log.part}</td>
+          <td>${log.time}</td>
+          <td>${log.pastBalance}</td>
+          <td>${log.targetForPart}</td>
+          <td>${log.totalAfterLog}</td>
+          <td>${log.extraGain}</td>
+        `;
+      }
+    });
+
+    function hexToRgba(hex, alpha) {
+      const h = hex.replace('#','');
+      const bigint = parseInt(h, 16);
+      const r = (bigint >> 16) & 255;
+      const g = (bigint >> 8) & 255;
+      const b = bigint & 255;
+      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    }
+    function applyMenuSettings(settings) {
+      const header = document.querySelector('.menu-bar');
+      const drawer = document.getElementById('sideDrawer');
+      const submenu = document.querySelector('.submenu-card');
+      if (!settings) return;
+      const alpha = (settings.alpha ?? 70) / 100;
+      const col = settings.color || '#1a1d22';
+      const blur = parseInt(settings.blur ?? 8, 10);
+      const rgba = hexToRgba(col, alpha);
+      [header, drawer, submenu].forEach(el => {
+        if (!el) return;
+        el.style.background = rgba;
+        el.style.backdropFilter = `blur(${blur}px)`;
+        el.style.webkitBackdropFilter = `blur(${blur}px)`;
+      });
+      const colorInput = document.getElementById('modalMenuColor');
+      const alphaInput = document.getElementById('modalMenuAlpha');
+      const alphaVal = document.getElementById('modalMenuAlphaVal');
+      const blurInput = document.getElementById('modalMenuBlur');
+      const blurVal = document.getElementById('modalMenuBlurVal');
+      if (colorInput) colorInput.value = col;
+      if (alphaInput && alphaVal) { alphaInput.value = Math.round(alpha*100); alphaVal.textContent = Math.round(alpha*100); }
+      if (blurInput && blurVal) { blurInput.value = blur; blurVal.textContent = blur; }
+    }
+    function loadMenuSettings() {
+      try {
+        const raw = localStorage.getItem('menuSettings');
+        return raw ? JSON.parse(raw) : null;
+      } catch { return null; }
+    }
+    function saveMenuSettings(settings) {
+      try { localStorage.setItem('menuSettings', JSON.stringify(settings)); } catch {}
+    }
+    (function initMenuSettings(){
+      const palette = document.getElementById('menuColorPalette');
+      const colorInput = document.getElementById('modalMenuColor');
+      const alphaInput = document.getElementById('modalMenuAlpha');
+      const blurInput = document.getElementById('modalMenuBlur');
+      const saved = loadMenuSettings() || { color: (colorInput?.value || '#1a1d22'), alpha: parseInt(alphaInput?.value || '70',10), blur: parseInt(blurInput?.value || '8',10) };
+      applyMenuSettings(saved);
+      function onChange() {
+        const settings = {
+          color: colorInput?.value || '#1a1d22',
+          alpha: parseInt(alphaInput?.value || '70',10),
+          blur: parseInt(blurInput?.value || '8',10)
+        };
+        applyMenuSettings(settings);
+        saveMenuSettings(settings);
+      }
+      if (palette) {
+        palette.querySelectorAll('.color-swatch').forEach(s => {
+          s.addEventListener('click', (e)=>{
+            const c = e.currentTarget.getAttribute('data-color');
+            if (colorInput && c) { colorInput.value = c; onChange(); }
+          });
+        });
+      }
+      if (colorInput) colorInput.addEventListener('input', onChange);
+      if (alphaInput) alphaInput.addEventListener('input', ()=> {
+        const alphaVal = document.getElementById('modalMenuAlphaVal');
+        if (alphaVal) alphaVal.textContent = alphaInput.value;
+        onChange();
+      });
+      if (blurInput) blurInput.addEventListener('input', ()=>{
+        const blurVal = document.getElementById('modalMenuBlurVal');
+        if (blurVal) blurVal.textContent = blurInput.value;
+        onChange();
+      });
+    })();
+
+    restoreAllSettings();
+    restoreSessionState();
+    updateLogbookStats();
+    console.log("✅ Fixed Smart Compounding Ecosystem loaded!");
+  });
   </script>
 </body>
 </html>
