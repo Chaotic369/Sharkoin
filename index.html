@@ -20,15 +20,37 @@
   --theme-solarized: #2aa198;
   --theme-custom: #25abff;
   --theme-color: var(--theme-ocean);
+  --bg-base: #1e2530;
+  --text-base: #d0d4e0;
+  --input-base: rgba(20, 30, 45, 0.4);
+  --input-focus: rgba(20, 30, 45, 0.6);
+  --border-base: rgba(255, 255, 255, 0.2);
+  --header-bg: rgba(20, 30, 45, 0.7);
+  --icon-color: rgba(255, 255, 255, 0.6);
+  --icon-hover-bg: rgba(255, 255, 255, 0.1);
+  --target-val-color: #ffffff;
+}
+
+body.light-mode {
+  --bg-base: #f0f4f8;
+  --text-base: #1e2530;
+  --input-base: rgba(0, 0, 0, 0.05);
+  --input-focus: rgba(0, 0, 0, 0.1);
+  --border-base: rgba(0, 0, 0, 0.2);
+  --header-bg: rgba(0, 0, 0, 0.05);
+  --icon-color: rgba(0, 0, 0, 0.6);
+  --icon-hover-bg: rgba(0, 0, 0, 0.1);
+  --target-val-color: #111827;
 }
 
 body {
-  background: #1e2530;
-  color: #d0d4e0;
+  background: var(--bg-base);
+  color: var(--text-base);
   font-family: 'Inter', sans-serif, Arial, Helvetica;
   font-size: 12px;
   margin: 0;
   overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .glass-card {
@@ -56,7 +78,7 @@ body {
 .icon-btn {
   background: transparent;
   border: none;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--icon-color);
   cursor: pointer;
   padding: 6px;
   border-radius: 8px;
@@ -68,7 +90,7 @@ body {
 
 .icon-btn:hover {
   color: var(--theme-color);
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--icon-hover-bg);
   transform: scale(1.1);
 }
 
