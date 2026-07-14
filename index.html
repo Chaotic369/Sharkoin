@@ -360,9 +360,9 @@ h2 {
 }
 
 .settings-grid {
-  display: grid;
-  grid-template-columns: minmax(120px, 1fr) 2fr; /* Better alignment */
-  gap: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
   align-items: center;
   max-width: 100%;
   margin: 24px 0;
@@ -370,10 +370,23 @@ h2 {
 }
 
 .settings-grid label {
-  justify-self: start;
   font-weight: 500;
-  font-size: 1.1em;
-  white-space: normal;
+  font-size: 1.05em;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.settings-grid > input,
+.settings-grid > select,
+.settings-grid > button,
+.settings-grid > div {
+  flex: 1 1 140px;
+}
+
+.settings-grid > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .settings-grid input,
