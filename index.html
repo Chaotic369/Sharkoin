@@ -1018,29 +1018,11 @@ input[type="range"]::-webkit-slider-thumb {
                     </div>
         </div>
         
-        <label>Font Size</label>
-        <div>
-          <input type="range" min="12" max="24" id="fontSize" value="16" />
-          <span class="range-value" id="fontSizeVal">16</span>px
-        </div>
-        
         <label>Font Shadow</label>
-        <div>
-          <input type="range" min="0" max="10" id="fontShadow" value="0" />
-          <span class="range-value" id="fontShadowVal">0</span>px
-        </div>
-        
-        <label>Font Type</label>
-        <select id="fontFamily">
-          <option value="'Roboto', sans-serif">Roboto</option>
-          <option value="'Montserrat', sans-serif">Montserrat</option>
-          <option value="'Orbitron', monospace">Orbitron</option>
-          <option value="'Inter', sans-serif">Inter</option>
-          <option value="'Poppins', sans-serif">Poppins</option>
-          <option value="'Space Mono', monospace">Space Mono</option>
-          <option value="'alarm clock', monospace">Alarm Clock</option>
-          <option value="'digital-7', monospace">Digital‑7</option>
-        </select>
+                <div>
+                  <input type="range" min="0" max="10" id="fontShadow" value="0" />
+                  <span class="range-value" id="fontShadowVal">0</span>px
+                </div>
       </form>
     </div>
   </div>
@@ -2363,27 +2345,17 @@ input[type="range"]::-webkit-slider-thumb {
     }
 
     function updateFontStyles() {
-      const color = document.getElementById("fontColor")?.value || "#d0d4e0";
-      const size = document.getElementById("fontSize")?.value || "16";
-      const shadow = document.getElementById("fontShadow")?.value || "0";
-      const family = document.getElementById("fontFamily")?.value || "'Roboto', sans-serif";
+          const color = document.getElementById("fontColor")?.value || "#d0d4e0";
+          const shadow = document.getElementById("fontShadow")?.value || "0";
       
-      document.body.style.color = color;
-      document.body.style.fontSize = size + "px";
-      document.body.style.fontFamily = family;
-      document.body.style.textShadow = shadow > 0 ? `0 0 ${shadow}px currentColor` : 'none';
+          document.body.style.color = color;
+          document.body.style.textShadow = shadow > 0 ? `0 0 ${shadow}px currentColor` : 'none';
       
-      localStorage.setItem('fontSettings', JSON.stringify({ color, size, shadow, family }));
-    }
+          localStorage.setItem('fontSettings', JSON.stringify({ color, shadow }));
+        }
 
-    setupColorPalette("fontColorPalette", "fontColor", updateFontStyles);
-    setupRangeInput("fontSize", "fontSizeVal", updateFontStyles);
-    setupRangeInput("fontShadow", "fontShadowVal", updateFontStyles);
-
-    const fontFamily = document.getElementById("fontFamily");
-    if (fontFamily) {
-      fontFamily.onchange = updateFontStyles;
-    }
+        setupColorPalette("fontColorPalette", "fontColor", updateFontStyles);
+        setupRangeInput("fontShadow", "fontShadowVal", updateFontStyles);
 
     const customSoundUpload = document.getElementById("customSoundUpload");
     const playSoundBtn = document.getElementById("playSoundBtn");
@@ -2485,13 +2457,11 @@ input[type="range"]::-webkit-slider-thumb {
         }
 
         const savedFontSettings = localStorage.getItem('fontSettings');
-        if (savedFontSettings) {
-          const settings = JSON.parse(savedFontSettings);
-          document.body.style.fontFamily = settings.family;
-          document.body.style.color = settings.color;
-          document.body.style.fontSize = settings.size + 'px';
-          document.body.style.textShadow = settings.shadow > 0 ? `0 0 ${settings.shadow}px currentColor` : 'none';
-        }
+                if (savedFontSettings) {
+                  const settings = JSON.parse(savedFontSettings);
+                  if (settings.color) document.body.style.color = settings.color;
+                  if (settings.shadow !== undefined) document.body.style.textShadow = settings.shadow > 0 ? `0 0 ${settings.shadow}px currentColor` : 'none';
+                }
 
         const savedTimerColor = localStorage.getItem('timerColor');
         const savedTimerFont = localStorage.getItem('timerFont');
