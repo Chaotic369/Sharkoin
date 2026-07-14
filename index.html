@@ -786,9 +786,9 @@ input[type="range"]::-webkit-slider-thumb {
         <button class="drawer-close-btn" id="closeDrawer">&times;</button>
         <div class="drawer-links">
                   <button class="drawer-link active" data-page="planPage">Session Planner</button>
-                  <button class="drawer-link" data-page="calcPage">Calculator</button>
-                <button class="drawer-link" data-page="settingsPage">Personalize</button>
-              </div>
+                                    <button class="drawer-link" data-page="calcPage">Calculator</button>
+                                  <button class="drawer-link" onclick="openModal('settingsModal'); document.getElementById('sideDrawer').classList.remove('open'); document.getElementById('drawerOverlay').classList.remove('active');">Personalize</button>
+                                </div>
     </nav>
   <div id="drawerOverlay"></div>
 
