@@ -405,14 +405,20 @@ h2 {
   font-size: 0.9em;
   border: none;
   border-radius: 16px;
-  background: rgba(20, 30, 45, 0.4);
-  color: #d0d4e0;
+  background: var(--input-base);
+  color: var(--text-base);
   outline: none;
   width: 100%;
   max-width: 200px;
   box-sizing: border-box;
   transition: background 0.2s, box-shadow 0.2s;
   display: block;
+}
+
+.settings-grid input:focus,
+.settings-grid select:focus {
+  background: var(--input-focus);
+  box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
 }
 
 .settings-grid input:focus,
@@ -603,7 +609,7 @@ h2 {
 .target-info-value {
   font-size: 1.1em;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--target-val-color);
 }
 
 .color-palette {
