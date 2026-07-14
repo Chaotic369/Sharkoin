@@ -757,11 +757,10 @@ input[type="range"]::-webkit-slider-thumb {
     </header>
 
   <nav id="sideDrawer" class="side-drawer">
-      <button class="drawer-close-btn" id="closeDrawer">&times;</button>
-      <div class="drawer-links">
-        <button class="drawer-link active" data-page="homePage">Home</button>
-        <button class="drawer-link" data-page="planPage">Session Planner</button>
-        <button class="drawer-link" data-page="calcPage">Calculator</button>
+        <button class="drawer-close-btn" id="closeDrawer">&times;</button>
+        <div class="drawer-links">
+          <button class="drawer-link active" data-page="planPage">Session Planner</button>
+          <button class="drawer-link" data-page="calcPage">Calculator</button>
         <button class="drawer-link" data-page="logsPage">Logs</button>
         <button class="drawer-link" data-page="settingsPage">Personalize</button>
       </div>
@@ -1061,20 +1060,13 @@ input[type="range"]::-webkit-slider-thumb {
 
   <div id="modalOverlay"></div>
 
-  <main id="homePage" class="glass-card page active">
-      <div class="digital-clock">
-        <span id="digitalClock" class="big-timer font-alarm" style="color: #ffffff;">12:34</span>
-      </div>
-      <div class="premium-timer-bar">
-        <span id="partTimer" class="mini-watch font-alarm" style="color: #ff0000;">00:00:00</span>
-      </div>
-    </main>
-
-    <main id="planPage" class="glass-card page">
-      <h2>Session Planner</h2>
-      <div class="premium-timer-bar">
-        <span id="partTimerPlan" class="big-timer font-alarm" style="color: #ff0000;">00:00:00</span>
-      </div>
+  <main id="planPage" class="glass-card page active">
+        <div class="digital-clock">
+          <span id="digitalClock" class="big-timer font-alarm" style="color: #ffffff;">12:34</span>
+        </div>
+        <div class="premium-timer-bar">
+          <span id="partTimerPlan" class="big-timer font-alarm" style="color: #ff0000;">00:00:00</span>
+        </div>
     <div class="written-balance">
       <span>Balance: <span id="writtenBalance">0.00000000</span></span>
     </div>
@@ -1438,47 +1430,37 @@ input[type="range"]::-webkit-slider-thumb {
     }
 
     const navLinks = document.querySelectorAll('.drawer-link');
-    const pageNames = ["homePage", "planPage", "calcPage", "logsPage", "settingsPage"];
+        const pageNames = ["planPage", "calcPage", "logsPage", "settingsPage"];
 
-    function showPage(name) {
-      pageNames.forEach(id => {
-        const page = document.getElementById(id);
-        if (page) {
-          page.classList.toggle('active', id === name);
+        function showPage(name) {
+          pageNames.forEach(id => {
+            const page = document.getElementById(id);
+            if (page) {
+              page.classList.toggle('active', id === name);
           
-          if (id === "homePage") {
-            const homeTimer = page.querySelector('#partTimer');
-            const clock = page.querySelector('#digitalClock');
-            
-            if (homeTimer && clock) {
-              if (name === id) {
-                homeTimer.style.transform = 'scale(1) translateY(0)';
-                homeTimer.style.opacity = '1';
-                clock.style.transform = 'scale(1) translateY(0)';
-                clock.style.opacity = '1';
-              } else {
-                homeTimer.style.transform = 'scale(0.8) translateY(-20px)';
-                homeTimer.style.opacity = '0';
-                clock.style.transform = 'scale(0.8) translateY(20px)';
-                clock.style.opacity = '0';
+              if (id === "planPage") {
+                const planTimer = page.querySelector('#partTimerPlan');
+                const clock = page.querySelector('#digitalClock');
+                if (planTimer) {
+                  if (name === id) {
+                    planTimer.style.transform = 'scale(1) translateY(0)';
+                    planTimer.style.opacity = '1';
+                    if (clock) {
+                      clock.style.transform = 'scale(1) translateY(0)';
+                      clock.style.opacity = '1';
+                    }
+                  } else {
+                    planTimer.style.transform = 'scale(0.9) translateY(-30px)';
+                    planTimer.style.opacity = '0';
+                    if (clock) {
+                      clock.style.transform = 'scale(0.8) translateY(20px)';
+                      clock.style.opacity = '0';
+                    }
+                  }
+                }
               }
             }
-          }
-          
-          if (id === "planPage") {
-            const planTimer = page.querySelector('#partTimerPlan');
-            if (planTimer) {
-              if (name === id) {
-                planTimer.style.transform = 'scale(1) translateY(0)';
-                planTimer.style.opacity = '1';
-              } else {
-                planTimer.style.transform = 'scale(0.9) translateY(-30px)';
-                planTimer.style.opacity = '0';
-              }
-            }
-          }
-        }
-      });
+          });
       
       navLinks.forEach(btn => {
         if (btn) btn.classList.toggle('active', btn.dataset.page === name);
@@ -1491,12 +1473,12 @@ input[type="range"]::-webkit-slider-thumb {
     }
 
     navLinks.forEach(btn => {
-      if (btn && btn.dataset.page) {
-        btn.onclick = () => showPage(btn.dataset.page);
-      }
-    });
+          if (btn && btn.dataset.page) {
+            btn.onclick = () => showPage(btn.dataset.page);
+          }
+        });
 
-    showPage("homePage");
+        showPage("planPage");
 
     const digitalClock = document.getElementById("digitalClock");
     
