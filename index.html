@@ -625,6 +625,18 @@ h2 {
   transform: scale(1.1);
 }
 
+.color-swatch.recent-swatch {
+  border-radius: 50% !important;
+  border: 1px dashed rgba(255, 255, 255, 0.4);
+  transform: scale(0.9);
+}
+
+.color-swatch.recent-swatch:hover,
+.color-swatch.recent-swatch.active {
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  transform: scale(1.05);
+}
+
 .color-picker-input {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -2009,28 +2021,63 @@ input[type="range"]::-webkit-slider-thumb {
                                                 if (editBgBtn) editBgBtn.onclick = () => openModal("bgModal");
                                         if (editSoundBtn) editSoundBtn.onclick = () => openModal("soundModal");
 
-    function setupColorPalette(paletteId, inputId, callback) {
-      const palette = document.getElementById(paletteId);
-      const input = document.getElementById(inputId);
-      
-      if (palette && input) {
-        palette.querySelectorAll('.color-swatch').forEach(swatch => {
-          swatch.onclick = () => {
-            palette.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
-            swatch.classList.add('active');
-            
-            const color = swatch.dataset.color;
-            input.value = color;
-            
-            if (callback) callback(color);
-          };
-        });
-        
-        input.oninput = (e) => {
-          if (callback) callback(e.target.value);
+    let recentColors = JSON.parse(localStorage.getItem('recentColors') || '[]');
+
+        window.renderRecentColorsGlobally = function() {
+          document.querySelectorAll('.color-palette').forEach(palette => {
+            palette.querySelectorAll('.recent-swatch').forEach(el => el.remove());
+            const input = palette.querySelector('.color-picker-input');
+            if (input && recentColors.length > 0) {
+              recentColors.forEach(color => {
+                const swatch = document.createElement('div');
+                swatch.className = 'color-swatch recent-swatch';
+                swatch.style.background = color;
+                swatch.dataset.color = color;
+                swatch.title = "Recent: " + color;
+                palette.insertBefore(swatch, input);
+              });
+            }
+          });
         };
-      }
-    }
+
+        window.addRecentColorGlobally = function(color) {
+          if (!recentColors.includes(color)) {
+            recentColors.unshift(color);
+            if (recentColors.length > 6) recentColors.pop();
+            localStorage.setItem('recentColors', JSON.stringify(recentColors));
+            renderRecentColorsGlobally();
+          }
+        };
+
+        function setupColorPalette(paletteId, inputId, callback) {
+          const palette = document.getElementById(paletteId);
+          const input = document.getElementById(inputId);
+      
+          if (palette && input) {
+            palette.addEventListener('click', (e) => {
+              const swatch = e.target.closest('.color-swatch');
+              if (swatch) {
+                palette.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+                swatch.classList.add('active');
+            
+                const color = swatch.dataset.color;
+                input.value = color;
+            
+                if (callback) callback(color);
+              }
+            });
+        
+            input.oninput = (e) => {
+              if (callback) callback(e.target.value);
+            };
+
+            input.onchange = (e) => {
+              const color = e.target.value;
+              if (callback) callback(color);
+              addRecentColorGlobally(color);
+            };
+          }
+        }
 
     function setupRangeInput(inputId, valueId, callback) {
       const input = document.getElementById(inputId);
@@ -2539,9 +2586,10 @@ input[type="range"]::-webkit-slider-thumb {
           }
 
           restoreSessionState();
-          updateLogbookStats();
-          console.log("✅ Fixed Smart Compounding Ecosystem loaded!");
-        });
-  </script>
+                    updateLogbookStats();
+                    if (typeof renderRecentColorsGlobally === 'function') renderRecentColorsGlobally();
+                    console.log("✅ Fixed Smart Compounding Ecosystem loaded!");
+                  });
+            </script>
 </body>
 </html>
