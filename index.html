@@ -1256,39 +1256,34 @@ input[type="range"]::-webkit-slider-thumb {
     </div>
       </main>
 
-      <main id="settingsPage" class="glass-card page">
-          <div class="card-actions">
-            <button class="icon-btn" data-page="planPage" title="Home">
-              <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-            </button>
-            <button class="icon-btn" data-page="calcPage" title="Calculator">
-              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/><path d="M7 7h10v2H7zm0 4h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2zm-8 4h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
-            </button>
-          </div>
-          <h2>Personalize</h2>
-    <form class="settings-grid" autocomplete="off">
-      <label>Accent Color</label>
-            <div>
-              <div class="color-palette" id="accentColorPalette">
-                <div class="color-swatch" style="background: #2f82ff" data-color="#2f82ff"></div>
-                <div class="color-swatch" style="background: #21ff6a" data-color="#21ff6a"></div>
-                <div class="color-swatch" style="background: #bf4aff" data-color="#bf4aff"></div>
-                <div class="color-swatch" style="background: #ffe360" data-color="#ffe360"></div>
-                <div class="color-swatch" style="background: #ff2079" data-color="#ff2079"></div>
-                <div class="color-swatch" style="background: #ffffff" data-color="#ffffff"></div>
-                <input type="color" id="accentColor" value="#2f82ff" class="color-picker-input" title="Custom Color" />
+      <div id="settingsModal" class="modal">
+          <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <h3>Personalize</h3>
+            <form class="settings-grid" autocomplete="off">
+              <label>Accent Color</label>
+              <div>
+                <div class="color-palette" id="accentColorPalette">
+                  <div class="color-swatch" style="background: #2f82ff" data-color="#2f82ff"></div>
+                  <div class="color-swatch" style="background: #21ff6a" data-color="#21ff6a"></div>
+                  <div class="color-swatch" style="background: #bf4aff" data-color="#bf4aff"></div>
+                  <div class="color-swatch" style="background: #ffe360" data-color="#ffe360"></div>
+                  <div class="color-swatch" style="background: #ff2079" data-color="#ff2079"></div>
+                  <div class="color-swatch" style="background: #ffffff" data-color="#ffffff"></div>
+                  <input type="color" id="accentColor" value="#2f82ff" class="color-picker-input" title="Custom Color" />
+                </div>
               </div>
-            </div>
-          </form>
-    <div class="personalize-controls">
-                  <button id="editClockBtn" class="mini-btn neon">Edit Clock</button>
-                  <button id="editTimerBtn" class="mini-btn neon">Edit Timer</button>
-                  <button id="editCardBtn" class="mini-btn neon">Edit Cards, Sidebar & Menu</button>
-                  <button id="editBgBtn" class="mini-btn neon">Edit Background</button>
+            </form>
+            <div class="personalize-controls">
+              <button id="editClockBtn" class="mini-btn neon">Edit Clock</button>
+              <button id="editTimerBtn" class="mini-btn neon">Edit Timer</button>
+              <button id="editCardBtn" class="mini-btn neon">Edit Cards, Sidebar & Menu</button>
+              <button id="editBgBtn" class="mini-btn neon">Edit Background</button>
               <button id="editFontBtn" class="mini-btn neon">Edit Font</button>
               <button id="editSoundBtn" class="mini-btn neon">Edit Sound</button>
             </div>
-  </main>
+          </div>
+        </div>
 
   <audio id="sound-beep" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12c0297316.mp3"></audio>
   <audio id="sound-chime" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12c9869b0b.mp3"></audio>
