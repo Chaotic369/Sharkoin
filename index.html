@@ -1081,8 +1081,11 @@ input[type="range"]::-webkit-slider-thumb {
   <div id="modalOverlay"></div>
 
   <main id="planPage" class="glass-card page active">
-          <div class="card-actions">
-            <button class="icon-btn" data-page="calcPage" title="Calculator">
+            <div class="card-actions">
+              <button class="icon-btn theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Mode">
+                <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+              </button>
+              <button class="icon-btn" data-page="calcPage" title="Calculator">
               <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/><path d="M7 7h10v2H7zm0 4h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2zm-8 4h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
             </button>
             <button class="icon-btn" onclick="openModal('settingsModal')" title="Personalize">
@@ -1180,8 +1183,11 @@ input[type="range"]::-webkit-slider-thumb {
   </main>
 
   <main id="calcPage" class="glass-card page">
-      <div class="card-actions">
-        <button class="icon-btn" data-page="planPage" title="Home">
+        <div class="card-actions">
+          <button class="icon-btn theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Mode">
+            <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+          </button>
+          <button class="icon-btn" data-page="planPage" title="Home">
           <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
         </button>
         <button class="icon-btn" onclick="openModal('settingsModal')" title="Personalize">
@@ -2055,9 +2061,28 @@ input[type="range"]::-webkit-slider-thumb {
 
         const modalOverlay = document.getElementById("modalOverlay");
 
-    window.openModal = function openModal(modalId) {
-              try {
-                document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+    window.toggleTheme = function() {
+          const isLight = document.body.classList.toggle('light-mode');
+          localStorage.setItem('themeMode', isLight ? 'light' : 'dark');
+      
+          const cardColorInput = document.getElementById("cardColor");
+          const fontColorInput = document.getElementById("fontColor");
+      
+          if (isLight) {
+            if(cardColorInput && cardColorInput.value === "#262c3d") cardColorInput.value = "#ffffff";
+            if(fontColorInput && fontColorInput.value === "#d0d4e0") fontColorInput.value = "#1e2530";
+          } else {
+            if(cardColorInput && cardColorInput.value === "#ffffff") cardColorInput.value = "#262c3d";
+            if(fontColorInput && fontColorInput.value === "#1e2530") fontColorInput.value = "#d0d4e0";
+          }
+      
+          if (typeof updateCardStyles === 'function') updateCardStyles();
+          if (typeof updateFontStyles === 'function') updateFontStyles();
+        };
+
+        window.openModal = function openModal(modalId) {
+                  try {
+                    document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
                 const modal = document.getElementById(modalId);
                 if (modal && modalOverlay) {
                   modal.classList.add('active');
