@@ -637,6 +637,9 @@ h3 {
   border-radius: 50% !important;
   border: 1px dashed rgba(255, 255, 255, 0.4);
   transform: scale(0.9);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .color-swatch.recent-swatch:hover,
@@ -2031,22 +2034,44 @@ input[type="range"]::-webkit-slider-thumb {
 
     let recentColors = JSON.parse(localStorage.getItem('recentColors') || '[]');
 
-        window.renderRecentColorsGlobally = function() {
-          document.querySelectorAll('.color-palette').forEach(palette => {
-            palette.querySelectorAll('.recent-swatch').forEach(el => el.remove());
-            const input = palette.querySelector('.color-picker-input');
-            if (input && recentColors.length > 0) {
-              recentColors.forEach(color => {
-                const swatch = document.createElement('div');
-                swatch.className = 'color-swatch recent-swatch';
-                swatch.style.background = color;
-                swatch.dataset.color = color;
-                swatch.title = "Recent: " + color;
-                palette.insertBefore(swatch, input);
+        window.removeRecentColorGlobally = function(colorToRemove) {
+              recentColors = recentColors.filter(color => color !== colorToRemove);
+              localStorage.setItem('recentColors', JSON.stringify(recentColors));
+              renderRecentColorsGlobally();
+            };
+
+            window.renderRecentColorsGlobally = function() {
+              document.querySelectorAll('.color-palette').forEach(palette => {
+                palette.querySelectorAll('.recent-swatch').forEach(el => el.remove());
+                const input = palette.querySelector('.color-picker-input');
+                if (input && recentColors.length > 0) {
+                  recentColors.forEach(color => {
+                    const swatch = document.createElement('div');
+                    swatch.className = 'color-swatch recent-swatch';
+                    swatch.style.background = color;
+                    swatch.dataset.color = color;
+                    swatch.title = "Long press / Right-click to remove";
+            
+                    // Handles Desktop Right-Click & Mobile Default Long-Press
+                    swatch.addEventListener('contextmenu', (e) => {
+                      e.preventDefault();
+                      removeRecentColorGlobally(color);
+                    });
+
+                    // Mobile fallback timer just in case contextmenu is blocked
+                    let pressTimer;
+                    swatch.addEventListener('touchstart', () => {
+                      pressTimer = setTimeout(() => removeRecentColorGlobally(color), 600);
+                    }, { passive: true });
+                    swatch.addEventListener('touchend', () => clearTimeout(pressTimer));
+                    swatch.addEventListener('touchmove', () => clearTimeout(pressTimer));
+                    swatch.addEventListener('touchcancel', () => clearTimeout(pressTimer));
+
+                    palette.insertBefore(swatch, input);
+                  });
+                }
               });
-            }
-          });
-        };
+            };
 
         window.addRecentColorGlobally = function(color) {
           if (!recentColors.includes(color)) {
