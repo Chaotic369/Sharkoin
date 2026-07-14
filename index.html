@@ -1434,8 +1434,8 @@ input[type="range"]::-webkit-slider-thumb {
       };
     }
 
-    const navLinks = document.querySelectorAll('.drawer-link');
-            const pageNames = ["planPage", "calcPage", "settingsPage"];
+    const navLinks = document.querySelectorAll('.drawer-link, .icon-btn[data-page]');
+                const pageNames = ["planPage", "calcPage", "settingsPage"];
 
             function showPage(name) {
           pageNames.forEach(id => {
