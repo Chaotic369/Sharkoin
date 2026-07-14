@@ -2385,31 +2385,9 @@ input[type="range"]::-webkit-slider-thumb {
       localStorage.setItem('soundVolume', value);
     });
 
-    const accentColor = document.getElementById("accentColor");
-    setupColorPalette("accentColorPalette", "accentColor", (color) => {
-      document.documentElement.style.setProperty('--accent', color);
-      document.documentElement.style.setProperty('--theme-color', color);
-      localStorage.setItem('accentColor', color);
-    });
-
-    if (accentColor) {
-          accentColor.oninput = (e) => {
-            document.documentElement.style.setProperty('--accent', e.target.value);
-            document.documentElement.style.setProperty('--theme-color', e.target.value);
-            localStorage.setItem('accentColor', e.target.value);
-          };
-        }
-
-        function restoreAllSettings() {
-              try {
-                const savedAccent = localStorage.getItem('accentColor');
-                if (savedAccent) {
-          document.documentElement.style.setProperty('--accent', savedAccent);
-          document.documentElement.style.setProperty('--theme-color', savedAccent);
-          if (accentColor) accentColor.value = savedAccent;
-        }
-
-        const savedCustomSound = localStorage.getItem('customSound');
+    function restoreAllSettings() {
+                  try {
+                    const savedCustomSound = localStorage.getItem('customSound');
         if (savedCustomSound && soundCustom) {
           soundCustom.src = savedCustomSound;
         }
