@@ -621,6 +621,9 @@ h3 {
   border: 2px solid transparent;
   cursor: pointer;
   transition: all 0.3s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .color-swatch:hover {
@@ -637,9 +640,6 @@ h3 {
   border-radius: 50% !important;
   border: 1px dashed rgba(255, 255, 255, 0.4);
   transform: scale(0.9);
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
 }
 
 .color-swatch.recent-swatch:hover,
@@ -2021,23 +2021,32 @@ input[type="range"]::-webkit-slider-thumb {
     }
 
     const editClockBtn = document.getElementById("editClockBtn");
-            const editTimerBtn = document.getElementById("editTimerBtn");
-            const editCardBtn = document.getElementById("editCardBtn");
-            const editBgBtn = document.getElementById("editBgBtn");
-                        const editSoundBtn = document.getElementById("editSoundBtn");
+                const editTimerBtn = document.getElementById("editTimerBtn");
+                const editCardBtn = document.getElementById("editCardBtn");
+                const editBgBtn = document.getElementById("editBgBtn");
+                            const editSoundBtn = document.getElementById("editSoundBtn");
 
-                                                if (editClockBtn) editClockBtn.onclick = () => openModal("clockModal");
-                                                if (editTimerBtn) editTimerBtn.onclick = () => openModal("timerModal");
-                                                if (editCardBtn) editCardBtn.onclick = () => openModal("cardModal");
-                                                if (editBgBtn) editBgBtn.onclick = () => openModal("bgModal");
-                                        if (editSoundBtn) editSoundBtn.onclick = () => openModal("soundModal");
+                                                    if (editClockBtn) editClockBtn.onclick = () => openModal("clockModal");
+                                                    if (editTimerBtn) editTimerBtn.onclick = () => openModal("timerModal");
+                                                    if (editCardBtn) editCardBtn.onclick = () => openModal("cardModal");
+                                                    if (editBgBtn) editBgBtn.onclick = () => openModal("bgModal");
+                                            if (editSoundBtn) editSoundBtn.onclick = () => openModal("soundModal");
 
-    let recentColors = JSON.parse(localStorage.getItem('recentColors') || '[]');
+            let recentColors = JSON.parse(localStorage.getItem('recentColors') || '[]');
+                let hiddenColors = JSON.parse(localStorage.getItem('hiddenColors') || '[]');
 
-        window.removeRecentColorGlobally = function(colorToRemove) {
-              recentColors = recentColors.filter(color => color !== colorToRemove);
-              localStorage.setItem('recentColors', JSON.stringify(recentColors));
-              renderRecentColorsGlobally();
+            window.hideColorGlobally = function(color, isRecent) {
+              if (isRecent) {
+                recentColors = recentColors.filter(c => c !== color);
+                localStorage.setItem('recentColors', JSON.stringify(recentColors));
+                window.renderRecentColorsGlobally();
+              } else {
+                if (!hiddenColors.includes(color)) {
+                  hiddenColors.push(color);
+                  localStorage.setItem('hiddenColors', JSON.stringify(hiddenColors));
+                }
+                document.querySelectorAll(`.color-swatch:not(.recent-swatch)[data-color="${color}"]`).forEach(el => el.remove());
+              }
             };
 
             window.renderRecentColorsGlobally = function() {
@@ -2051,68 +2060,77 @@ input[type="range"]::-webkit-slider-thumb {
                     swatch.style.background = color;
                     swatch.dataset.color = color;
                     swatch.title = "Long press / Right-click to remove";
-            
-                    // Handles Desktop Right-Click & Mobile Default Long-Press
-                    swatch.addEventListener('contextmenu', (e) => {
-                      e.preventDefault();
-                      removeRecentColorGlobally(color);
-                    });
-
-                    // Mobile fallback timer just in case contextmenu is blocked
-                    let pressTimer;
-                    swatch.addEventListener('touchstart', () => {
-                      pressTimer = setTimeout(() => removeRecentColorGlobally(color), 600);
-                    }, { passive: true });
-                    swatch.addEventListener('touchend', () => clearTimeout(pressTimer));
-                    swatch.addEventListener('touchmove', () => clearTimeout(pressTimer));
-                    swatch.addEventListener('touchcancel', () => clearTimeout(pressTimer));
-
                     palette.insertBefore(swatch, input);
                   });
                 }
               });
             };
 
-        window.addRecentColorGlobally = function(color) {
-          if (!recentColors.includes(color)) {
-            recentColors.unshift(color);
-            if (recentColors.length > 6) recentColors.pop();
-            localStorage.setItem('recentColors', JSON.stringify(recentColors));
-            renderRecentColorsGlobally();
-          }
-        };
-
-        function setupColorPalette(paletteId, inputId, callback) {
-          const palette = document.getElementById(paletteId);
-          const input = document.getElementById(inputId);
-      
-          if (palette && input) {
-            palette.addEventListener('click', (e) => {
-              const swatch = e.target.closest('.color-swatch');
-              if (swatch) {
-                palette.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
-                swatch.classList.add('active');
-            
-                const color = swatch.dataset.color;
-                input.value = color;
-            
-                if (callback) callback(color);
+            window.addRecentColorGlobally = function(color) {
+              if (!recentColors.includes(color)) {
+                recentColors.unshift(color);
+                if (recentColors.length > 6) recentColors.pop();
+                localStorage.setItem('recentColors', JSON.stringify(recentColors));
+                window.renderRecentColorsGlobally();
               }
-            });
+            };
+
+            function setupColorPalette(paletteId, inputId, callback) {
+              const palette = document.getElementById(paletteId);
+              const input = document.getElementById(inputId);
+      
+              if (palette && input) {
+                palette.querySelectorAll('.color-swatch:not(.recent-swatch)').forEach(swatch => {
+                  if (hiddenColors.includes(swatch.dataset.color)) {
+                    swatch.remove();
+                  }
+                });
+
+                palette.addEventListener('click', (e) => {
+                  const swatch = e.target.closest('.color-swatch');
+                  if (swatch) {
+                    palette.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+                    swatch.classList.add('active');
+                    const color = swatch.dataset.color;
+                    input.value = color;
+                    if (callback) callback(color);
+                  }
+                });
+
+                palette.addEventListener('contextmenu', (e) => {
+                  const swatch = e.target.closest('.color-swatch');
+                  if (swatch) {
+                    e.preventDefault();
+                    window.hideColorGlobally(swatch.dataset.color, swatch.classList.contains('recent-swatch'));
+                  }
+                });
+
+                let pressTimer;
+                palette.addEventListener('touchstart', (e) => {
+                  const swatch = e.target.closest('.color-swatch');
+                  if (swatch) {
+                    pressTimer = setTimeout(() => {
+                      window.hideColorGlobally(swatch.dataset.color, swatch.classList.contains('recent-swatch'));
+                    }, 600);
+                  }
+                }, { passive: true });
+                palette.addEventListener('touchend', () => clearTimeout(pressTimer));
+                palette.addEventListener('touchmove', () => clearTimeout(pressTimer));
+                palette.addEventListener('touchcancel', () => clearTimeout(pressTimer));
         
-            input.oninput = (e) => {
-              if (callback) callback(e.target.value);
-            };
+                input.oninput = (e) => {
+                  if (callback) callback(e.target.value);
+                };
 
-            input.onchange = (e) => {
-              const color = e.target.value;
-              if (callback) callback(color);
-              addRecentColorGlobally(color);
-            };
-          }
-        }
+                input.onchange = (e) => {
+                  const color = e.target.value;
+                  if (callback) callback(color);
+                  window.addRecentColorGlobally(color);
+                };
+              }
+            }
 
-    function setupRangeInput(inputId, valueId, callback) {
+            function setupRangeInput(inputId, valueId, callback) {
       const input = document.getElementById(inputId);
       const valueSpan = document.getElementById(valueId);
       
@@ -2620,7 +2638,7 @@ input[type="range"]::-webkit-slider-thumb {
 
           restoreSessionState();
                     updateLogbookStats();
-                    if (typeof renderRecentColorsGlobally === 'function') renderRecentColorsGlobally();
+                    if (typeof window.renderRecentColorsGlobally === 'function') window.renderRecentColorsGlobally();
                     console.log("✅ Fixed Smart Compounding Ecosystem loaded!");
                   });
             </script>
