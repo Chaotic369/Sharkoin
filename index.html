@@ -25,8 +25,8 @@
 body {
   background: #1e2530;
   color: #d0d4e0;
-  font-family: 'Roboto', sans-serif, Arial, Helvetica;
-  font-size: 16px;
+  font-family: 'Inter', sans-serif, Arial, Helvetica;
+  font-size: 12px;
   margin: 0;
   overflow-x: hidden;
 }
@@ -360,9 +360,9 @@ h2 {
 }
 
 .settings-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px 24px;
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) 2fr; /* Better alignment */
+  gap: 16px;
   align-items: center;
   max-width: 100%;
   margin: 24px 0;
@@ -370,23 +370,10 @@ h2 {
 }
 
 .settings-grid label {
+  justify-self: start;
   font-weight: 500;
-  font-size: 1.05em;
-  white-space: nowrap;
-  flex: 0 0 auto;
-}
-
-.settings-grid > input,
-.settings-grid > select,
-.settings-grid > button,
-.settings-grid > div {
-  flex: 1 1 140px;
-}
-
-.settings-grid > div {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  font-size: 1.1em;
+  white-space: normal;
 }
 
 .settings-grid input,
