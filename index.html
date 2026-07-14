@@ -746,24 +746,14 @@ input[type="range"]::-webkit-slider-thumb {
 </head>
 <body>
   <div id="bgOverlay"></div>
-  
-  <header class="menu-bar">
-      <span class="app-title" id="avatarArea">
-        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9IiMyZjgyZmYiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiPgo8dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmYiIGZvbnQtc2l6ZT0iMTRweCIgZm9udC13ZWlnaHQ9IjYwMCI+VTwvdGV4dD4KPC9zdmc+CjwvY2lyY2xlPgo8L3N2Zz4K" alt="User" />
-        <span id="avatarName">User</span>
-        <span id="syncIndicator" style="width: 10px; height: 10px; border-radius: 50%; background: #ff4a4a; margin-left: 12px; box-shadow: 0 0 6px #ff4a4a; transition: all 0.3s ease;" title="Firebase Disconnected"></span>
-      </span>
-      <button id="menuBtn" class="menu-btn" aria-label="Menu">☰</button>
-    </header>
 
-  <nav id="sideDrawer" class="side-drawer">
+    <nav id="sideDrawer" class="side-drawer">
         <button class="drawer-close-btn" id="closeDrawer">&times;</button>
         <div class="drawer-links">
-          <button class="drawer-link active" data-page="planPage">Session Planner</button>
-          <button class="drawer-link" data-page="calcPage">Calculator</button>
-        <button class="drawer-link" data-page="logsPage">Logs</button>
-        <button class="drawer-link" data-page="settingsPage">Personalize</button>
-      </div>
+                  <button class="drawer-link active" data-page="planPage">Session Planner</button>
+                  <button class="drawer-link" data-page="calcPage">Calculator</button>
+                <button class="drawer-link" data-page="settingsPage">Personalize</button>
+              </div>
     </nav>
   <div id="drawerOverlay"></div>
 
@@ -968,31 +958,9 @@ input[type="range"]::-webkit-slider-thumb {
           </div>
         </form>
       </div>
-    </div>
+          </div>
 
-    
-
-  <div id="avatarModal" class="modal">
-    <div class="modal-content">
-      <button class="modal-close-btn">&times;</button>
-      <h3>Avatar Settings</h3>
-      <form class="settings-grid">
-        <label>Avatar Image</label>
-        <input type="file" id="modalAvatarUpload" accept="image/jpeg,image/png" />
-        
-        <label>Avatar Name</label>
-        <input type="text" id="avatarNameInput" placeholder="Enter your name" value="User" />
-        
-        <label>Avatar Style</label>
-        <select id="avatarStyle">
-          <option value="circle">Circle</option>
-          <option value="rounded">Rounded Square</option>
-        </select>
-      </form>
-    </div>
-  </div>
-
-  <div id="fontModal" class="modal">
+        <div id="fontModal" class="modal">
     <div class="modal-content">
       <button class="modal-close-btn">&times;</button>
       <h3>Font Settings</h3>
@@ -1235,30 +1203,9 @@ input[type="range"]::-webkit-slider-thumb {
         </table>
       </div>
     </div>
-  </main>
+      </main>
 
-  <main id="logsPage" class="glass-card page">
-      <h2>Logbook</h2>
-    
-      <div id="allLogsPanel" class="log-table">
-        <table>
-        <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>⏰</th>
-                    <th>💰</th>
-                    <th>🎯</th>
-                    <th>🏆</th>
-                    <th>📈</th>
-                  </tr>
-                </thead>
-        <tbody id="allLogsBody"></tbody>
-      </table>
-    </div>
-    <button id="exportAllBtn" class="mini-btn accent">Export All Logs</button>
-  </main>
-
-  <main id="settingsPage" class="glass-card page">
+      <main id="settingsPage" class="glass-card page">
     <h2>Personalize</h2>
     <form class="settings-grid" autocomplete="off">
       <label>Accent Color</label>
@@ -1275,14 +1222,13 @@ input[type="range"]::-webkit-slider-thumb {
             </div>
           </form>
     <div class="personalize-controls">
-              <button id="editClockBtn" class="mini-btn neon">Edit Clock</button>
-              <button id="editTimerBtn" class="mini-btn neon">Edit Timer</button>
-              <button id="editCardBtn" class="mini-btn neon">Edit Cards, Sidebar & Menu</button>
-              <button id="editBgBtn" class="mini-btn neon">Edit Background</button>
-              <button id="editAvatarBtn" class="mini-btn neon">Edit Avatar</button>
-          <button id="editFontBtn" class="mini-btn neon">Edit Font</button>
-          <button id="editSoundBtn" class="mini-btn neon">Edit Sound</button>
-        </div>
+                  <button id="editClockBtn" class="mini-btn neon">Edit Clock</button>
+                  <button id="editTimerBtn" class="mini-btn neon">Edit Timer</button>
+                  <button id="editCardBtn" class="mini-btn neon">Edit Cards, Sidebar & Menu</button>
+                  <button id="editBgBtn" class="mini-btn neon">Edit Background</button>
+              <button id="editFontBtn" class="mini-btn neon">Edit Font</button>
+              <button id="editSoundBtn" class="mini-btn neon">Edit Sound</button>
+            </div>
   </main>
 
   <audio id="sound-beep" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12c0297316.mp3"></audio>
@@ -1430,9 +1376,9 @@ input[type="range"]::-webkit-slider-thumb {
     }
 
     const navLinks = document.querySelectorAll('.drawer-link');
-        const pageNames = ["planPage", "calcPage", "logsPage", "settingsPage"];
+            const pageNames = ["planPage", "calcPage", "settingsPage"];
 
-        function showPage(name) {
+            function showPage(name) {
           pageNames.forEach(id => {
             const page = document.getElementById(id);
             if (page) {
@@ -2071,17 +2017,15 @@ input[type="range"]::-webkit-slider-thumb {
             const editTimerBtn = document.getElementById("editTimerBtn");
             const editCardBtn = document.getElementById("editCardBtn");
             const editBgBtn = document.getElementById("editBgBtn");
-            const editAvatarBtn = document.getElementById("editAvatarBtn");
-            const editFontBtn = document.getElementById("editFontBtn");
-            const editSoundBtn = document.getElementById("editSoundBtn");
+                        const editFontBtn = document.getElementById("editFontBtn");
+                        const editSoundBtn = document.getElementById("editSoundBtn");
 
-            if (editClockBtn) editClockBtn.onclick = () => openModal("clockModal");
-            if (editTimerBtn) editTimerBtn.onclick = () => openModal("timerModal");
-            if (editCardBtn) editCardBtn.onclick = () => openModal("cardModal");
-            if (editBgBtn) editBgBtn.onclick = () => openModal("bgModal");
-        if (editAvatarBtn) editAvatarBtn.onclick = () => openModal("avatarModal");
-    if (editFontBtn) editFontBtn.onclick = () => openModal("fontModal");
-    if (editSoundBtn) editSoundBtn.onclick = () => openModal("soundModal");
+                        if (editClockBtn) editClockBtn.onclick = () => openModal("clockModal");
+                        if (editTimerBtn) editTimerBtn.onclick = () => openModal("timerModal");
+                        if (editCardBtn) editCardBtn.onclick = () => openModal("cardModal");
+                        if (editBgBtn) editBgBtn.onclick = () => openModal("bgModal");
+                if (editFontBtn) editFontBtn.onclick = () => openModal("fontModal");
+                if (editSoundBtn) editSoundBtn.onclick = () => openModal("soundModal");
 
     function setupColorPalette(paletteId, inputId, callback) {
       const palette = document.getElementById(paletteId);
