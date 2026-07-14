@@ -2039,16 +2039,17 @@ input[type="range"]::-webkit-slider-thumb {
         const modalOverlay = document.getElementById("modalOverlay");
 
     function openModal(modalId) {
-      try {
-        const modal = document.getElementById(modalId);
-        if (modal && modalOverlay) {
-          modal.classList.add('active');
-          modalOverlay.classList.add('active');
+          try {
+            document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+            const modal = document.getElementById(modalId);
+            if (modal && modalOverlay) {
+              modal.classList.add('active');
+              modalOverlay.classList.add('active');
+            }
+          } catch (err) {
+            console.error(`Error opening modal ${modalId}:`, err);
+          }
         }
-      } catch (err) {
-        console.error(`Error opening modal ${modalId}:`, err);
-      }
-    }
 
     function closeModal() {
       try {
