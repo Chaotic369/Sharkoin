@@ -31,31 +31,18 @@
   --target-val-color: #ffffff;
 }
 
-body.light-mode {
-  --bg-base: #f0f4f8;
-  --text-base: #1e2530;
-  --input-base: rgba(0, 0, 0, 0.05);
-  --input-focus: rgba(0, 0, 0, 0.1);
-  --border-base: rgba(0, 0, 0, 0.2);
-  --header-bg: rgba(0, 0, 0, 0.05);
-  --icon-color: rgba(0, 0, 0, 0.6);
-  --icon-hover-bg: rgba(0, 0, 0, 0.1);
-  --target-val-color: #111827;
-}
-
 body {
   background: var(--bg-base);
-  color: var(--text-base);
+  color: #ffffff;
   font-family: 'Inter', sans-serif, Arial, Helvetica;
   font-size: 12px;
   margin: 0;
   overflow-x: hidden;
-  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .glass-card {
-  background: rgba(38, 44, 61, 0.88);
-  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.20);
+  backdrop-filter: blur(20px);
   margin: 48px auto;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
@@ -874,12 +861,6 @@ input[type="range"]::-webkit-slider-thumb {
                   <option value="font-digital7">Digital‑7</option>
                 </select>
         
-                <label>Shadow Intensity</label>
-                <div>
-                  <input type="range" id="timerShadow" min="0" max="20" value="0" />
-                  <span class="range-value" id="timerShadowVal">0</span>px
-                </div>
-        
                 <label>Theme Palette</label>
                 <span id="timerPaletteIndicator" class="palette-circle" style="background: #ff0000;"></span>
         
@@ -920,18 +901,12 @@ input[type="range"]::-webkit-slider-thumb {
                 </select>
         
                 <label>Size</label>
-                <div>
-                  <input type="range" id="clockSize" min="1.5" max="4" step="0.1" value="2.8" />
-                  <span class="range-value" id="clockSizeVal">2.8</span>rem
-                </div>
+                                <div>
+                                  <input type="range" id="clockSize" min="1.5" max="4" step="0.1" value="2.8" />
+                                  <span class="range-value" id="clockSizeVal">2.8</span>rem
+                                </div>
         
-                <label>Shadow Intensity</label>
-                <div>
-                  <input type="range" id="clockShadow" min="0" max="30" value="0" />
-                  <span class="range-value" id="clockShadowVal">0</span>px
-                </div>
-        
-                <label>Theme Palette</label>
+                                <label>Theme Palette</label>
                 <span id="clockPaletteIndicator" class="palette-circle" style="background: #ffffff;"></span>
         
                 <label>Preview</label>
@@ -944,62 +919,25 @@ input[type="range"]::-webkit-slider-thumb {
         <div class="modal-content">
           <button class="modal-close-btn">&times;</button>
           <h3>Card, Sidebar & Menu Settings</h3>
-        <form class="settings-grid">
-        <label>Card Color</label>
-        <div>
-          <div class="color-palette" id="cardColorPalette">
-                      <div class="color-swatch" style="background: #262c3d" data-color="#262c3d"></div>
-                      <div class="color-swatch" style="background: #1e2530" data-color="#1e2530"></div>
-                      <div class="color-swatch" style="background: #2d3748" data-color="#2d3748"></div>
-                      <div class="color-swatch" style="background: #4a5568" data-color="#4a5568"></div>
-                      <div class="color-swatch" style="background: #2a4365" data-color="#2a4365"></div>
-                      <div class="color-swatch" style="background: #553c9a" data-color="#553c9a"></div>
-                      <input type="color" id="cardColor" value="#262c3d" class="color-picker-input" title="Custom Color" />
-                    </div>
-        </div>
+                  <form class="settings-grid">
+                  <label>Card Transparency</label>
+                          <div>
+                            <input type="range" id="cardAlpha" min="0" max="100" value="20" />
+                            <span class="range-value" id="cardAlphaVal">20</span>%
+                          </div>
         
-        <label>Card Transparency</label>
-                <div>
-                  <input type="range" id="cardAlpha" min="0" max="100" value="88" />
-                  <span class="range-value" id="cardAlphaVal">88</span>%
-                </div>
+                          <label>Unified Blur</label>
+                                  <div>
+                                    <input type="range" id="cardBlur" min="0" max="30" value="20" />
+                                    <span class="range-value" id="cardBlurVal">20</span>px
+                                  </div>
         
-                <label>Unified Blur</label>
-                        <div>
-                          <input type="range" id="cardBlur" min="0" max="30" value="10" />
-                          <span class="range-value" id="cardBlurVal">10</span>px
-                        </div>
-        
-        <label>Card Opacity</label>
-        <div>
-          <input type="range" id="cardOpacity" min="0.1" max="1" step="0.1" value="1" />
-          <span class="range-value" id="cardOpacityVal">1</span>
-        </div>
-        
-        <label>Card Corners</label>
-        <div>
-          <input type="range" id="cardCorners" min="0" max="30" value="16" />
-          <span class="range-value" id="cardCornersVal">16</span>px
-        </div>
-        
-        <label>Shadow/Glow Color</label>
-        <div>
-          <div class="color-palette" id="cardShadowPalette">
-                      <div class="color-swatch" style="background: #000000" data-color="#000000"></div>
-                      <div class="color-swatch" style="background: #25abff" data-color="#25abff"></div>
-                      <div class="color-swatch" style="background: #21ff6a" data-color="#21ff6a"></div>
-                      <div class="color-swatch" style="background: #bf4aff" data-color="#bf4aff"></div>
-                      <div class="color-swatch" style="background: #ff2079" data-color="#ff2079"></div>
-                      <input type="color" id="cardShadowColor" value="#000000" class="color-picker-input" title="Custom Color" />
-                    </div>
-        </div>
-        
-        <label>Shadow Intensity</label>
-        <div>
-          <input type="range" id="cardShadowIntensity" min="0" max="40" value="20" />
-          <span class="range-value" id="cardShadowIntensityVal">20</span>px
-        </div>
-      </form>
+                  <label>Card Corners</label>
+                  <div>
+                    <input type="range" id="cardCorners" min="0" max="30" value="16" />
+                    <span class="range-value" id="cardCornersVal">16</span>px
+                  </div>
+                </form>
     </div>
   </div>
 
@@ -1030,32 +968,7 @@ input[type="range"]::-webkit-slider-thumb {
       </div>
           </div>
 
-        <div id="fontModal" class="modal">
-    <div class="modal-content">
-      <button class="modal-close-btn">&times;</button>
-      <h3>Font Settings</h3>
-      <form class="settings-grid">
-        <label>Font Color</label>
-        <div>
-          <div class="color-palette" id="fontColorPalette">
-                      <div class="color-swatch" style="background: #d0d4e0" data-color="#d0d4e0"></div>
-                      <div class="color-swatch" style="background: #ffffff" data-color="#ffffff"></div>
-                      <div class="color-swatch" style="background: #25abff" data-color="#25abff"></div>
-                      <div class="color-swatch" style="background: #21ff6a" data-color="#21ff6a"></div>
-                      <input type="color" id="fontColor" value="#d0d4e0" class="color-picker-input" title="Custom Color" />
-                    </div>
-        </div>
-        
-        <label>Font Shadow</label>
-                <div>
-                  <input type="range" min="0" max="10" id="fontShadow" value="0" />
-                  <span class="range-value" id="fontShadowVal">0</span>px
-                </div>
-      </form>
-    </div>
-  </div>
-
-  <div id="soundModal" class="modal">
+        <div id="soundModal" class="modal">
     <div class="modal-content">
       <button class="modal-close-btn">&times;</button>
       <h3>Sound Alert Settings</h3>
@@ -1082,9 +995,6 @@ input[type="range"]::-webkit-slider-thumb {
 
   <main id="planPage" class="glass-card page active">
             <div class="card-actions">
-              <button class="icon-btn theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Mode">
-                <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
-              </button>
               <button class="icon-btn" data-page="calcPage" title="Calculator">
               <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/><path d="M7 7h10v2H7zm0 4h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2zm-8 4h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
             </button>
@@ -1184,9 +1094,6 @@ input[type="range"]::-webkit-slider-thumb {
 
   <main id="calcPage" class="glass-card page">
         <div class="card-actions">
-          <button class="icon-btn theme-toggle-btn" onclick="toggleTheme()" title="Toggle Light/Dark Mode">
-            <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
-          </button>
           <button class="icon-btn" data-page="planPage" title="Home">
           <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
         </button>
@@ -1302,8 +1209,7 @@ input[type="range"]::-webkit-slider-thumb {
               <button id="editTimerBtn" class="mini-btn neon">Edit Timer</button>
               <button id="editCardBtn" class="mini-btn neon">Edit Cards, Sidebar & Menu</button>
               <button id="editBgBtn" class="mini-btn neon">Edit Background</button>
-              <button id="editFontBtn" class="mini-btn neon">Edit Font</button>
-              <button id="editSoundBtn" class="mini-btn neon">Edit Sound</button>
+                            <button id="editSoundBtn" class="mini-btn neon">Edit Sound</button>
             </div>
           </div>
         </div>
@@ -2061,26 +1967,7 @@ input[type="range"]::-webkit-slider-thumb {
 
         const modalOverlay = document.getElementById("modalOverlay");
 
-    window.toggleTheme = function() {
-          const isLight = document.body.classList.toggle('light-mode');
-          localStorage.setItem('themeMode', isLight ? 'light' : 'dark');
-      
-          const cardColorInput = document.getElementById("cardColor");
-          const fontColorInput = document.getElementById("fontColor");
-      
-          if (isLight) {
-            if(cardColorInput && cardColorInput.value === "#262c3d") cardColorInput.value = "#ffffff";
-            if(fontColorInput && fontColorInput.value === "#d0d4e0") fontColorInput.value = "#1e2530";
-          } else {
-            if(cardColorInput && cardColorInput.value === "#ffffff") cardColorInput.value = "#262c3d";
-            if(fontColorInput && fontColorInput.value === "#1e2530") fontColorInput.value = "#d0d4e0";
-          }
-      
-          if (typeof updateCardStyles === 'function') updateCardStyles();
-          if (typeof updateFontStyles === 'function') updateFontStyles();
-        };
-
-        window.openModal = function openModal(modalId) {
+    window.openModal = function openModal(modalId) {
                   try {
                     document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
                 const modal = document.getElementById(modalId);
@@ -2114,15 +2001,13 @@ input[type="range"]::-webkit-slider-thumb {
             const editTimerBtn = document.getElementById("editTimerBtn");
             const editCardBtn = document.getElementById("editCardBtn");
             const editBgBtn = document.getElementById("editBgBtn");
-                        const editFontBtn = document.getElementById("editFontBtn");
                         const editSoundBtn = document.getElementById("editSoundBtn");
 
-                        if (editClockBtn) editClockBtn.onclick = () => openModal("clockModal");
-                        if (editTimerBtn) editTimerBtn.onclick = () => openModal("timerModal");
-                        if (editCardBtn) editCardBtn.onclick = () => openModal("cardModal");
-                        if (editBgBtn) editBgBtn.onclick = () => openModal("bgModal");
-                if (editFontBtn) editFontBtn.onclick = () => openModal("fontModal");
-                if (editSoundBtn) editSoundBtn.onclick = () => openModal("soundModal");
+                                                if (editClockBtn) editClockBtn.onclick = () => openModal("clockModal");
+                                                if (editTimerBtn) editTimerBtn.onclick = () => openModal("timerModal");
+                                                if (editCardBtn) editCardBtn.onclick = () => openModal("cardModal");
+                                                if (editBgBtn) editBgBtn.onclick = () => openModal("bgModal");
+                                        if (editSoundBtn) editSoundBtn.onclick = () => openModal("soundModal");
 
     function setupColorPalette(paletteId, inputId, callback) {
       const palette = document.getElementById(paletteId);
@@ -2214,15 +2099,6 @@ input[type="range"]::-webkit-slider-thumb {
       };
     }
 
-    setupRangeInput("timerShadow", "timerShadowVal", (value) => {
-      const shadow = value > 0 ? `0 0 ${value}px currentColor` : 'none';
-      if (timerEl) timerEl.style.textShadow = shadow;
-      if (timerPlanEl) timerPlanEl.style.textShadow = shadow;
-      const timerPreview = document.getElementById("timerPreview");
-      if (timerPreview) timerPreview.style.textShadow = shadow;
-      localStorage.setItem('timerShadow', value);
-    });
-
     setupColorPalette("clockColorPalette", "clockColor", (color) => {
       if (digitalClock) digitalClock.style.color = color;
       const clockPreview = document.getElementById("clockPreview");
@@ -2262,62 +2138,46 @@ input[type="range"]::-webkit-slider-thumb {
       localStorage.setItem('clockSize', value);
     });
 
-    setupRangeInput("clockShadow", "clockShadowVal", (value) => {
-      const shadow = value > 0 ? `0 0 ${value}px currentColor` : 'none';
-      if (digitalClock) digitalClock.style.textShadow = shadow;
-      const clockPreview = document.getElementById("clockPreview");
-      if (clockPreview) clockPreview.style.textShadow = shadow;
-      localStorage.setItem('clockShadow', value);
-    });
-
     function updateCardStyles() {
-          const color = document.getElementById("cardColor")?.value || "#262c3d";
-          const alpha = document.getElementById("cardAlpha")?.value || "88";
-          const blur = document.getElementById("cardBlur")?.value || "10";
-          const opacity = document.getElementById("cardOpacity")?.value || "1";
-          const corners = document.getElementById("cardCorners")?.value || "16";
-          const shadowColor = document.getElementById("cardShadowColor")?.value || "#000000";
-          const shadowIntensity = document.getElementById("cardShadowIntensity")?.value || "20";
+              const alpha = document.getElementById("cardAlpha")?.value || "20";
+              const blur = document.getElementById("cardBlur")?.value || "20";
+              const corners = document.getElementById("cardCorners")?.value || "16";
       
-          const background = hex2rgba(color, alpha / 100);
-          const backdropFilter = `blur(${blur}px)`;
-          const borderRadius = corners + "px";
-          const boxShadow = shadowIntensity === "0" ? "none" : `0 4px ${shadowIntensity}px ${shadowColor}`;
+              const background = hex2rgba("#000000", alpha / 100);
+              const backdropFilter = `blur(${blur}px)`;
+              const borderRadius = corners + "px";
+              const boxShadow = "none";
       
-          document.querySelectorAll('.glass-card, .modal-content').forEach(card => {
-            card.style.background = background;
-            card.style.backdropFilter = backdropFilter;
-            card.style.borderRadius = borderRadius;
-            card.style.boxShadow = boxShadow;
-            card.style.opacity = opacity;
-          });
+              document.querySelectorAll('.glass-card, .modal-content').forEach(card => {
+                card.style.background = background;
+                card.style.backdropFilter = backdropFilter;
+                card.style.borderRadius = borderRadius;
+                card.style.boxShadow = boxShadow;
+                card.style.opacity = "1";
+              });
       
-          const sideDrawer = document.getElementById("sideDrawer");
-                    if (sideDrawer) {
-                      sideDrawer.style.background = background;
-                      sideDrawer.style.backdropFilter = backdropFilter;
-                      sideDrawer.style.boxShadow = boxShadow;
-                    }
+              const sideDrawer = document.getElementById("sideDrawer");
+                        if (sideDrawer) {
+                          sideDrawer.style.background = background;
+                          sideDrawer.style.backdropFilter = backdropFilter;
+                          sideDrawer.style.boxShadow = boxShadow;
+                        }
 
-                    const menuBar = document.querySelector(".menu-bar");
-                    if (menuBar) {
-                      menuBar.style.background = background;
-                      menuBar.style.backdropFilter = backdropFilter;
-                      menuBar.style.boxShadow = boxShadow;
-                    }
+                        const menuBar = document.querySelector(".menu-bar");
+                        if (menuBar) {
+                          menuBar.style.background = background;
+                          menuBar.style.backdropFilter = backdropFilter;
+                          menuBar.style.boxShadow = boxShadow;
+                        }
       
-                    localStorage.setItem('cardSettings', JSON.stringify({
-            color, alpha, blur, opacity, corners, shadowColor, shadowIntensity
-          }));
-        }
+                        localStorage.setItem('cardSettings', JSON.stringify({
+                alpha, blur, corners
+              }));
+            }
 
-    setupColorPalette("cardColorPalette", "cardColor", updateCardStyles);
-    setupColorPalette("cardShadowPalette", "cardShadowColor", updateCardStyles);
-    setupRangeInput("cardAlpha", "cardAlphaVal", updateCardStyles);
-    setupRangeInput("cardBlur", "cardBlurVal", updateCardStyles);
-    setupRangeInput("cardOpacity", "cardOpacityVal", updateCardStyles);
-    setupRangeInput("cardCorners", "cardCornersVal", updateCardStyles);
-    setupRangeInput("cardShadowIntensity", "cardShadowIntensityVal", updateCardStyles);
+        setupRangeInput("cardAlpha", "cardAlphaVal", updateCardStyles);
+        setupRangeInput("cardBlur", "cardBlurVal", updateCardStyles);
+        setupRangeInput("cardCorners", "cardCornersVal", updateCardStyles);
 
     const modalBgImageUpload = document.getElementById("modalBgImageUpload");
     const bgOverlay = document.getElementById("bgOverlay");
@@ -2397,24 +2257,6 @@ input[type="range"]::-webkit-slider-thumb {
       };
     }
 
-    function updateFontStyles() {
-          const color = document.getElementById("fontColor")?.value || "#d0d4e0";
-          const shadow = document.getElementById("fontShadow")?.value || "0";
-      
-          if (color === "#d0d4e0" || color === "#1e2530") {
-            document.body.style.color = '';
-          } else {
-            document.body.style.color = color;
-          }
-      
-          document.body.style.textShadow = shadow > 0 ? `0 0 ${shadow}px currentColor` : 'none';
-      
-          localStorage.setItem('fontSettings', JSON.stringify({ color, shadow }));
-        }
-
-        setupColorPalette("fontColorPalette", "fontColor", updateFontStyles);
-        setupRangeInput("fontShadow", "fontShadowVal", updateFontStyles);
-
     const customSoundUpload = document.getElementById("customSoundUpload");
     const playSoundBtn = document.getElementById("playSoundBtn");
     const pauseSoundBtn = document.getElementById("pauseSoundBtn");
@@ -2469,9 +2311,6 @@ input[type="range"]::-webkit-slider-thumb {
 
         function restoreAllSettings() {
               try {
-                const savedMode = localStorage.getItem('themeMode');
-                if (savedMode === 'light') document.body.classList.add('light-mode');
-
                 const savedAccent = localStorage.getItem('accentColor');
                 if (savedAccent) {
           document.documentElement.style.setProperty('--accent', savedAccent);
@@ -2514,100 +2353,81 @@ input[type="range"]::-webkit-slider-thumb {
         }
 
         if (savedAvatarStyle && avatarStyle) {
-          avatarStyle.value = savedAvatarStyle;
-        }
-
-        const savedFontSettings = localStorage.getItem('fontSettings');
-                if (savedFontSettings) {
-                  const settings = JSON.parse(savedFontSettings);
-                  if (settings.color) document.body.style.color = settings.color;
-                  if (settings.shadow !== undefined) document.body.style.textShadow = settings.shadow > 0 ? `0 0 ${settings.shadow}px currentColor` : 'none';
+                  avatarStyle.value = savedAvatarStyle;
                 }
 
-        const savedTimerColor = localStorage.getItem('timerColor');
+                const savedTimerColor = localStorage.getItem('timerColor');
         const savedTimerFont = localStorage.getItem('timerFont');
         const savedHomeTimerSize = localStorage.getItem('homeTimerSize');
-        const savedSessionTimerSize = localStorage.getItem('sessionTimerSize');
-        const savedTimerShadow = localStorage.getItem('timerShadow');
+                const savedSessionTimerSize = localStorage.getItem('sessionTimerSize');
 
-        if (savedTimerColor) {
-          [timerEl, timerPlanEl].forEach(el => {
-            if (el) el.style.color = savedTimerColor;
-          });
-        }
-        if (savedTimerFont) {
-          [timerEl, timerPlanEl].forEach(el => {
-            if (el) el.classList.add(savedTimerFont);
-          });
-        }
-        if (savedHomeTimerSize && timerEl) {
-          timerEl.style.fontSize = savedHomeTimerSize + 'rem';
-          timerEl.style.lineHeight = '1.1';
-          const container = timerEl.parentElement;
-          if (container) {
-            container.style.height = "auto";
-            container.style.minHeight = "auto";
-            container.style.overflow = "visible";
-          }
-        }
-        if (savedSessionTimerSize && timerPlanEl) {
-          timerPlanEl.style.fontSize = savedSessionTimerSize + 'rem';
-          timerPlanEl.style.lineHeight = '1.1';
-          const container = timerPlanEl.parentElement;
-          if (container) {
-            container.style.height = "auto";
-            container.style.minHeight = "auto";
-            container.style.overflow = "visible";
-          }
-        }
-        if (savedTimerShadow) {
-          const shadow = savedTimerShadow > 0 ? `0 0 ${savedTimerShadow}px currentColor` : 'none';
-          [timerEl, timerPlanEl].forEach(el => {
-            if (el) el.style.textShadow = shadow;
-          });
-        }
-
-        const savedClockColor = localStorage.getItem('clockColor');
-        const savedClockFont = localStorage.getItem('clockFont');
-        const savedClockSize = localStorage.getItem('clockSize');
-        const savedClockShadow = localStorage.getItem('clockShadow');
-
-        if (savedClockColor && digitalClock) {
-          digitalClock.style.color = savedClockColor;
-        }
-        if (savedClockFont && digitalClock) {
-          digitalClock.classList.add(savedClockFont);
-        }
-        if (savedClockSize && digitalClock) {
-          digitalClock.style.fontSize = savedClockSize + 'rem';
-          digitalClock.style.lineHeight = '1.1';
-          const container = digitalClock.parentElement;
-          if (container) {
-            container.style.height = "auto";
-            container.style.minHeight = "auto";
-            container.style.overflow = "visible";
-          }
-        }
-        if (savedClockShadow && digitalClock) {
-          const shadow = savedClockShadow > 0 ? `0 0 ${savedClockShadow}px currentColor` : 'none';
-          digitalClock.style.textShadow = shadow;
-        }
-
-        const savedCardSettings = localStorage.getItem('cardSettings');
-                if (savedCardSettings) {
-                  const settings = JSON.parse(savedCardSettings);
-                  const background = hex2rgba(settings.color, settings.alpha / 100);
-                  const backdropFilter = `blur(${settings.blur}px)`;
-                  const borderRadius = settings.corners + "px";
-                  const boxShadow = settings.shadowIntensity === "0" ? "none" : `0 4px ${settings.shadowIntensity}px ${settings.shadowColor}`;
-          
-                  document.querySelectorAll('.glass-card, .modal-content').forEach(card => {
-                    card.style.background = background;
-                    card.style.backdropFilter = backdropFilter;
-                    card.style.borderRadius = borderRadius;
-                    card.style.boxShadow = boxShadow;
-                    card.style.opacity = settings.opacity;
+                if (savedTimerColor) {
+                  [timerEl, timerPlanEl].forEach(el => {
+                    if (el) el.style.color = savedTimerColor;
                   });
+                }
+                if (savedTimerFont) {
+                  [timerEl, timerPlanEl].forEach(el => {
+                    if (el) el.classList.add(savedTimerFont);
+                  });
+                }
+                if (savedHomeTimerSize && timerEl) {
+                  timerEl.style.fontSize = savedHomeTimerSize + 'rem';
+                  timerEl.style.lineHeight = '1.1';
+                  const container = timerEl.parentElement;
+                  if (container) {
+                    container.style.height = "auto";
+                    container.style.minHeight = "auto";
+                    container.style.overflow = "visible";
+                  }
+                }
+                if (savedSessionTimerSize && timerPlanEl) {
+                  timerPlanEl.style.fontSize = savedSessionTimerSize + 'rem';
+                  timerPlanEl.style.lineHeight = '1.1';
+                  const container = timerPlanEl.parentElement;
+                  if (container) {
+                    container.style.height = "auto";
+                    container.style.minHeight = "auto";
+                    container.style.overflow = "visible";
+                  }
+                }
+
+                const savedClockColor = localStorage.getItem('clockColor');
+                const savedClockFont = localStorage.getItem('clockFont');
+                const savedClockSize = localStorage.getItem('clockSize');
+
+                if (savedClockColor && digitalClock) {
+                  digitalClock.style.color = savedClockColor;
+                }
+                if (savedClockFont && digitalClock) {
+                  digitalClock.classList.add(savedClockFont);
+                }
+                if (savedClockSize && digitalClock) {
+                  digitalClock.style.fontSize = savedClockSize + 'rem';
+                  digitalClock.style.lineHeight = '1.1';
+                  const container = digitalClock.parentElement;
+                  if (container) {
+                    container.style.height = "auto";
+                    container.style.minHeight = "auto";
+                    container.style.overflow = "visible";
+                  }
+                }
+
+                const savedCardSettings = localStorage.getItem('cardSettings');
+                        if (savedCardSettings) {
+                          const settings = JSON.parse(savedCardSettings);
+                          const background = hex2rgba("#000000", settings.alpha / 100);
+                          const backdropFilter = `blur(${settings.blur}px)`;
+                          const borderRadius = settings.corners + "px";
+                          const boxShadow = "none";
+          
+                          document.querySelectorAll('.glass-card, .modal-content').forEach(card => {
+                            card.style.background = background;
+                            card.style.backdropFilter = backdropFilter;
+                            card.style.borderRadius = borderRadius;
+                            card.style.boxShadow = boxShadow;
+                            card.style.opacity = "1";
+                          });
           
                   const sideDrawer = document.getElementById("sideDrawer");
                                     if (sideDrawer) {
