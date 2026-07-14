@@ -2139,43 +2139,62 @@ input[type="range"]::-webkit-slider-thumb {
     });
 
     function updateCardStyles() {
-              const alpha = document.getElementById("cardAlpha")?.value || "20";
-              const blur = document.getElementById("cardBlur")?.value || "20";
-              const corners = document.getElementById("cardCorners")?.value || "16";
+                  const alpha = document.getElementById("cardAlpha")?.value || "20";
+                  const blur = document.getElementById("cardBlur")?.value || "20";
+                  const corners = document.getElementById("cardCorners")?.value || "16";
       
-              const background = hex2rgba("#000000", alpha / 100);
-              const backdropFilter = `blur(${blur}px)`;
-              const borderRadius = corners + "px";
-              const boxShadow = "none";
+                  const background = hex2rgba("#000000", alpha / 100);
+                  const backdropFilter = `blur(${blur}px)`;
+                  const boxShadow = "none";
+          
+                  let dynamicStyle = document.getElementById("dynamic-corners");
+                  if (!dynamicStyle) {
+                    dynamicStyle = document.createElement("style");
+                    dynamicStyle.id = "dynamic-corners";
+                    document.head.appendChild(dynamicStyle);
+                  }
+          
+                  const rCard = corners;
+                  const rBtn = Math.max(4, Math.round(corners * 0.75));
+                  const rSm = Math.max(2, Math.round(corners * 0.5));
+          
+                  dynamicStyle.innerHTML = `
+                    .glass-card, .modal-content, .warning-popup { border-radius: ${rCard}px !important; }
+                    .menu-bar { border-radius: 0 0 ${rCard}px ${rCard}px !important; }
+                    .side-drawer { border-radius: 0 ${rCard}px ${rCard}px 0 !important; }
+                    .main-btn, .mini-btn.neon, .settings-grid input, .settings-grid select, .settings-grid button, .target-info-grid, .calc-results, .big-timer { border-radius: ${rBtn}px !important; }
+                    .drawer-link, .mini-watch, .bg-thumb, .info-badge, .alert-bar, .color-swatch, .color-picker-input, .period-tab, .results-container, .calc-summary, .icon-btn { border-radius: ${rSm}px !important; }
+                    .color-picker-input::-webkit-color-swatch, .color-picker-input::-moz-color-swatch { border-radius: ${rSm}px !important; }
+                    .drawer-link.active, .drawer-link:focus { border-radius: 0 ${rSm}px ${rSm}px 0 !important; }
+                  `;
       
-              document.querySelectorAll('.glass-card, .modal-content').forEach(card => {
-                card.style.background = background;
-                card.style.backdropFilter = backdropFilter;
-                card.style.borderRadius = borderRadius;
-                card.style.boxShadow = boxShadow;
-                card.style.opacity = "1";
-              });
+                  document.querySelectorAll('.glass-card, .modal-content').forEach(card => {
+                    card.style.background = background;
+                    card.style.backdropFilter = backdropFilter;
+                    card.style.boxShadow = boxShadow;
+                    card.style.opacity = "1";
+                  });
       
-              const sideDrawer = document.getElementById("sideDrawer");
-                        if (sideDrawer) {
-                          sideDrawer.style.background = background;
-                          sideDrawer.style.backdropFilter = backdropFilter;
-                          sideDrawer.style.boxShadow = boxShadow;
-                        }
+                  const sideDrawer = document.getElementById("sideDrawer");
+                            if (sideDrawer) {
+                              sideDrawer.style.background = background;
+                              sideDrawer.style.backdropFilter = backdropFilter;
+                              sideDrawer.style.boxShadow = boxShadow;
+                            }
 
-                        const menuBar = document.querySelector(".menu-bar");
-                        if (menuBar) {
-                          menuBar.style.background = background;
-                          menuBar.style.backdropFilter = backdropFilter;
-                          menuBar.style.boxShadow = boxShadow;
-                        }
+                            const menuBar = document.querySelector(".menu-bar");
+                            if (menuBar) {
+                              menuBar.style.background = background;
+                              menuBar.style.backdropFilter = backdropFilter;
+                              menuBar.style.boxShadow = boxShadow;
+                            }
       
-                        localStorage.setItem('cardSettings', JSON.stringify({
-                alpha, blur, corners
-              }));
-            }
+                            localStorage.setItem('cardSettings', JSON.stringify({
+                    alpha, blur, corners
+                  }));
+                }
 
-        setupRangeInput("cardAlpha", "cardAlphaVal", updateCardStyles);
+            setupRangeInput("cardAlpha", "cardAlphaVal", updateCardStyles);
         setupRangeInput("cardBlur", "cardBlurVal", updateCardStyles);
         setupRangeInput("cardCorners", "cardCornersVal", updateCardStyles);
 
@@ -2414,37 +2433,22 @@ input[type="range"]::-webkit-slider-thumb {
                 }
 
                 const savedCardSettings = localStorage.getItem('cardSettings');
-                        if (savedCardSettings) {
-                          const settings = JSON.parse(savedCardSettings);
-                          const background = hex2rgba("#000000", settings.alpha / 100);
-                          const backdropFilter = `blur(${settings.blur}px)`;
-                          const borderRadius = settings.corners + "px";
-                          const boxShadow = "none";
-          
-                          document.querySelectorAll('.glass-card, .modal-content').forEach(card => {
-                            card.style.background = background;
-                            card.style.backdropFilter = backdropFilter;
-                            card.style.borderRadius = borderRadius;
-                            card.style.boxShadow = boxShadow;
-                            card.style.opacity = "1";
-                          });
-          
-                  const sideDrawer = document.getElementById("sideDrawer");
-                                    if (sideDrawer) {
-                                      sideDrawer.style.background = background;
-                                      sideDrawer.style.backdropFilter = backdropFilter;
-                                      sideDrawer.style.boxShadow = boxShadow;
-                                    }
+                                                if (savedCardSettings) {
+                                                  const settings = JSON.parse(savedCardSettings);
+                  
+                                                  if (document.getElementById("cardAlpha")) document.getElementById("cardAlpha").value = settings.alpha;
+                                                  if (document.getElementById("cardAlphaVal")) document.getElementById("cardAlphaVal").textContent = settings.alpha;
+                  
+                                                  if (document.getElementById("cardBlur")) document.getElementById("cardBlur").value = settings.blur;
+                                                  if (document.getElementById("cardBlurVal")) document.getElementById("cardBlurVal").textContent = settings.blur;
+                  
+                                                  if (document.getElementById("cardCorners")) document.getElementById("cardCorners").value = settings.corners;
+                                                  if (document.getElementById("cardCornersVal")) document.getElementById("cardCornersVal").textContent = settings.corners;
+                  
+                                                  if (typeof updateCardStyles === 'function') updateCardStyles();
+                                                  }
 
-                                    const menuBar = document.querySelector(".menu-bar");
-                                    if (menuBar) {
-                                      menuBar.style.background = background;
-                                      menuBar.style.backdropFilter = backdropFilter;
-                                      menuBar.style.boxShadow = boxShadow;
-                                    }
-                                  }
-
-                          const savedVolume = localStorage.getItem('soundVolume');
+                                          const savedVolume = localStorage.getItem('soundVolume');
         if (savedVolume) {
           if (soundCustom) soundCustom.volume = savedVolume / 100;
           if (soundBeep) soundBeep.volume = savedVolume / 100;
