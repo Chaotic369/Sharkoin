@@ -2401,7 +2401,12 @@ input[type="range"]::-webkit-slider-thumb {
           const color = document.getElementById("fontColor")?.value || "#d0d4e0";
           const shadow = document.getElementById("fontShadow")?.value || "0";
       
-          document.body.style.color = color;
+          if (color === "#d0d4e0" || color === "#1e2530") {
+            document.body.style.color = '';
+          } else {
+            document.body.style.color = color;
+          }
+      
           document.body.style.textShadow = shadow > 0 ? `0 0 ${shadow}px currentColor` : 'none';
       
           localStorage.setItem('fontSettings', JSON.stringify({ color, shadow }));
@@ -2463,9 +2468,12 @@ input[type="range"]::-webkit-slider-thumb {
         }
 
         function restoreAllSettings() {
-      try {
-        const savedAccent = localStorage.getItem('accentColor');
-        if (savedAccent) {
+              try {
+                const savedMode = localStorage.getItem('themeMode');
+                if (savedMode === 'light') document.body.classList.add('light-mode');
+
+                const savedAccent = localStorage.getItem('accentColor');
+                if (savedAccent) {
           document.documentElement.style.setProperty('--accent', savedAccent);
           document.documentElement.style.setProperty('--theme-color', savedAccent);
           if (accentColor) accentColor.value = savedAccent;
