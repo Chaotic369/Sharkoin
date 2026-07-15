@@ -1534,8 +1534,7 @@ input[type="range"]::-webkit-slider-thumb {
     const sessionPanel = document.getElementById("sessionPanel");
     const currentPartEl = document.getElementById("currentPart");
     const totalPartsEl = document.getElementById("totalParts");
-    const planInfo = document.getElementById("planInfo");
-    const writtenBalanceEl = document.getElementById("writtenBalance");
+        const writtenBalanceEl = document.getElementById("writtenBalance");
     const targetEndBalanceEl = document.getElementById("targetEndBalance");
     const remainingGoalEl = document.getElementById("remainingGoal");
     const remainingGoalPctEl = document.getElementById("remainingGoalPct");
@@ -1644,9 +1643,9 @@ input[type="range"]::-webkit-slider-thumb {
           const usableHours = calculateAvailableHoursLocal();
 
           if (planStartBalance <= 0 || dailyPct <= 0 || totalParts <= 0 || hours <= 0) {
-            if (planInfo) planInfo.textContent = "Please enter valid values.";
-            return;
-          }
+                      showWarning("Please enter valid values.");
+                      return;
+                    }
 
           startBalance = planStartBalance;
           currentPart = 1;
@@ -1665,13 +1664,13 @@ input[type="range"]::-webkit-slider-thumb {
           if (totalPartsEl) totalPartsEl.textContent = totalParts;
 
           dailyGoal = planStartBalance * (1 + dailyPct / 100);
-          if (planInfo) planInfo.textContent = `Session ready! Log your first part to begin the timer.`;
-          updateTargetInfo();
+                    showWarning("Session ready! Log your first part to begin the timer.");
+                    updateTargetInfo();
           saveSessionState();
         } catch (err) {
-          console.error("Error starting session:", err);
-          if (planInfo) planInfo.textContent = "Error starting session. Please try again.";
-        }
+                  console.error("Error starting session:", err);
+                  showWarning("Error starting session. Please try again.");
+                }
       };
     }
 
