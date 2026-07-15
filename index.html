@@ -795,6 +795,72 @@ input[type="range"]::-webkit-slider-thumb {
   opacity: 1;
 }
 
+.calc-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 16px 0;
+}
+.calc-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.calc-group label {
+  font-size: 0.95em;
+  font-weight: 500;
+  color: #d0d4e0;
+  margin: 0;
+  padding-left: 2px;
+}
+.calc-grid input,
+.calc-grid select {
+  padding: 10px 14px;
+  font-size: 1em;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.2s;
+}
+.calc-grid input:focus,
+.calc-grid select:focus {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: rgba(52, 152, 219, 0.5);
+}
+.calc-row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+.calc-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: end;
+}
+.calc-btn-wrapper {
+  height: 42px;
+}
+.calc-btn-wrapper button {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: 8px !important;
+  background: rgba(115, 158, 59, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.calc-btn-wrapper button:hover {
+  background: rgba(115, 158, 59, 1) !important;
+}
+
 @media (max-width: 600px) {
   .glass-card {
     max-width: 92vw;
@@ -1169,38 +1235,59 @@ input[type="range"]::-webkit-slider-thumb {
           </div>
         </div>
 
-        <form id="calcForm" autocomplete="off" class="settings-grid">
-          <label>Principal</label>
-          <input type="number" id="calcPrincipal" min="0" step="0.00000001" class="part-input" />
+        <form id="calcForm" autocomplete="off" class="calc-grid">
+              <div class="calc-group">
+                <label>Principal amount:</label>
+                <input type="number" id="calcPrincipal" min="0" step="0.00000001" />
+              </div>
       
-          <label>Interest %/day</label>
-          <input type="number" id="calcRate" min="0" step="0.01" max="100" class="part-input" />
+              <div class="calc-group">
+                <label>Rate (%):</label>
+                <input type="number" id="calcRate" min="0" step="0.01" max="100" />
+              </div>
       
-          <label>Years</label>
-          <input type="number" id="calcYears" min="0" value="0" class="part-input" />
+              <div class="calc-row-3">
+                <div class="calc-group">
+                  <label>Years:</label>
+                  <input type="number" id="calcYears" min="0" value="0" />
+                </div>
+                <div class="calc-group">
+                  <label>Months:</label>
+                  <input type="number" id="calcMonths" min="0" max="11" value="0" />
+                </div>
+                <div class="calc-group">
+                  <label>Days:</label>
+                  <input type="number" id="calcDays" min="0" max="31" value="0" />
+                </div>
+              </div>
       
-          <label>Months</label>
-          <input type="number" id="calcMonths" min="0" max="11" value="0" class="part-input" />
+              <div class="calc-row-2" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; margin-top: 8px;">
+                <div class="calc-group">
+                  <label>Daily reinvest rate:</label>
+                  <select id="calcReinvest">
+                    <option value="1">100%</option>
+                    <option value="0.5">50%</option>
+                    <option value="0">0%</option>
+                  </select>
+                </div>
+                <div class="calc-group">
+                  <label>Additional contributions:</label>
+                  <input type="number" id="calcContribution" min="0" step="0.00000001" />
+                </div>
+              </div>
       
-          <label>Days</label>
-          <input type="number" id="calcDays" min="0" max="31" value="0" class="part-input" />
-      
-          <label>Reinvest Rate</label>
-          <select id="calcReinvest" class="part-input">
-            <option value="1">100%</option>
-            <option value="0.5">50%</option>
-            <option value="0">0%</option>
-          </select>
-      
-          <label>Contribution</label>
-          <input type="number" id="calcContribution" min="0" step="0.00000001" class="part-input" />
-      
-          <label>Start Date</label>
-          <input type="date" id="calcDate" class="part-input" />
-      
-          <label></label>
-          <button class="main-btn" type="submit">Calculate</button>
-        </form>
+              <div class="calc-row-2" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; margin-top: 8px;">
+                <div class="calc-group">
+                  <label>Start date?</label>
+                  <input type="date" id="calcDate" />
+                </div>
+                <div class="calc-btn-wrapper">
+                  <button class="main-btn" type="submit">
+                    <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/><path d="M7 7h10v2H7zm0 4h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2zm-8 4h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg> Calculate
+                  </button>
+                </div>
+              </div>
+            </form>
           </main>
 
       <div id="settingsModal" class="modal">
@@ -2240,11 +2327,11 @@ input[type="range"]::-webkit-slider-thumb {
                   const rSm = Math.max(2, Math.round(corners * 0.5));
           
                   dynamicStyle.innerHTML = `
-                    .glass-card, .modal-content, .warning-popup { border-radius: ${rCard}px !important; }
-                    .menu-bar { border-radius: 0 0 ${rCard}px ${rCard}px !important; }
-                    .side-drawer { border-radius: 0 ${rCard}px ${rCard}px 0 !important; }
-                    .main-btn, .mini-btn.neon, .settings-grid input, .settings-grid select, .settings-grid button, .target-info-grid, .calc-results, .big-timer { border-radius: ${rBtn}px !important; }
-                    .drawer-link, .mini-watch, .bg-thumb, .info-badge, .alert-bar, .color-swatch, .color-picker-input, .period-tab, .results-container, .calc-summary, .icon-btn { border-radius: ${rSm}px !important; }
+                                      .glass-card, .modal-content, .warning-popup { border-radius: ${rCard}px !important; }
+                                      .menu-bar { border-radius: 0 0 ${rCard}px ${rCard}px !important; }
+                                      .side-drawer { border-radius: 0 ${rCard}px ${rCard}px 0 !important; }
+                                      .main-btn, .mini-btn.neon, .settings-grid input, .settings-grid select, .settings-grid button, .calc-grid input, .calc-grid select, .calc-btn-wrapper button, .target-info-grid, .calc-results, .big-timer { border-radius: ${rBtn}px !important; }
+                                      .drawer-link, .mini-watch, .bg-thumb, .info-badge, .alert-bar, .color-swatch, .color-picker-input, .period-tab, .results-container, .calc-summary, .icon-btn { border-radius: ${rSm}px !important; }
                     .color-picker-input::-webkit-color-swatch, .color-picker-input::-moz-color-swatch { border-radius: ${rSm}px !important; }
                     .drawer-link.active, .drawer-link:focus { border-radius: 0 ${rSm}px ${rSm}px 0 !important; }
                   `;
