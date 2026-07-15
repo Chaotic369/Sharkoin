@@ -485,10 +485,15 @@ h3 {
 
 .personalize-controls {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin: 24px 0;
-  justify-content: center; /* Centered for better flow */
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0 0 0;
+}
+
+.personalize-controls button {
+  width: 100% !important;
+  text-align: left;
+  padding: 10px 16px;
 }
 
 #plannerForm.slide-down {
@@ -522,9 +527,11 @@ h3 {
   width: 100vw;
   height: 100vh;
   z-index: 1002;
-  background: rgba(15, 20, 38, 0.5);
-  align-items: center;
-  justify-content: center;
+  background: rgba(15, 20, 38, 0.3);
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 72px max(16px, calc(50vw - 320px + 16px)) 24px 24px;
+  box-sizing: border-box;
 }
 
 .modal.active {
@@ -532,14 +539,31 @@ h3 {
 }
 
 .modal-content {
-  max-width: 500px;
-  width: 90%;
-  padding: 24px;
+  max-width: 320px;
+  width: 100%;
+  padding: 20px;
   position: relative;
   background: rgba(38, 44, 61, 0.95);
   backdrop-filter: blur(20px);
   border-radius: 20px;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h3 {
+  margin: 0 0 16px 0;
+  font-size: 1.3em;
+}
+
+.modal-content .settings-grid {
+  grid-template-columns: 1fr;
+  grid-gap: 12px;
+  margin: 12px 0;
+}
+
+.modal-content .settings-grid label {
+  justify-self: start;
+  padding-left: 0;
+  margin-bottom: -6px;
 }
 
 .modal-close-btn {
@@ -1287,12 +1311,12 @@ input[type="range"]::-webkit-slider-thumb {
                   <button class="modal-close-btn">&times;</button>
                   <h3>Personalize</h3>
                   <div class="personalize-controls">
-                    <button id="editClockBtn" class="mini-btn neon">Edit Clock</button>
-              <button id="editTimerBtn" class="mini-btn neon">Edit Timer</button>
-              <button id="editCardBtn" class="mini-btn neon">Edit Cards, Sidebar & Menu</button>
-              <button id="editBgBtn" class="mini-btn neon">Edit Background</button>
-                            <button id="editSoundBtn" class="mini-btn neon">Edit Sound</button>
-            </div>
+                                      <button id="editClockBtn" class="mini-btn neon">Clock</button>
+                                <button id="editTimerBtn" class="mini-btn neon">Timer</button>
+                                <button id="editCardBtn" class="mini-btn neon">Cards, Sidebar & Menu</button>
+                                <button id="editBgBtn" class="mini-btn neon">Background</button>
+                                              <button id="editSoundBtn" class="mini-btn neon">Sound</button>
+                              </div>
           </div>
         </div>
 
@@ -2075,12 +2099,20 @@ input[type="range"]::-webkit-slider-thumb {
     }
 
     document.querySelectorAll('.modal-close-btn').forEach(btn => {
-      btn.onclick = closeModal;
-    });
+          btn.onclick = closeModal;
+        });
 
-    if (modalOverlay) {
-      modalOverlay.onclick = closeModal;
-    }
+        document.querySelectorAll('.modal').forEach(modal => {
+          modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+              closeModal();
+            }
+          });
+        });
+
+        if (modalOverlay) {
+          modalOverlay.onclick = closeModal;
+        }
 
     const editClockBtn = document.getElementById("editClockBtn");
                 const editTimerBtn = document.getElementById("editTimerBtn");
