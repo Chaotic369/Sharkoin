@@ -491,9 +491,25 @@ h3 {
 }
 
 .personalize-controls button {
-  width: 100% !important;
+  width: 100%;
   text-align: left;
   padding: 10px 16px;
+  background: transparent;
+  border: none;
+  color: #d0d4e0;
+  font-size: 1.05em;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: none;
+  outline: none;
+}
+
+.personalize-controls button:hover {
+  background: transparent;
+  color: #ffffff;
+  transform: translateX(4px);
 }
 
 #plannerForm.slide-down {
@@ -1311,11 +1327,11 @@ input[type="range"]::-webkit-slider-thumb {
                   <button class="modal-close-btn">&times;</button>
                   <h3>Personalize</h3>
                   <div class="personalize-controls">
-                                      <button id="editClockBtn" class="mini-btn neon">Clock</button>
-                                <button id="editTimerBtn" class="mini-btn neon">Timer</button>
-                                <button id="editCardBtn" class="mini-btn neon">Cards, Sidebar & Menu</button>
-                                <button id="editBgBtn" class="mini-btn neon">Background</button>
-                                              <button id="editSoundBtn" class="mini-btn neon">Sound</button>
+                                      <button id="editClockBtn">Clock</button>
+                                <button id="editTimerBtn">Timer</button>
+                                <button id="editCardBtn">Cards, Sidebar & Menu</button>
+                                <button id="editBgBtn">Background</button>
+                                              <button id="editSoundBtn">Sound</button>
                               </div>
           </div>
         </div>
