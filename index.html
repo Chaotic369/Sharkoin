@@ -668,7 +668,7 @@ h3 {
 }
 
 .calc-results {
-  margin-top: 20px;
+  margin-bottom: 20px;
   padding: 20px;
   background: rgba(35, 50, 55, 0.6);
   border-radius: 12px;
@@ -685,7 +685,8 @@ h3 {
 .period-tab {
   padding: 8px 16px;
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: none;
+  outline: none;
   border-radius: 8px;
   color: #d0d4e0;
   cursor: pointer;
@@ -695,7 +696,6 @@ h3 {
 
 .period-tab.active {
   background: rgba(0, 0, 0, 0.5);
-  border-color: rgba(255, 255, 255, 0.4);
   color: #ffffff;
 }
 
@@ -715,7 +715,8 @@ h3 {
 .results-table td {
   padding: 10px 12px;
   text-align: left;
-  border-bottom: 1px solid var(--border-base);
+  border: none;
+  outline: none;
   font-size: 0.9em;
 }
 
@@ -732,7 +733,8 @@ h3 {
   padding: 16px;
   background: rgba(47, 130, 255, 0.1);
   border-radius: 8px;
-  border: 1px solid rgba(47, 130, 255, 0.3);
+  border: none;
+  outline: none;
 }
 
 .summary-item {
@@ -1113,89 +1115,89 @@ input[type="range"]::-webkit-slider-thumb {
         </button>
       </div>
       <h2>Calculator</h2>
-    <form id="calcForm" autocomplete="off" class="settings-grid">
-      <label>Principal</label>
-      <input type="number" id="calcPrincipal" min="0" step="0.00000001" class="part-input" />
-      
-      <label>Interest %/day</label>
-      <input type="number" id="calcRate" min="0" step="0.01" max="100" class="part-input" />
-      
-      <label>Years</label>
-      <input type="number" id="calcYears" min="0" value="0" class="part-input" />
-      
-      <label>Months</label>
-      <input type="number" id="calcMonths" min="0" max="11" value="0" class="part-input" />
-      
-      <label>Days</label>
-      <input type="number" id="calcDays" min="0" max="31" value="0" class="part-input" />
-      
-      <label>Reinvest Rate</label>
-      <select id="calcReinvest" class="part-input">
-        <option value="1">100%</option>
-        <option value="0.5">50%</option>
-        <option value="0">0%</option>
-      </select>
-      
-      <label>Contribution</label>
-      <input type="number" id="calcContribution" min="0" step="0.00000001" class="part-input" />
-      
-      <label>Start Date</label>
-      <input type="date" id="calcDate" class="part-input" />
-      
-      <label></label>
-      <button class="main-btn" type="submit">Calculate</button>
-    </form>
-    
     <div id="calcResults" class="calc-results" style="display:none;">
-      <div class="calc-summary">
-        <div class="summary-item">
-          <span class="summary-label">Investment Value:</span>
-          <span class="summary-value" id="investmentValue">₹0.00</span>
-        </div>
-        <div class="summary-item">
-          <span class="summary-label">Total Interest/Earnings:</span>
-          <span class="summary-value" id="totalEarnings">₹0.00</span>
-        </div>
-        <div class="summary-item">
-          <span class="summary-label">Percentage Profit:</span>
-          <span class="summary-value" id="percentageProfit">0.00%</span>
-        </div>
-        <div class="summary-item">
-          <span class="summary-label">Daily Interest Rate:</span>
-          <span class="summary-value" id="dailyRate">0.00%</span>
-        </div>
-        <div class="summary-item">
-          <span class="summary-label">Total Days:</span>
-          <span class="summary-value" id="totalDays">0</span>
-        </div>
-        <div class="summary-item">
-          <span class="summary-label">Initial Balance:</span>
-          <span class="summary-value" id="initialBalance">₹0.00</span>
-        </div>
-      </div>
+          <div class="calc-summary">
+            <div class="summary-item">
+              <span class="summary-label">Investment Value:</span>
+              <span class="summary-value" id="investmentValue">₹0.00</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Total Interest/Earnings:</span>
+              <span class="summary-value" id="totalEarnings">₹0.00</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Percentage Profit:</span>
+              <span class="summary-value" id="percentageProfit">0.00%</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Daily Interest Rate:</span>
+              <span class="summary-value" id="dailyRate">0.00%</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Total Days:</span>
+              <span class="summary-value" id="totalDays">0</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Initial Balance:</span>
+              <span class="summary-value" id="initialBalance">₹0.00</span>
+            </div>
+          </div>
       
-      <div class="calc-period-tabs">
-        <button type="button" class="period-tab active" data-period="daily">Daily</button>
-        <button type="button" class="period-tab" data-period="weekly">Weekly</button>
-        <button type="button" class="period-tab" data-period="monthly">Monthly</button>
-        <button type="button" class="period-tab" data-period="yearly">Yearly</button>
-      </div>
+          <div class="calc-period-tabs">
+            <button type="button" class="period-tab active" data-period="daily">Daily</button>
+            <button type="button" class="period-tab" data-period="weekly">Weekly</button>
+            <button type="button" class="period-tab" data-period="monthly">Monthly</button>
+            <button type="button" class="period-tab" data-period="yearly">Yearly</button>
+          </div>
       
-      <div class="results-container">
-        <table class="results-table">
-          <thead>
-            <tr>
-              <th>Period</th>
-              <th>Earnings</th>
-              <th>Total Earnings</th>
-              <th>Balance</th>
-            </tr>
-          </thead>
-          <tbody id="calcTableBody"></tbody>
-        </table>
-      </div>
-    </div>
-      </main>
+          <div class="results-container">
+            <table class="results-table">
+              <thead>
+                <tr>
+                  <th>Period</th>
+                  <th>Earnings</th>
+                  <th>Total Earnings</th>
+                  <th>Balance</th>
+                </tr>
+              </thead>
+              <tbody id="calcTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <form id="calcForm" autocomplete="off" class="settings-grid">
+          <label>Principal</label>
+          <input type="number" id="calcPrincipal" min="0" step="0.00000001" class="part-input" />
+      
+          <label>Interest %/day</label>
+          <input type="number" id="calcRate" min="0" step="0.01" max="100" class="part-input" />
+      
+          <label>Years</label>
+          <input type="number" id="calcYears" min="0" value="0" class="part-input" />
+      
+          <label>Months</label>
+          <input type="number" id="calcMonths" min="0" max="11" value="0" class="part-input" />
+      
+          <label>Days</label>
+          <input type="number" id="calcDays" min="0" max="31" value="0" class="part-input" />
+      
+          <label>Reinvest Rate</label>
+          <select id="calcReinvest" class="part-input">
+            <option value="1">100%</option>
+            <option value="0.5">50%</option>
+            <option value="0">0%</option>
+          </select>
+      
+          <label>Contribution</label>
+          <input type="number" id="calcContribution" min="0" step="0.00000001" class="part-input" />
+      
+          <label>Start Date</label>
+          <input type="date" id="calcDate" class="part-input" />
+      
+          <label></label>
+          <button class="main-btn" type="submit">Calculate</button>
+        </form>
+          </main>
 
       <div id="settingsModal" class="modal">
                 <div class="modal-content">
