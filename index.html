@@ -1103,11 +1103,11 @@ input[type="range"]::-webkit-slider-thumb {
       <label>Flexible Hours (optional)</label>
             <input type="text" id="planFlexibleHours" placeholder="e.g. 7-12, 20-23" class="part-input" />
 
-            <div style="grid-column: 1 / -1; display: flex; justify-content: center; width: 100%; margin-top: 12px;">
-              <button id="planStartBtn" class="main-btn accent" type="button">Start Session</button>
-            </div>
-          </form>
-          <div id="planInfo" class="info-badge"></div>
+            <div style="grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%; margin-top: 12px;">
+                    <div id="planInfo" class="info-badge" style="margin: 0; width: 100%;"></div>
+                    <button id="planStartBtn" class="main-btn accent" type="button">Start Session</button>
+                  </div>
+                </form>
   </main>
 
   <main id="calcPage" class="glass-card page">
