@@ -428,10 +428,17 @@ h3 {
   background: rgba(35, 50, 55, 0.8);
   border-radius: 8px;
   padding: 10px 16px;
-  margin: 24px 0;
-  display: inline-block;
+  margin: 24px auto;
+  display: block;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
   max-width: 100%;
   overflow-wrap: break-word;
+}
+
+.info-badge:empty {
+  display: none !important;
 }
 
 .alert-bar {
