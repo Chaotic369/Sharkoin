@@ -1261,20 +1261,12 @@ input[type="range"]::-webkit-slider-thumb {
                 </div>
               </div>
       
-              <div class="calc-row-2" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; margin-top: 8px;">
-                <div class="calc-group">
-                  <label>Daily reinvest rate:</label>
-                  <select id="calcReinvest">
-                    <option value="1">100%</option>
-                    <option value="0.5">50%</option>
-                    <option value="0">0%</option>
-                  </select>
-                </div>
-                <div class="calc-group">
-                  <label>Additional contributions:</label>
-                  <input type="number" id="calcContribution" min="0" step="0.00000001" />
-                </div>
-              </div>
+              <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; margin-top: 8px;">
+                      <div class="calc-group">
+                        <label>Additional contributions:</label>
+                        <input type="number" id="calcContribution" min="0" step="0.00000001" />
+                      </div>
+                    </div>
       
               <div class="calc-row-2" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; margin-top: 8px;">
                 <div class="calc-group">
@@ -1952,8 +1944,8 @@ input[type="range"]::-webkit-slider-thumb {
           const years = parseInt(document.getElementById("calcYears")?.value) || 0;
           const months = parseInt(document.getElementById("calcMonths")?.value) || 0;
           const days = parseInt(document.getElementById("calcDays")?.value) || 0;
-          const reinvest = parseFloat(document.getElementById("calcReinvest")?.value) || 1;
-          const contribution = parseFloat(document.getElementById("calcContribution")?.value) || 0;
+                    const reinvest = 1;
+                    const contribution = parseFloat(document.getElementById("calcContribution")?.value) || 0;
 
           if (principal <= 0 || rate <= 0) {
             showWarning("Please enter valid principal and rate values.");
